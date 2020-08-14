@@ -4,9 +4,14 @@ import 'package:mahindraCSC/z_repository/assessmentRepository.dart';
 class SiteAssessmentProvider extends ChangeNotifier {
   AssessentRepository assessentRepository = AssessentRepository();
   List<Map<String, dynamic>> questionList = [];
+  List<Map<String, dynamic>> fireQuestions = [];
   Map<String, dynamic> currentQuestion = {};
   int i = 1;
+  String type = '';
+  String assessmentType = '';
   bool loading = true;
+  List<Map<String, dynamic>> fireanswers = [];
+  List<bool> officeAnswers = [];
   List<double> assessment = [
     0,
     0,
@@ -36,15 +41,17 @@ class SiteAssessmentProvider extends ChangeNotifier {
   ];
   double assessmentTotal = 0;
 
-  SiteAssessmentProvider() {
+  SiteAssessmentProvider(String assessmentTypeI) {
+    assessmentType = assessmentTypeI;
     getQuestions();
   }
 
   Future<void> getQuestions() async {
     try {
       questionList = await assessentRepository.getAssessmentQuestions();
+      type = 'assessment';
       print('getDone');
-      setMap();
+      setMap(type);
       print('mapSet');
       loading = false;
       notifyListeners();
@@ -54,13 +61,35 @@ class SiteAssessmentProvider extends ChangeNotifier {
     }
   }
 
-  void setMap() {
+  void setMap(String typeI) {
     print(i);
-    for (int j = 0; j < questionList.length; j++) {
-      if (questionList[j]['number'] == i) {
-        currentQuestion = questionList[j];
+    switch (typeI) {
+      case 'assessment':
+        {
+          print('SetmapAssessmentCalled');
+          for (int j = 0; j < questionList.length; j++) {
+            if (questionList[j]['number'] == i) {
+              currentQuestion = questionList[j];
+              break;
+            }
+          }
+        }
         break;
-      }
+      case 'fire':
+        {
+          print('SetmapFireCalled');
+          for (int j = 0; j < fireQuestions.length; j++) {
+            if (fireQuestions[j]['number'] == i) {
+              print('Fire Set');
+              currentQuestion = fireQuestions[j];
+              break;
+            }
+          }
+        }
+        break;
+      case 'office':
+        {}
+        break;
     }
   }
 
@@ -70,14 +99,14 @@ class SiteAssessmentProvider extends ChangeNotifier {
     assessment.insert(i - 1, value);
     print(assessment.toString());
     i++;
-    setMap();
+    setMap(type);
     notifyListeners();
     return assessment[i - 1];
   }
 
   double previousPressed() {
     i--;
-    setMap();
+    setMap(type);
     notifyListeners();
     print('Previous Pressed: with $i');
     return assessment[i - 1];
@@ -95,6 +124,75 @@ class SiteAssessmentProvider extends ChangeNotifier {
 
   void beforeSubmitTapped(int value) {
     i = value;
-    setMap();
+    setMap(type);
+  }
+
+  Future<void> getFireQuestions() async {
+    try {
+      loading = true;
+      notifyListeners();
+      fireQuestions = await assessentRepository.getFireQuestions();
+      i = 1;
+      type = 'fire';
+      setMap(type);
+      loading = false;
+      notifyListeners();
+    } catch (e) {
+      print('FireQuestion Error:: ' + e.toString() + '\n\n');
+      loading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> setFireAssessment(bool answer, String comment) async {
+    Map<String, dynamic> map = {
+      'answer': answer,
+      'comment': comment,
+    };
+    if (fireanswers.length < i) {
+      fireanswers.add(map);
+    } else {
+      fireanswers.removeAt(i - 1);
+      fireanswers.insert(i - 1, map);
+    }
+    print(fireanswers.toString());
+    i++;
+    setMap(type);
+  }
+
+  void previousFirePressed() {
+    i--;
+    setMap(type);
+    notifyListeners();
+    print('Previous Pressed: with $i');
+  }
+
+  Future<void> getOfficeQuestions() async {
+    try {
+      loading = true;
+      notifyListeners();
+      fireQuestions = await assessentRepository.getOfficeQuestions();
+      i = 1;
+      type = 'office';
+      setMap(type);
+      loading = false;
+      notifyListeners();
+    } catch (e) {
+      print('officeQuestion Error:: ' + e.toString() + '\n\n');
+      loading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> setOfficeAssessment(bool answer) async {
+    if (fireanswers.length < i) {
+      officeAnswers.add(answer);
+    } else {
+      officeAnswers.removeAt(i - 1);
+      officeAnswers.insert(i - 1, answer);
+    }
+    print(fireanswers.toString());
+    i++;
+    setMap(type);
   }
 }

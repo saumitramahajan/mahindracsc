@@ -19,8 +19,8 @@ class _AssessorDashboardState extends State<AssessorDashboard> {
             RaisedButton(
               child: Text('Site Assessment'),
               onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => SiteAssessment()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => SiteAssessment('Assessor')));
               },
             ),
           ],

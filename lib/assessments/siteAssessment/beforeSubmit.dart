@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mahindraCSC/assessments/siteAssessment/FireAssessment.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentSingle.dart';
 import 'package:provider/provider.dart';
@@ -79,7 +80,19 @@ class _BeforeSubmitState extends State<BeforeSubmit> {
           ),
           RaisedButton(
             child: Text('Submit'),
-            onPressed: () {},
+            onPressed: () {
+              if (assessmentProvider.assessmentType == 'site') {
+                assessmentProvider.getFireQuestions();
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return ChangeNotifierProvider.value(
+                      value: assessmentProvider,
+                      child: FireAssessment(),
+                    );
+                  },
+                ));
+              }
+            },
           )
         ],
       )),

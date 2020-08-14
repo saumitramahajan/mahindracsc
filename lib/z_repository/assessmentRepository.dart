@@ -22,4 +22,40 @@ class AssessentRepository {
     });
     return questionList;
   }
+
+  Future<List<Map<String, dynamic>>> getFireQuestions() async {
+    List<Map<String, dynamic>> fireQuestions = [];
+    await Firestore.instance
+        .collection('siteAssessmentFire')
+        .getDocuments()
+        .then((questionQS) {
+      questionQS.documents.forEach((questionDS) {
+        Map<String, dynamic> map = {};
+        map['statement'] = questionDS.data['statement'];
+        map['condition'] = questionDS.data['condition'];
+        map['validation'] = questionDS.data['validation'];
+        map['number'] = questionDS.data['number'];
+        fireQuestions.add(map);
+      });
+    });
+    return fireQuestions;
+  }
+
+  Future<List<Map<String, dynamic>>> getOfficeQuestions() async {
+    List<Map<String, dynamic>> officeQuestions = [];
+    await Firestore.instance
+        .collection('siteAssessmentOffice')
+        .getDocuments()
+        .then((questionQS) {
+      questionQS.documents.forEach((questionDS) {
+        Map<String, dynamic> map = {};
+        map['statement'] = questionDS.data['statement'];
+        map['condition'] = questionDS.data['condition'];
+        map['validation'] = questionDS.data['validation'];
+        map['number'] = questionDS.data['number'];
+        officeQuestions.add(map);
+      });
+    });
+    return officeQuestions;
+  }
 }
