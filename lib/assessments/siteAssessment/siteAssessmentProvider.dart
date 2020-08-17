@@ -13,33 +13,8 @@ class SiteAssessmentProvider extends ChangeNotifier {
   bool loading = true;
   List<Map<String, dynamic>> fireanswers = [];
   List<bool> officeAnswers = [];
-  List<double> assessment = [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-  ];
+
+  List<Map<String, dynamic>> assessmentAnswers = [];
   double assessmentTotal = 0;
 
   SiteAssessmentProvider(String assessmentTypeI) {
@@ -70,6 +45,7 @@ class SiteAssessmentProvider extends ChangeNotifier {
           print('SetmapAssessmentCalled');
           for (int j = 0; j < questionList.length; j++) {
             if (questionList[j]['number'] == i) {
+              print('QuestionSet');
               currentQuestion = questionList[j];
               break;
             }
@@ -103,15 +79,27 @@ class SiteAssessmentProvider extends ChangeNotifier {
     }
   }
 
-  double setAssessment(double value) {
+  double setAssessment(double value, String comment) {
     print(i);
-    assessment.removeAt(i - 1);
-    assessment.insert(i - 1, value);
-    print(assessment.toString());
+    Map<String, dynamic> map = {
+      'answer': value,
+      'comment': comment,
+    };
+    if (assessmentAnswers.length < i) {
+      assessmentAnswers.add(map);
+    } else {
+      assessmentAnswers.removeAt(i - 1);
+      assessmentAnswers.insert(i - 1, map);
+    }
+    print(assessmentAnswers.toString());
     i++;
     setMap(type);
     notifyListeners();
-    return assessment[i - 1];
+    double returnValue = 0.0;
+    if (assessmentAnswers.length > i) {
+      returnValue = assessmentAnswers[i - 1]['answer'];
+    }
+    return returnValue;
   }
 
   double previousPressed() {
@@ -119,20 +107,28 @@ class SiteAssessmentProvider extends ChangeNotifier {
     setMap(type);
     notifyListeners();
     print('Previous Pressed: with $i');
-    return assessment[i - 1];
+    return assessmentAnswers[i - 1]['answer'];
   }
 
-  void submited(double value) {
-    assessment.removeAt(i - 1);
-    assessment.insert(i - 1, value);
-    assessmentTotal = 0;
-    for (i = 0; i < assessment.length; i++) {
-      assessmentTotal = assessmentTotal + assessment[i];
+  void submited(double value, String comment) {
+    Map<String, dynamic> map = {
+      'answer': value,
+      'comment': comment,
+    };
+    if (assessmentAnswers.length < i) {
+      assessmentAnswers.add(map);
+    } else {
+      assessmentAnswers.removeAt(i - 1);
+      assessmentAnswers.insert(i - 1, map);
     }
-    print(assessment.toString());
+    assessmentTotal = 0;
+    for (i = 0; i < assessmentAnswers.length; i++) {
+      assessmentTotal = assessmentTotal + assessmentAnswers[i]['answer'];
+    }
+    print(assessmentAnswers.toString());
   }
 
-  void beforeSubmitTapped(int value) {
+  void beforeSubmitTapped(int value, String type) {
     i = value;
     setMap(type);
   }

@@ -39,7 +39,8 @@ class _BeforeSubmitState extends State<BeforeSubmit> {
                     (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () async {
-                          assessmentProvider.beforeSubmitTapped(index + 1);
+                          assessmentProvider.beforeSubmitTapped(
+                              index + 1, 'assessment');
                           print('From BeforeSubmit:: ' +
                               index.toString() +
                               '\n\n');
@@ -48,8 +49,8 @@ class _BeforeSubmitState extends State<BeforeSubmit> {
                             return ChangeNotifierProvider.value(
                               value: assessmentProvider,
                               child: SiteAssessmentSingleForm(
-                                sliderValue:
-                                    assessmentProvider.assessment[index],
+                                sliderValue: assessmentProvider
+                                    .assessmentAnswers[index]['answer'],
                               ),
                             );
                           }));
@@ -63,8 +64,9 @@ class _BeforeSubmitState extends State<BeforeSubmit> {
                           children: [
                             Text(assessmentProvider.questionList[index]
                                 ['statement']),
-                            Text(
-                                assessmentProvider.assessment[index].toString())
+                            Text(assessmentProvider.assessmentAnswers[index]
+                                    ['answer']
+                                .toString())
                           ],
                         )),
                       );

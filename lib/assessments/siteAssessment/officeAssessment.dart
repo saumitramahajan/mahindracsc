@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mahindraCSC/assessments/siteAssessment/beforeSubmitSecond.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
 import 'package:mahindraCSC/roles/assessee/assesseeProvider.dart';
 import 'package:provider/provider.dart';
@@ -90,6 +91,14 @@ class _OfficeAssessmentState extends State<OfficeAssessment> {
                               child: Text('Submit'),
                               onPressed: () {
                                 assessmentProvider.setOfficeAssessment(answer);
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) {
+                                    return ChangeNotifierProvider.value(
+                                      value: assessmentProvider,
+                                      child: BeforeSubmitSecond(),
+                                    );
+                                  },
+                                ));
                               },
                             ),
                     ],

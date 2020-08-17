@@ -14,6 +14,7 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
   double _sliderValue = 0;
   String level = '';
   String content = '';
+  TextEditingController _controller = TextEditingController();
 
   String getLevelString(double value, SiteAssessmentProvider provider) {
     if (value < provider.currentQuestion['scheme'][0]['end']) {
@@ -78,6 +79,12 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                   Text('Assessment Marks: ' + _sliderValue.toString()),
                   Text(level),
                   Text(content),
+                  (_sliderValue > 0)
+                      ? TextField(
+                          controller: _controller,
+                          decoration: InputDecoration(labelText: 'Comment'),
+                        )
+                      : SizedBox(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -92,6 +99,9 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                       _sliderValue, assessmentProvider);
                                   content = getContentString(
                                       _sliderValue, assessmentProvider);
+                                  _controller.text =
+                                      assessmentProvider.assessmentAnswers[
+                                          assessmentProvider.i - 1]['comment'];
                                 });
                               },
                             )
@@ -101,8 +111,9 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                               child: Text('Next'),
                               onPressed: () {
                                 setState(() {
-                                  _sliderValue = assessmentProvider
-                                      .setAssessment(_sliderValue);
+                                  _sliderValue =
+                                      assessmentProvider.setAssessment(
+                                          _sliderValue, _controller.text);
                                   if (_sliderValue > 0) {
                                     level = getLevelString(
                                         _sliderValue, assessmentProvider);
@@ -111,13 +122,15 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                   } else {
                                     level = '';
                                     content = '';
+                                    _controller.clear();
                                   }
                                 });
                               })
                           : RaisedButton(
                               child: Text('Submit'),
                               onPressed: () {
-                                assessmentProvider.submited(_sliderValue);
+                                assessmentProvider.submited(
+                                    _sliderValue, _controller.text);
                                 Navigator.of(context)
                                     .push(MaterialPageRoute(builder: (_) {
                                   return ChangeNotifierProvider.value(

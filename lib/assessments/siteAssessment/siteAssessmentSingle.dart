@@ -15,6 +15,7 @@ class _SiteAssessmentSingleFormState extends State<SiteAssessmentSingleForm> {
   double _sliderValue = 0;
   String level = '';
   String content = '';
+  TextEditingController _controller = TextEditingController();
 
   String getLevelString(double value, SiteAssessmentProvider provider) {
     if (value < provider.currentQuestion['scheme'][0]['end']) {
@@ -76,10 +77,14 @@ class _SiteAssessmentSingleFormState extends State<SiteAssessmentSingleForm> {
             Text('Assessment Marks: ' + _sliderValue.toString()),
             Text(level),
             Text(content),
+            TextField(
+              controller: _controller,
+              decoration: InputDecoration(labelText: 'Comment'),
+            ),
             RaisedButton(
               child: Text('Done'),
               onPressed: () {
-                assessmentProvider.submited(_sliderValue);
+                assessmentProvider.submited(_sliderValue, _controller.text);
                 Navigator.of(context).pop();
               },
             )

@@ -59,4 +59,7 @@ class AssessentRepository {
     print(officeQuestions.toString());
     return officeQuestions;
   }
+
+  Future<void> submitAssessment(List<Map<String, String>> assessment,
+      List<Map<String, String>> fireAnswer, List<bool> officeAnswers) async {}
 }
