@@ -5,6 +5,7 @@ class SiteAssessmentProvider extends ChangeNotifier {
   AssessentRepository assessentRepository = AssessentRepository();
   List<Map<String, dynamic>> questionList = [];
   List<Map<String, dynamic>> fireQuestions = [];
+  List<Map<String, dynamic>> officeQuestions = [];
   Map<String, dynamic> currentQuestion = {};
   int i = 1;
   String type = '';
@@ -88,7 +89,16 @@ class SiteAssessmentProvider extends ChangeNotifier {
         }
         break;
       case 'office':
-        {}
+        {
+          print('SetmapFireCalled');
+          for (int j = 0; j < officeQuestions.length; j++) {
+            if (officeQuestions[j]['number'] == i) {
+              print('Fire Set');
+              currentQuestion = officeQuestions[j];
+              break;
+            }
+          }
+        }
         break;
     }
   }
@@ -171,7 +181,7 @@ class SiteAssessmentProvider extends ChangeNotifier {
     try {
       loading = true;
       notifyListeners();
-      fireQuestions = await assessentRepository.getOfficeQuestions();
+      officeQuestions = await assessentRepository.getOfficeQuestions();
       i = 1;
       type = 'office';
       setMap(type);
@@ -185,13 +195,13 @@ class SiteAssessmentProvider extends ChangeNotifier {
   }
 
   Future<void> setOfficeAssessment(bool answer) async {
-    if (fireanswers.length < i) {
+    if (officeAnswers.length < i) {
       officeAnswers.add(answer);
     } else {
       officeAnswers.removeAt(i - 1);
       officeAnswers.insert(i - 1, answer);
     }
-    print(fireanswers.toString());
+    print(officeAnswers.toString());
     i++;
     setMap(type);
   }
