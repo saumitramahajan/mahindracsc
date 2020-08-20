@@ -79,7 +79,11 @@ class AssessentRepository {
         .document('info')
         .get()
         .then((value) {
-      if (value != null) {
+      print('Location Info called:: ' +
+          value.data.toString() +
+          value.exists.toString());
+      if (value.exists) {
+        data['documentId'] = loca.documents[0].documentID;
         data['dataExists'] = true;
         data['siteName'] = value.data['siteName'];
         data['occupierName'] = value.data['occupierName'];
@@ -108,8 +112,10 @@ class AssessentRepository {
         data['paintShopValue'] = value.data['paintShopValue'];
         data['foundry'] = value.data['foundry'];
         data['foundryValue'] = value.data['foundryValue'];
-        data['diesel'] = value.data['diesel'];
-        data['dieselValue'] = value.data['dieselValue'];
+        data['pressValue'] = value.data['pressValue'];
+        data['press'] = value.data['press'];
+        data['desiel'] = value.data['desiel'];
+        data['desielValue'] = value.data['desielValue'];
         data['thinner'] = value.data['thinner'];
         data['thinnerValue'] = value.data['thinnerValue'];
         data['toxic'] = value.data['toxic'];
@@ -126,8 +132,10 @@ class AssessentRepository {
         data['firstAid'] = value.data['firstAid'];
         data['fire'] = value.data['fire'];
       } else {
+        data['documentId'] = loca.documents[0].documentID;
         data['dataExists'] = false;
       }
     });
+    return data;
   }
 }

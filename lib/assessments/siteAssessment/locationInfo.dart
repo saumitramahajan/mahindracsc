@@ -1,11 +1,111 @@
 import 'package:flutter/material.dart';
+import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentForm.dart';
+import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
+import 'package:provider/provider.dart';
 
 class LocationInfo extends StatefulWidget {
+  final bool dataExists;
+  final String documentId;
+  final String siteName;
+  final String occupierName;
+  final String occupierEmail;
+  final String headName;
+  final String headEmail;
+  final String safetyInchargeName;
+  final String safetyInchargeEmail;
+  final String fireInchargeName;
+  final String fireInchargeEmail;
+  final String officeSafetyInchargeName;
+  final String officeSafetyInchargeEmail;
+  final String utilitiesName;
+  final String utilitiesEmail;
+  final String rule;
+  final String lpg;
+  final String gasoline;
+  final String cng;
+  final String paintShop;
+  final String foundry;
+  final String press;
+  final String desiel;
+  final String thinner;
+  final String toxic;
+  final String heat;
+  final String testBed;
+  final String ibr;
+  final String fatal;
+  final String reportable;
+  final String nonReportable;
+  final String firstAid;
+  final String fire;
+  final bool ruleValue;
+  final bool lpgValue;
+  final bool gasolineValue;
+  final bool cngValue;
+  final bool paintShopValue;
+  final bool foundryValue;
+  final bool pressValue;
+  final bool desielValue;
+  final bool thinnerValue;
+  final bool toxicValue;
+  final bool heatValue;
+  final bool testBedValue;
+  final bool ibrValue;
+
+  LocationInfo(
+      {Key key,
+      this.dataExists,
+      this.documentId,
+      this.siteName,
+      this.occupierName,
+      this.occupierEmail,
+      this.headName,
+      this.headEmail,
+      this.safetyInchargeName,
+      this.safetyInchargeEmail,
+      this.fireInchargeName,
+      this.fireInchargeEmail,
+      this.officeSafetyInchargeName,
+      this.officeSafetyInchargeEmail,
+      this.utilitiesName,
+      this.utilitiesEmail,
+      this.rule,
+      this.lpg,
+      this.gasoline,
+      this.cng,
+      this.paintShop,
+      this.foundry,
+      this.press,
+      this.desiel,
+      this.thinner,
+      this.toxic,
+      this.heat,
+      this.testBed,
+      this.ibr,
+      this.fatal,
+      this.reportable,
+      this.nonReportable,
+      this.firstAid,
+      this.fire,
+      this.ruleValue,
+      this.lpgValue,
+      this.gasolineValue,
+      this.cngValue,
+      this.paintShopValue,
+      this.foundryValue,
+      this.pressValue,
+      this.desielValue,
+      this.thinnerValue,
+      this.toxicValue,
+      this.heatValue,
+      this.testBedValue,
+      this.ibrValue})
+      : super(key: key);
   @override
   _LocationInfoState createState() => _LocationInfoState();
 }
 
 class _LocationInfoState extends State<LocationInfo> {
+  String documentId;
   TextEditingController _siteName = TextEditingController();
   TextEditingController _occupierName = TextEditingController();
   TextEditingController _occupierEmail = TextEditingController();
@@ -52,7 +152,66 @@ class _LocationInfoState extends State<LocationInfo> {
   bool _ibrValue = false;
 
   @override
+  void initState() {
+    super.initState();
+    print(widget.dataExists);
+    if (widget.dataExists) {
+      _siteName.text = widget.siteName;
+      documentId = widget.documentId;
+      _occupierName.text = widget.occupierName;
+      _occupierEmail.text = widget.occupierEmail;
+      _headName.text = widget.headName;
+      _headEmail.text = widget.headEmail;
+      _safetyInchargeEmail.text = widget.safetyInchargeEmail;
+      _safetyInchargeName.text = widget.safetyInchargeName;
+      _fireInchargeName.text = widget.fireInchargeName;
+      _fireInchargeEmail.text = widget.fireInchargeEmail;
+      _officeSafetyInchargeName.text = widget.officeSafetyInchargeName;
+      _officeSafetyInchargeEmail.text = widget.officeSafetyInchargeEmail;
+      _utilitiesName.text = widget.utilitiesName;
+      _utilitiesEmail.text = widget.utilitiesEmail;
+      _rule.text = widget.rule;
+      _lpg.text = widget.lpg;
+      _gasoline.text = widget.gasoline;
+      _cng.text = widget.cng;
+      _paintShop.text = widget.paintShop;
+      _foundry.text = widget.foundry;
+      _press.text = widget.press;
+      _desiel.text = widget.desiel;
+      _thinner.text = widget.thinner;
+      _toxic.text = widget.toxic;
+      _heat.text = widget.heat;
+      _testBed.text = widget.testBed;
+      _ibr.text = widget.ibr;
+      _fatal.text = widget.fatal;
+      _reportable.text = widget.reportable;
+      _nonReportable.text = widget.nonReportable;
+      _firstAid.text = widget.firstAid;
+      _fire.text = widget.fire;
+      _ruleValue = widget.ruleValue;
+      _lpgValue = widget.lpgValue;
+      _gasolineValue = widget.gasolineValue;
+      _cngValue = widget.cngValue;
+      _paintShopValue = widget.paintShopValue;
+      _foundryValue = widget.foundryValue;
+      _pressValue = widget.pressValue;
+      _desielValue = widget.desielValue;
+      _thinnerValue = widget.thinnerValue;
+      _toxicValue = widget.toxicValue;
+      _heatValue = widget.heatValue;
+      _testBedValue = widget.testBedValue;
+      _ibrValue = widget.ibrValue;
+      print('Data setup finished' +
+          _pressValue.toString() +
+          _desielValue.toString());
+    } else {
+      documentId = widget.documentId;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final assessmentProvider = Provider.of<SiteAssessmentProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Location Information'),
@@ -667,8 +826,65 @@ class _LocationInfoState extends State<LocationInfo> {
                 ),
               ),
               RaisedButton(
-                child: Text('Save'),
-                onPressed: () {},
+                child: assessmentProvider.locationDataLoading
+                    ? CircularProgressIndicator()
+                    : Text('Save'),
+                onPressed: () async {
+                  await assessmentProvider.setLocationData(
+                      documentId,
+                      _siteName.text,
+                      _occupierName.text,
+                      _occupierEmail.text,
+                      _headName.text,
+                      _headEmail.text,
+                      _safetyInchargeName.text,
+                      _safetyInchargeEmail.text,
+                      _fireInchargeName.text,
+                      _fireInchargeEmail.text,
+                      _officeSafetyInchargeName.text,
+                      _officeSafetyInchargeEmail.text,
+                      _utilitiesName.text,
+                      _utilitiesEmail.text,
+                      _rule.text,
+                      _lpg.text,
+                      _gasoline.text,
+                      _cng.text,
+                      _paintShop.text,
+                      _foundry.text,
+                      _press.text,
+                      _desiel.text,
+                      _thinner.text,
+                      _toxic.text,
+                      _heat.text,
+                      _testBed.text,
+                      _ibr.text,
+                      _fatal.text,
+                      _reportable.text,
+                      _nonReportable.text,
+                      _firstAid.text,
+                      _fire.text,
+                      _ruleValue,
+                      _lpgValue,
+                      _gasolineValue,
+                      _cngValue,
+                      _paintShopValue,
+                      _foundryValue,
+                      _pressValue,
+                      _desielValue,
+                      _thinnerValue,
+                      _toxicValue,
+                      _heatValue,
+                      _testBedValue,
+                      _ibrValue);
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return ChangeNotifierProvider.value(
+                        value: assessmentProvider,
+                        child: SiteAssessmentForm(),
+                      );
+                    },
+                  ));
+                },
               )
             ],
           ),
