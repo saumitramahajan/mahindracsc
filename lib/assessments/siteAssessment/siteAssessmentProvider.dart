@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:mahindraCSC/z_repository/assessmentRepository.dart';
 
@@ -8,8 +9,11 @@ class SiteAssessmentProvider extends ChangeNotifier {
   List<Map<String, dynamic>> officeQuestions = [];
   Map<String, dynamic> currentQuestion = {};
   int i = 1;
+  bool locationData = false;
+  bool locationDataLoading = true;
   String type = '';
   String assessmentType = '';
+  String cycleId = '';
   bool loading = true;
   List<Map<String, dynamic>> fireanswers = [];
   List<bool> officeAnswers = [];
@@ -17,10 +21,16 @@ class SiteAssessmentProvider extends ChangeNotifier {
   List<Map<String, dynamic>> assessmentAnswers = [];
   double assessmentTotal = 0;
 
-  SiteAssessmentProvider(String assessmentTypeI) {
+  SiteAssessmentProvider(String assessmentTypeI, String cycleIdI) {
     assessmentType = assessmentTypeI;
+    cycleId = cycleIdI;
+    if (assessmentTypeI != 'site') {
+      getLocationInfo();
+    }
     getQuestions();
   }
+
+  Future<void> getLocationInfo() async {}
 
   Future<void> getQuestions() async {
     try {

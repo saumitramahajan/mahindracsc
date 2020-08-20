@@ -20,7 +20,8 @@ class _AssessorDashboardState extends State<AssessorDashboard> {
               child: Text('Site Assessment'),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => SiteAssessment('site')));
+                    builder: (context) =>
+                        SiteAssessment('site', 'O2ERNcwqH8tv2vOghWo9')));
               },
             ),
           ],
