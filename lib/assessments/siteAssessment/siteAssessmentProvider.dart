@@ -11,6 +11,7 @@ class SiteAssessmentProvider extends ChangeNotifier {
   int i = 1;
   bool locationData = false;
   bool locationDataLoading = true;
+  bool locationDataUploading = false;
   Map<String, dynamic> locationInfo = {};
   String type = '';
   String assessmentType = '';
@@ -270,7 +271,7 @@ class SiteAssessmentProvider extends ChangeNotifier {
     final bool testBedValue,
     final bool ibrValue,
   ) async {
-    locationDataLoading = true;
+    locationDataUploading = true;
     notifyListeners();
     await Firestore.instance
         .collection('locations')
@@ -323,7 +324,7 @@ class SiteAssessmentProvider extends ChangeNotifier {
       'firstAid': firstAid,
       'fire': fire,
     });
-    locationDataLoading = false;
+    locationDataUploading = false;
     notifyListeners();
   }
 

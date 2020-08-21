@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mahindraCSC/assessments/siteAssessment/locationInfo.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentForm.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
 import 'package:provider/provider.dart';

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mahindraCSC/roles/admin/activities/activities.dart';
+import 'package:mahindraCSC/roles/admin/activities/loginProvider.dart';
 import 'package:mahindraCSC/roles/admin/annualData/annualData.dart';
 import 'package:mahindraCSC/roles/admin/enrollLocation/enrollLoacation.dart';
 import 'package:mahindraCSC/roles/admin/enrollUsers/enrollUsers.dart';
+import 'package:provider/provider.dart';
 import '../scheduleAssessment/scheduleAssessment.dart';
 
 class AdminDashboard extends StatefulWidget {
@@ -55,7 +58,19 @@ class _AdminDashboardState extends State<AdminDashboard> {
                       return AnnualData();
                     },
                   ));
-                })
+                }),
+            RaisedButton(
+                child: Text('Activities'),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return ChangeNotifierProvider(
+                        create: (_) => ActivitiesProvider(),
+                        child: Activities(),
+                      );
+                    },
+                  ));
+                }),
           ],
         ),
       ),

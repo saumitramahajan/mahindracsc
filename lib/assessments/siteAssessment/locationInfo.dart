@@ -826,7 +826,7 @@ class _LocationInfoState extends State<LocationInfo> {
                 ),
               ),
               RaisedButton(
-                child: assessmentProvider.locationDataLoading
+                child: assessmentProvider.locationDataUploading
                     ? CircularProgressIndicator()
                     : Text('Save'),
                 onPressed: () async {

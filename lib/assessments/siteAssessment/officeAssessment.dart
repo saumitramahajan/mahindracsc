@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/beforeSubmitSecond.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
-import 'package:mahindraCSC/roles/assessee/assesseeProvider.dart';
 import 'package:provider/provider.dart';
 
 class OfficeAssessment extends StatefulWidget {

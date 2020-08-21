@@ -169,7 +169,7 @@ class AssessentRepository {
       'date': Timestamp.now(),
       'showTo': [
         {'uid': adminUid, 'type': 'selfAssessment', 'role': 'admin'},
-        {'uid': assesorUid, 'type': 'selfAssessment', 'role': 'assessor'}
+        {'uid': assesorUid, 'type': 'information', 'role': 'assessor'}
       ]
     });
   }
