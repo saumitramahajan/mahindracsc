@@ -269,6 +269,17 @@ class AdminRepository {
       'showTo': map,
       'cycleDocumentID': cycleDocumentID,
     });
+
+    await Firestore.instance.collection('activities').document().setData({
+      'content':
+          'Assessment Scheduled for location $location on ${scheduledDate.day}/${scheduledDate.month}/${scheduledDate.year}',
+      'date': Timestamp.now(),
+      'showTo': [
+        {'role': 'assessee', 'type': 'information', 'uid': assessee},
+        {'role': 'assessor', 'type': 'information', 'uid': assessorUid}
+      ],
+      'cycleDocumentID': cycleDocumentID,
+    });
   }
 
   Future<List<Map<String, String>>> getCycles() async {

@@ -169,7 +169,7 @@ class AssessentRepository {
       'date': Timestamp.now(),
       'showTo': [
         {'uid': adminUid, 'type': 'selfAssessment', 'role': 'admin'},
-        {'uid': assesorUid, 'type': 'information', 'role': 'assessor'}
+        {'uid': assesorUid, 'type': 'siteAssessment', 'role': 'assessor'}
       ]
     });
   }
@@ -200,7 +200,7 @@ class AssessentRepository {
       adminUid = querySnapshot.documents[0].documentID;
     });
     await Firestore.instance.collection('activities').document().setData({
-      'content': 'site Assessment Uploaded for location $location',
+      'content': 'Site Assessment Uploaded for location $location',
       'cycleId': cycleId,
       'date': Timestamp.now(),
       'showTo': [
