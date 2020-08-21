@@ -3,6 +3,7 @@ import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentFireSingle.
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentOfficeSingle.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentSingle.dart';
+import 'package:mahindraCSC/roles/assessor/assessorDashboard.dart';
 import 'package:provider/provider.dart';
 
 import 'FireAssessment.dart';
@@ -129,7 +130,12 @@ class _BeforeSubmitSecondState extends State<BeforeSubmitSecond> {
           ),
           RaisedButton(
             child: Text('Submit'),
-            onPressed: () {},
+            onPressed: () async {
+              await assessmentProvider.uploadSiteAssessment();
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => AssessorDashboard(),
+              ));
+            },
           )
         ],
       )),

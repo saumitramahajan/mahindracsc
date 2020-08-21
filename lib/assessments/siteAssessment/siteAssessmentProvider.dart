@@ -326,4 +326,13 @@ class SiteAssessmentProvider extends ChangeNotifier {
     locationDataLoading = false;
     notifyListeners();
   }
+
+  Future<void> uploadSelfAssessment() async {
+    await assessentRepository.uploadSelfAssessment(assessmentAnswers, cycleId);
+  }
+
+  Future<void> uploadSiteAssessment() async {
+    await assessentRepository.uploadSiteAssessment(
+        assessmentAnswers, fireanswers, officeAnswers, cycleId);
+  }
 }

@@ -138,4 +138,75 @@ class AssessentRepository {
     });
     return data;
   }
+
+  Future<void> uploadSelfAssessment(
+      List<Map<String, dynamic>> map, String cycleId) async {
+    await Firestore.instance
+        .collection('cycles')
+        .document(cycleId)
+        .updateData({'selfAssessment': map});
+    String assesorUid = '';
+    String location;
+    await Firestore.instance
+        .collection('cycles')
+        .document(cycleId)
+        .get()
+        .then((value) {
+      assesorUid = value.data['assessorUid'];
+      location = value.data['location'];
+    });
+    String adminUid = '';
+    await Firestore.instance
+        .collection('users')
+        .where('role', arrayContains: 'admin')
+        .getDocuments()
+        .then((querySnapshot) {
+      adminUid = querySnapshot.documents[0].documentID;
+    });
+    await Firestore.instance.collection('activities').document().setData({
+      'content': 'Self Assessment uploaded for location $location',
+      'cycleId': cycleId,
+      'date': Timestamp.now(),
+      'showTo': [
+        {'uid': adminUid, 'type': 'selfAssessment', 'role': 'admin'},
+        {'uid': assesorUid, 'type': 'selfAssessment', 'role': 'assessor'}
+      ]
+    });
+  }
+
+  Future<void> uploadSiteAssessment(
+      List<Map<String, dynamic>> assessment,
+      List<Map<String, dynamic>> fire,
+      List<bool> office,
+      String cycleId) async {
+    await Firestore.instance.collection('cycles').document(cycleId).updateData(
+        {'siteAssessment': assessment, 'fire': fire, 'office': office});
+    String assesseeUid = '';
+    String location = '';
+    await Firestore.instance
+        .collection('cycles')
+        .document(cycleId)
+        .get()
+        .then((value) {
+      assesseeUid = value.data['assesseeUid'];
+      location = value.data['location'];
+    });
+    String adminUid = '';
+    await Firestore.instance
+        .collection('users')
+        .where('role', arrayContains: 'admin')
+        .getDocuments()
+        .then((querySnapshot) {
+      adminUid = querySnapshot.documents[0].documentID;
+    });
+    await Firestore.instance.collection('activities').document().setData({
+      'content': 'site Assessment Uploaded for location $location',
+      'cycleId': cycleId,
+      'date': Timestamp.now(),
+      'showTo': [
+        {'uid': adminUid, 'type': 'siteAssessment', 'role': 'admin'},
+        {'uid': assesseeUid, 'type': 'information', 'role': 'assessee'}
+      ]
+    });
+  }
 }
