@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessment.dart';
 import 'package:mahindraCSC/roles/admin/annualData/annualData.dart';
+import 'package:mahindraCSC/roles/assessee/annualData/MonthlySafetyReportIT.dart';
+import 'package:mahindraCSC/roles/assessee/annualData/monthly_safety_report.dart';
 
 import 'loginProvider.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +16,50 @@ class Activities extends StatefulWidget {
 }
 
 class _ActivitiesState extends State<Activities> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  String assesseeUid = '';
+  String loc = '';
+
+  getCurrentUser(String cycleId) async {
+    final FirebaseUser user = await auth.currentUser();
+    final uid = user.uid;
+    // Similarly we can get email as well
+    //final uemail = user.email;b
+    print(uid);
+    assesseeUid = uid;
+    getAssesseeLocation(cycleId);
+    //print(uemail);
+  }
+
+  Future<String> getAssesseeLocation(String cycleId) async {
+    CollectionReference ref = Firestore.instance.collection('locations');
+    QuerySnapshot eventsQuery =
+        await ref.where("assessee", isEqualTo: assesseeUid).getDocuments();
+    loc = eventsQuery.documents[0]['category'];
+    String locationName = eventsQuery.documents[0]['location'];
+    var isIT = loc.indexOf("IT");
+    if (isIT == -1) {
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) {
+        return MonthlySafetyReport(
+          type: 'assessment',
+          cycleId: cycleId,
+          locationName: locationName,
+        );
+      }));
+    } else {
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) {
+        return MonthlySafetyReportIT(
+          type: 'assessment',
+          cycleId: cycleId,
+          locationName: locationName,
+        );
+      }));
+      return loc;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ActivitiesProvider>(context);
@@ -60,7 +108,8 @@ class _ActivitiesState extends State<Activities> {
                           switch (provider.listOfDetails[index]['type']) {
                             case 'annualData':
                               {
-                                //Upload Annual Data Page
+                                getCurrentUser(provider.listOfDetails[index]
+                                    ['cycleDocumentID']);
                               }
                               break;
 

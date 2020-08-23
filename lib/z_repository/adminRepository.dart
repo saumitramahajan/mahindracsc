@@ -280,6 +280,14 @@ class AdminRepository {
       ],
       'cycleDocumentID': cycleDocumentID,
     });
+    await Firestore.instance.collection('activities').document().setData({
+      'content': 'Admin Has requested Self assessment',
+      'date': Timestamp.now(),
+      'showTo': [
+        {'role': 'assessee', 'type': 'selfAssessment', 'uid': assessee},
+      ],
+      'cycleDocumentID': cycleDocumentID,
+    });
   }
 
   Future<List<Map<String, String>>> getCycles() async {
@@ -339,7 +347,8 @@ class AdminRepository {
         .getDocuments()
         .then((snapshot) {
       snapshot.documents.forEach((cycle) {
-        if (cycle.data['currentStatus'] != 'Annual Data Requested') {
+        if (cycle.data['currentStatus'] != 'Annual Data Requested' ||
+            cycle.data['currentStatus'] != 'Assessment Closed') {
           Map<String, String> map = {};
           if (cycle.data['adCategory'] == 'category1') {
             map = category1Map(cycle);
