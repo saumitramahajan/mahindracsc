@@ -12,7 +12,7 @@ class AssessentRepository {
       value.documents.forEach((question) {
         Map<String, dynamic> questionMap = {};
         questionMap['category'] = question.data['category'];
-        questionMap['scheme'] = question.data['scheme'];
+        questionMap['imageLink'] = question.data['imageLink'];
         questionMap['marks'] = question.data['marks'];
         questionMap['number'] = question.data['number'];
         questionMap['statement'] = question.data['statement'];
@@ -165,7 +165,7 @@ class AssessentRepository {
     });
     await Firestore.instance.collection('activities').document().setData({
       'content': 'Self Assessment uploaded for location $location',
-      'cycleId': cycleId,
+      'cycleDocumentID': cycleId,
       'date': Timestamp.now(),
       'showTo': [
         {'uid': adminUid, 'type': 'selfAssessment', 'role': 'admin'},
@@ -201,7 +201,7 @@ class AssessentRepository {
     });
     await Firestore.instance.collection('activities').document().setData({
       'content': 'Site Assessment Uploaded for location $location',
-      'cycleId': cycleId,
+      'cycleDocumentID': cycleId,
       'date': Timestamp.now(),
       'showTo': [
         {'uid': adminUid, 'type': 'siteAssessment', 'role': 'admin'},

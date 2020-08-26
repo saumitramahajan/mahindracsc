@@ -83,6 +83,7 @@ class _MonthlySafetyReport extends State<MonthlySafetyReport> {
       Firestore.instance.collection('activities').document().setData({
         'content': 'Annual data uploaded for location ${widget.locationName}',
         'date': Timestamp.now(),
+        'cycleDocumentID': widget.cycleId,
         'showTo': [
           {'role': 'admin', 'type': 'annualData', 'uid': adminUid}
         ]

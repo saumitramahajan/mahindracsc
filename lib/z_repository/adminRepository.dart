@@ -183,6 +183,7 @@ class AdminRepository {
     List<Map<String, String>> locationMap = [];
     QuerySnapshot locations =
         await Firestore.instance.collection('locations').getDocuments();
+
     for (int i = 0; i < locations.documents.length; i++) {
       Map<String, String> location = {};
       if (locations.documents[i]['typeOfLocation'] == 'vendor') {
