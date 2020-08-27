@@ -25,6 +25,7 @@ class _MonthlySafetyReport extends State<MonthlySafetyReport> {
   double _manpower = 0,
       _fatal = 0,
       _fatalaccidents = 0,
+      _seriousAccidents = 0,
       _reportableaccidents = 0,
       _mandayslost = 0,
       _nonreportableaccidents = 0,
@@ -54,6 +55,7 @@ class _MonthlySafetyReport extends State<MonthlySafetyReport> {
         "adManPower": _manpower,
         "adFatal": _fatal,
         "adFatalAccidents": _fatalaccidents,
+        'adSeriousAccidents': _seriousAccidents,
         "adReportableAccidents": _reportableaccidents,
         "adManDaysLost": _mandayslost,
         "adNoReportableAccidents": _nonreportableaccidents,
@@ -98,6 +100,7 @@ class _MonthlySafetyReport extends State<MonthlySafetyReport> {
         "manPower": _manpower,
         "fatal": _fatal,
         "fatalAccidents": _fatalaccidents,
+        'seriousAccidents': _seriousAccidents,
         "reportableAccidents": _reportableaccidents,
         "manDaysLost": _mandayslost,
         "noReportableAccidents": _nonreportableaccidents,
@@ -203,26 +206,6 @@ class _MonthlySafetyReport extends State<MonthlySafetyReport> {
                 },
               ),
               Text(
-                'On Duty Road Fatal Accidents',
-                style: TextStyle(fontSize: 22),
-                textAlign: TextAlign.left,
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Numbers',
-                  hintText: 'On Duty Road Fatal Accidents',
-                ),
-                keyboardType: TextInputType.number,
-                onChanged: (String str) {
-                  setState(
-                    () {
-                      _fatalaccidents = double.tryParse(str);
-                    },
-                  );
-                },
-              ),
-              Text(
                 'Reportable Accidents (B)',
                 style: TextStyle(fontSize: 22),
                 textAlign: TextAlign.left,
@@ -244,7 +227,7 @@ class _MonthlySafetyReport extends State<MonthlySafetyReport> {
                 },
               ),
               Text(
-                'Man-days lost (RA)',
+                'Man-days lost due to Reportable Accidents',
                 style: TextStyle(fontSize: 22),
                 textAlign: TextAlign.left,
               ),
@@ -285,7 +268,7 @@ class _MonthlySafetyReport extends State<MonthlySafetyReport> {
                 },
               ),
               Text(
-                'Man-days lost (NRA)',
+                'Man-days lost due to Non-Reportable Accidents',
                 style: TextStyle(fontSize: 22),
                 textAlign: TextAlign.left,
               ),
@@ -340,6 +323,46 @@ class _MonthlySafetyReport extends State<MonthlySafetyReport> {
                   setState(
                     () {
                       _totalaccidents = double.tryParse(str);
+                    },
+                  );
+                },
+              ),
+              Text(
+                'On Duty Road Accidents(Fatal)',
+                style: TextStyle(fontSize: 22),
+                textAlign: TextAlign.left,
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Numbers',
+                  hintText: 'On Duty Road Fatal Accidents',
+                ),
+                keyboardType: TextInputType.number,
+                onChanged: (String str) {
+                  setState(
+                    () {
+                      _fatalaccidents = double.tryParse(str);
+                    },
+                  );
+                },
+              ),
+              Text(
+                'On Duty Road Accidents(Serious)',
+                style: TextStyle(fontSize: 22),
+                textAlign: TextAlign.left,
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Numbers',
+                  hintText: 'On Duty Road Fatal Accidents',
+                ),
+                keyboardType: TextInputType.number,
+                onChanged: (String str) {
+                  setState(
+                    () {
+                      _seriousAccidents = double.tryParse(str);
                     },
                   );
                 },

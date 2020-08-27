@@ -1,3 +1,5 @@
+//import 'dart:html';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:mahindraCSC/z_repository/assessmentRepository.dart';
@@ -101,11 +103,18 @@ class SiteAssessmentProvider extends ChangeNotifier {
     }
   }
 
-  double setAssessment(double value, String comment) {
+  Map<String, dynamic> setAssessment(
+      {@required double value,
+      @required String comment,
+      //File file,
+      @required String level}) {
     print(i);
+    //String downloadUrl =
     Map<String, dynamic> map = {
       'answer': value,
       'comment': comment,
+      'level': level,
+      'fileUrl': null,
     };
     if (assessmentAnswers.length < i) {
       assessmentAnswers.add(map);
@@ -117,25 +126,41 @@ class SiteAssessmentProvider extends ChangeNotifier {
     i++;
     setMap(type);
     notifyListeners();
-    double returnValue = 0.0;
+
+    Map<String, dynamic> returnMap = {};
     if (assessmentAnswers.length > i) {
-      returnValue = assessmentAnswers[i - 1]['answer'];
+      returnMap['value'] = assessmentAnswers[i - 1]['answer'];
+      returnMap['level'] = assessmentAnswers[i - 1]['level'];
+      returnMap['comment'] = assessmentAnswers[i - 1]['comment'];
+    } else {
+      returnMap['value'] = 0.0;
+      returnMap['level'] = '0';
+      returnMap['comment'] = '';
     }
-    return returnValue;
+    return returnMap;
   }
 
-  double previousPressed() {
+  Map<String, dynamic> previousPressed() {
     i--;
     setMap(type);
     notifyListeners();
     print('Previous Pressed: with $i');
-    return assessmentAnswers[i - 1]['answer'];
+    Map<String, dynamic> returnMap = {};
+    returnMap['value'] = assessmentAnswers[i - 1]['answer'];
+    returnMap['level'] = assessmentAnswers[i - 1]['level'];
+    returnMap['comment'] = assessmentAnswers[i - 1]['comment'];
+    return returnMap;
   }
 
-  void submited(double value, String comment) {
+  void submited(
+      {double value,
+      String comment, //File file,
+      @required String level}) {
     Map<String, dynamic> map = {
       'answer': value,
       'comment': comment,
+      'level': level,
+      'fileUrl': null,
     };
     if (assessmentAnswers.length < i) {
       assessmentAnswers.add(map);
@@ -143,10 +168,7 @@ class SiteAssessmentProvider extends ChangeNotifier {
       assessmentAnswers.removeAt(i - 1);
       assessmentAnswers.insert(i - 1, map);
     }
-    assessmentTotal = 0;
-    for (i = 0; i < assessmentAnswers.length; i++) {
-      assessmentTotal = assessmentTotal + assessmentAnswers[i]['answer'];
-    }
+
     print(assessmentAnswers.toString());
   }
 

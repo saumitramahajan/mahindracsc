@@ -1,6 +1,5 @@
 //import 'dart:html';
-import 'dart:io';
-import 'package:file_picker/file_picker.dart' as mob;
+
 //import 'package:file_picker_web/file_picker_web.dart';
 import 'package:flutter/material.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/beforeSubmit.dart';
@@ -14,8 +13,9 @@ class SiteAssessmentForm extends StatefulWidget {
 
 class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
   double _sliderValue = 0;
-  TextEditingController _controller = TextEditingController();
-  File file;
+  TextEditingController _justificationController = TextEditingController();
+  TextEditingController _marksController = TextEditingController(text: '0');
+  //File file;
   String level = '0';
 
   @override
@@ -55,15 +55,6 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                         Image.network(
                           assessmentProvider.currentQuestion['imageLink'],
                         ),
-                        (assessmentProvider.assessmentType == 'site')
-                            ? SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * .05,
-                              )
-                            : SizedBox(),
-                        (assessmentProvider.assessmentType == 'site')
-                            ? TextField()
-                            : SizedBox(),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * .05,
                         ),
@@ -113,15 +104,28 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                 level = value;
                               });
                             }),
+                        (assessmentProvider.assessmentType == 'site')
+                            ? SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * .05,
+                              )
+                            : SizedBox(),
+                        (assessmentProvider.assessmentType == 'site')
+                            ? TextField(
+                                controller: _marksController,
+                                decoration:
+                                    InputDecoration(labelText: 'Enter Marks'),
+                              )
+                            : SizedBox(),
                         TextField(
-                          controller: _controller,
+                          controller: _justificationController,
                           decoration:
                               InputDecoration(labelText: 'Justification'),
                         ),
                         RaisedButton(
                           child: Text('Upload Supporting document'),
                           onPressed: () async {
-                            file = await mob.FilePicker.getFile();
+                            //file = await FilePicker.getFile();
                           },
                         ),
                         Row(
@@ -132,13 +136,14 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                     child: Text('Previous'),
                                     onPressed: () {
                                       setState(() {
-                                        _sliderValue = assessmentProvider
-                                            .previousPressed();
-
-                                        _controller.text = assessmentProvider
-                                                    .assessmentAnswers[
-                                                assessmentProvider.i - 1]
-                                            ['comment'];
+                                        Map<String, dynamic> map =
+                                            assessmentProvider
+                                                .previousPressed();
+                                        _marksController.text =
+                                            map['value'].toString();
+                                        level = map['level'];
+                                        _justificationController.text =
+                                            map['comment'];
                                       });
                                     },
                                   )
@@ -148,16 +153,38 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                     child: Text('Next'),
                                     onPressed: () {
                                       setState(() {
-                                        _sliderValue =
+                                        Map<String, dynamic> map =
                                             assessmentProvider.setAssessment(
-                                                _sliderValue, _controller.text);
+                                                value: (assessmentProvider
+                                                            .assessmentType ==
+                                                        'site')
+                                                    ? 0
+                                                    : double.parse(
+                                                        _marksController.text),
+                                                comment:
+                                                    _justificationController
+                                                        .text,
+                                                level: level);
+                                        _marksController.text =
+                                            map['value'].toString();
+                                        level = map['level'];
+                                        _justificationController.text =
+                                            map['comment'];
                                       });
                                     })
                                 : RaisedButton(
                                     child: Text('Submit'),
                                     onPressed: () {
                                       assessmentProvider.submited(
-                                          _sliderValue, _controller.text);
+                                          value: (assessmentProvider
+                                                      .assessmentType ==
+                                                  'site')
+                                              ? 0
+                                              : double.parse(
+                                                  _marksController.text),
+                                          comment:
+                                              _justificationController.text,
+                                          level: level);
                                       Navigator.of(context)
                                           .push(MaterialPageRoute(builder: (_) {
                                         return ChangeNotifierProvider.value(

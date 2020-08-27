@@ -19,18 +19,18 @@ class _AssesseeDashboardState extends State<AssesseeDashboard> {
   String assesseeUid = '';
   String loc = '';
 
-  getCurrentUser() async {
+  getCurrentUser(String type) async {
     final FirebaseUser user = await auth.currentUser();
     final uid = user.uid;
     // Similarly we can get email as well
     //final uemail = user.email;b
     print(uid);
     assesseeUid = uid;
-    getAssesseeLocation();
+    getAssesseeLocation(type);
     //print(uemail);
   }
 
-  Future<String> getAssesseeLocation() async {
+  Future<void> getAssesseeLocation(String type) async {
     CollectionReference ref = Firestore.instance.collection('locations');
     QuerySnapshot eventsQuery =
         await ref.where("assessee", isEqualTo: assesseeUid).getDocuments();
@@ -41,14 +41,14 @@ class _AssesseeDashboardState extends State<AssesseeDashboard> {
     if (isIT == -1) {
       Navigator.of(context).push(MaterialPageRoute(builder: (context) {
         return MonthlySafetyReport(
-          type: 'monthly',
+          type: type,
           locationId: locationId,
         );
       }));
     } else {
       Navigator.of(context).push(MaterialPageRoute(builder: (context) {
         return MonthlySafetyReportIT(
-          type: 'monthly',
+          type: type,
           locationId: locationId,
         );
       }));
@@ -68,22 +68,23 @@ class _AssesseeDashboardState extends State<AssesseeDashboard> {
             RaisedButton(
               child: Text('Monthly MIS'),
               onPressed: () {
-                getCurrentUser();
+                getCurrentUser('monthly');
               },
             ),
             RaisedButton(
-              child: Text('Activities'),
+              child: Text('Assessment Annual Data'),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) {
-                    return ChangeNotifierProvider(
-                      create: (_) => ActivitiesProvider(),
-                      child: Activities(),
-                    );
-                  },
-                ));
+                getCurrentUser('assessment');
               },
             ),
+            RaisedButton(
+                child: Text('Self Assessment'),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        SiteAssessment('self', 'fh4nK1KHz5DeEn0BkHL3'),
+                  ));
+                }),
           ],
         ),
       ),
