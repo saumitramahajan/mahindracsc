@@ -50,8 +50,12 @@ class _BeforeSubmitState extends State<BeforeSubmit> {
                             return ChangeNotifierProvider.value(
                               value: assessmentProvider,
                               child: SiteAssessmentSingleForm(
-                                sliderValue: assessmentProvider
+                                marks: assessmentProvider
                                     .assessmentAnswers[index]['answer'],
+                                comment: assessmentProvider
+                                    .assessmentAnswers[index]['comment'],
+                                level: assessmentProvider
+                                    .assessmentAnswers[index]['level'],
                               ),
                             );
                           }));

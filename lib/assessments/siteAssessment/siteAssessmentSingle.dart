@@ -3,8 +3,11 @@ import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.da
 import 'package:provider/provider.dart';
 
 class SiteAssessmentSingleForm extends StatefulWidget {
-  final sliderValue;
-  SiteAssessmentSingleForm({Key key, this.sliderValue}) : super(key: key);
+  final marks;
+  final comment;
+  final level;
+  SiteAssessmentSingleForm({Key key, this.marks, this.comment, this.level})
+      : super(key: key);
 
   @override
   _SiteAssessmentSingleFormState createState() =>
@@ -12,50 +15,22 @@ class SiteAssessmentSingleForm extends StatefulWidget {
 }
 
 class _SiteAssessmentSingleFormState extends State<SiteAssessmentSingleForm> {
-  double _sliderValue = 0;
   String level = '';
-  String content = '';
-  TextEditingController _controller = TextEditingController();
-
-  String getLevelString(double value, SiteAssessmentProvider provider) {
-    if (value < provider.currentQuestion['scheme'][0]['end']) {
-      return provider.currentQuestion['scheme'][0]['name'];
-    } else if (value < provider.currentQuestion['scheme'][1]['end']) {
-      return provider.currentQuestion['scheme'][1]['name'];
-    } else if (value < provider.currentQuestion['scheme'][2]['end']) {
-      return provider.currentQuestion['scheme'][2]['name'];
-    } else if (value < provider.currentQuestion['scheme'][3]['end']) {
-      return provider.currentQuestion['scheme'][3]['name'];
-    } else {
-      return provider.currentQuestion['scheme'][4]['name'];
-    }
-  }
-
-  String getContentString(double value, SiteAssessmentProvider provider) {
-    if (value < provider.currentQuestion['scheme'][0]['end']) {
-      return provider.currentQuestion['scheme'][0]['content'];
-    } else if (value < provider.currentQuestion['scheme'][1]['end']) {
-      return provider.currentQuestion['scheme'][1]['content'];
-    } else if (value < provider.currentQuestion['scheme'][2]['end']) {
-      return provider.currentQuestion['scheme'][2]['content'];
-    } else if (value < provider.currentQuestion['scheme'][3]['end']) {
-      return provider.currentQuestion['scheme'][3]['content'];
-    } else {
-      return provider.currentQuestion['scheme'][4]['content'];
-    }
-  }
+  TextEditingController _marksController = TextEditingController();
+  TextEditingController _justificationController = TextEditingController();
 
   @override
   void initState() {
+    _marksController.text = widget.marks;
+    _justificationController.text = widget.comment;
+    level = widget.level;
     super.initState();
-    _sliderValue = widget.sliderValue;
   }
 
   @override
   Widget build(BuildContext context) {
     final assessmentProvider = Provider.of<SiteAssessmentProvider>(context);
-    TextEditingController _marksController = TextEditingController();
-    TextEditingController _justificationController = TextEditingController();
+
     return Scaffold(
         appBar: AppBar(title: Text('Assessment')),
         body: Container(
