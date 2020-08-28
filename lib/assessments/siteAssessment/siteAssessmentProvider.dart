@@ -19,7 +19,8 @@ class SiteAssessmentProvider extends ChangeNotifier {
   String assessmentType = '';
   String cycleId = '';
   bool loading = true;
-  List<Map<String, dynamic>> fireanswers = [];
+  List<Map<String, dynamic>> fireanswers =
+      List.generate(9, (index) => {'comment': '', 'answer': false});
   List<bool> officeAnswers = [];
 
   List<Map<String, dynamic>> assessmentAnswers = [];
@@ -194,20 +195,9 @@ class SiteAssessmentProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> setFireAssessment(bool answer, String comment) async {
-    Map<String, dynamic> map = {
-      'answer': answer,
-      'comment': comment,
-    };
-    if (fireanswers.length < i) {
-      fireanswers.add(map);
-    } else {
-      fireanswers.removeAt(i - 1);
-      fireanswers.insert(i - 1, map);
-    }
+  Future<void> setFireAssessment(List<Map<String, dynamic>> answer) async {
+    fireanswers = answer;
     print(fireanswers.toString());
-    i++;
-    setMap(type);
   }
 
   void previousFirePressed() {
@@ -234,16 +224,9 @@ class SiteAssessmentProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> setOfficeAssessment(bool answer) async {
-    if (officeAnswers.length < i) {
-      officeAnswers.add(answer);
-    } else {
-      officeAnswers.removeAt(i - 1);
-      officeAnswers.insert(i - 1, answer);
-    }
+  Future<void> setOfficeAssessment(List<bool> answer) async {
+    officeAnswers = answer;
     print(officeAnswers.toString());
-    i++;
-    setMap(type);
   }
 
   Future<void> setLocationData(
