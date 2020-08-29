@@ -62,9 +62,6 @@ class AssessentRepository {
     return officeQuestions;
   }
 
-  Future<void> submitAssessment(List<Map<String, String>> assessment,
-      List<Map<String, String>> fireAnswer, List<bool> officeAnswers) async {}
-
   Future<Map<String, dynamic>> getLocationInfo(String cycleId) async {
     Map<String, dynamic> data = {};
     DocumentSnapshot docu =
@@ -147,69 +144,56 @@ class AssessentRepository {
         .collection('cycles')
         .document(cycleId)
         .updateData({'selfAssessment': map});
-    String assesorUid = '';
-    String location;
+  }
+
+  Future<void> uploadSelfAssessmentFire(
+      List<Map<String, dynamic>> map, String cycleId) async {
     await Firestore.instance
         .collection('cycles')
         .document(cycleId)
-        .get()
-        .then((value) {
-      assesorUid = value.data['assessorUid'];
-      location = value.data['location'];
-    });
-    String adminUid = '';
+        .updateData({'selfAssessmentFire': map});
+  }
+
+  Future<void> uploadSelfAssessmentOffice(
+      List<bool> map, String cycleId) async {
     await Firestore.instance
-        .collection('users')
-        .where('role', arrayContains: 'admin')
-        .getDocuments()
-        .then((querySnapshot) {
-      adminUid = querySnapshot.documents[0].documentID;
-    });
-    await Firestore.instance.collection('activities').document().setData({
-      'content': 'Self Assessment uploaded for location $location',
-      'cycleDocumentID': cycleId,
-      'date': Timestamp.now(),
-      'showTo': [
-        {'uid': adminUid, 'type': 'selfAssessment', 'role': 'admin'},
-        {'uid': assesorUid, 'type': 'siteAssessment', 'role': 'assessor'}
-      ]
-    });
+        .collection('cycles')
+        .document(cycleId)
+        .updateData({'selfAssessmentOffice': map});
+
+    await Firestore.instance
+        .collection('cycles')
+        .document(cycleId)
+        .updateData({'currentStatus': 'Self Assessment Uploaded'});
   }
 
   Future<void> uploadSiteAssessment(
-      List<Map<String, dynamic>> assessment,
-      List<Map<String, dynamic>> fire,
-      List<bool> office,
-      String cycleId) async {
-    await Firestore.instance.collection('cycles').document(cycleId).updateData(
-        {'siteAssessment': assessment, 'fire': fire, 'office': office});
-    String assesseeUid = '';
-    String location = '';
+      List<Map<String, dynamic>> map, String cycleId) async {
     await Firestore.instance
         .collection('cycles')
         .document(cycleId)
-        .get()
-        .then((value) {
-      assesseeUid = value.data['assesseeUid'];
-      location = value.data['location'];
-    });
-    String adminUid = '';
+        .updateData({'siteAssessment': map});
+  }
+
+  Future<void> uploadSiteAssessmentFire(
+      List<Map<String, dynamic>> map, String cycleId) async {
     await Firestore.instance
-        .collection('users')
-        .where('role', arrayContains: 'admin')
-        .getDocuments()
-        .then((querySnapshot) {
-      adminUid = querySnapshot.documents[0].documentID;
-    });
-    await Firestore.instance.collection('activities').document().setData({
-      'content': 'Site Assessment Uploaded for location $location',
-      'cycleDocumentID': cycleId,
-      'date': Timestamp.now(),
-      'showTo': [
-        {'uid': adminUid, 'type': 'siteAssessment', 'role': 'admin'},
-        {'uid': assesseeUid, 'type': 'information', 'role': 'assessee'}
-      ]
-    });
+        .collection('cycles')
+        .document(cycleId)
+        .updateData({'siteAssessmentFire': map});
+  }
+
+  Future<void> uploadSiteAssessmentOffice(
+      List<bool> map, String cycleId) async {
+    await Firestore.instance
+        .collection('cycles')
+        .document(cycleId)
+        .updateData({'siteAssessmentOffice': map});
+
+    await Firestore.instance
+        .collection('cycles')
+        .document(cycleId)
+        .updateData({'currentStatus': 'Site Assessment Uploaded'});
   }
 
   //Future<String> uploadFile(File file) async {}

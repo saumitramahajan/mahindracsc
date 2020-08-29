@@ -14,6 +14,7 @@ class SiteAssessmentProvider extends ChangeNotifier {
   bool locationData = false;
   bool locationDataLoading = true;
   bool locationDataUploading = false;
+  bool buttonLoading = false;
   Map<String, dynamic> locationInfo = {};
   String type = '';
   String assessmentType = '';
@@ -72,30 +73,6 @@ class SiteAssessmentProvider extends ChangeNotifier {
             if (questionList[j]['number'] == i) {
               print('QuestionSet');
               currentQuestion = questionList[j];
-              break;
-            }
-          }
-        }
-        break;
-      case 'fire':
-        {
-          print('SetmapFireCalled');
-          for (int j = 0; j < fireQuestions.length; j++) {
-            if (fireQuestions[j]['number'] == i) {
-              print('Fire Set');
-              currentQuestion = fireQuestions[j];
-              break;
-            }
-          }
-        }
-        break;
-      case 'office':
-        {
-          print('SetmapFireCalled');
-          for (int j = 0; j < officeQuestions.length; j++) {
-            if (officeQuestions[j]['number'] == i) {
-              print('Fire Set');
-              currentQuestion = officeQuestions[j];
               break;
             }
           }
@@ -169,8 +146,23 @@ class SiteAssessmentProvider extends ChangeNotifier {
       assessmentAnswers.removeAt(i - 1);
       assessmentAnswers.insert(i - 1, map);
     }
-
     print(assessmentAnswers.toString());
+  }
+
+  Future<void> uploadSelfAssessment() async {
+    buttonLoading = true;
+    notifyListeners();
+    await assessentRepository.uploadSelfAssessment(assessmentAnswers, cycleId);
+    buttonLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> uploadSiteAssessment() async {
+    buttonLoading = true;
+    notifyListeners();
+    await assessentRepository.uploadSiteAssessment(assessmentAnswers, cycleId);
+    buttonLoading = false;
+    notifyListeners();
   }
 
   void beforeSubmitTapped(int value, String type) {
@@ -196,15 +188,17 @@ class SiteAssessmentProvider extends ChangeNotifier {
   }
 
   Future<void> setFireAssessment(List<Map<String, dynamic>> answer) async {
-    fireanswers = answer;
-    print(fireanswers.toString());
-  }
-
-  void previousFirePressed() {
-    i--;
-    setMap(type);
+    buttonLoading = true;
     notifyListeners();
-    print('Previous Pressed: with $i');
+    fireanswers = answer;
+    if (assessmentType == 'site') {
+      await assessentRepository.uploadSiteAssessmentFire(fireanswers, cycleId);
+    } else {
+      await assessentRepository.uploadSelfAssessmentFire(fireanswers, cycleId);
+    }
+    print(fireanswers.toString());
+    buttonLoading = false;
+    notifyListeners();
   }
 
   Future<void> getOfficeQuestions() async {
@@ -225,8 +219,19 @@ class SiteAssessmentProvider extends ChangeNotifier {
   }
 
   Future<void> setOfficeAssessment(List<bool> answer) async {
+    buttonLoading = true;
+    notifyListeners();
     officeAnswers = answer;
+    if (assessmentType == 'site') {
+      await assessentRepository.uploadSiteAssessmentOffice(
+          officeAnswers, cycleId);
+    } else {
+      await assessentRepository.uploadSelfAssessmentOffice(
+          officeAnswers, cycleId);
+    }
     print(officeAnswers.toString());
+    buttonLoading = false;
+    notifyListeners();
   }
 
   Future<void> setLocationData(
@@ -331,14 +336,5 @@ class SiteAssessmentProvider extends ChangeNotifier {
     });
     locationDataUploading = false;
     notifyListeners();
-  }
-
-  Future<void> uploadSelfAssessment() async {
-    await assessentRepository.uploadSelfAssessment(assessmentAnswers, cycleId);
-  }
-
-  Future<void> uploadSiteAssessment() async {
-    await assessentRepository.uploadSiteAssessment(
-        assessmentAnswers, fireanswers, officeAnswers, cycleId);
   }
 }

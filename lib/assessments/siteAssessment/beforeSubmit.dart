@@ -70,7 +70,7 @@ class _BeforeSubmitState extends State<BeforeSubmit> {
                             Text(assessmentProvider.questionList[index]
                                 ['statement']),
                             Text(assessmentProvider.assessmentAnswers[index]
-                                    ['answer']
+                                    ['level']
                                 .toString())
                           ],
                         )),
@@ -87,23 +87,21 @@ class _BeforeSubmitState extends State<BeforeSubmit> {
           ),
           RaisedButton(
             child: Text('Submit'),
-            onPressed: () {
+            onPressed: () async {
               if (assessmentProvider.assessmentType == 'site') {
-                assessmentProvider.getFireQuestions();
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) {
-                    return ChangeNotifierProvider.value(
-                      value: assessmentProvider,
-                      child: FireAssessment(),
-                    );
-                  },
-                ));
+                await assessmentProvider.uploadSiteAssessment();
               } else {
                 assessmentProvider.uploadSelfAssessment();
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => AssesseeDashboard(),
-                ));
               }
+              assessmentProvider.getFireQuestions();
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) {
+                  return ChangeNotifierProvider.value(
+                    value: assessmentProvider,
+                    child: FireAssessment(),
+                  );
+                },
+              ));
             },
           )
         ],
