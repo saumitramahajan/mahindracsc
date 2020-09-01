@@ -29,17 +29,6 @@ class EnrollLocation extends StatelessWidget {
                   }));
                 }),
             RaisedButton(
-                child: Text('Vendor Location'),
-                onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return ChangeNotifierProvider<EnrollLocationProvider>(
-                      create: (context) => EnrollLocationProvider(),
-                      child: EnrollVendorLocation(),
-                    );
-                  }));
-                }),
-            RaisedButton(
                 child: Text('View Location'),
                 onPressed: () {
                   Navigator.of(context)

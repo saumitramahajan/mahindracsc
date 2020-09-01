@@ -70,7 +70,7 @@ class _AssessmentAnnualDataState extends State<AssessmentAnnualData> {
       children: [
         Text('Manpower: ' + map['manPower']),
         Text('Fatal(A): ' + map['fatal']),
-        Text('Reportable` Accidents(B): ' + map['reportableAccidents']),
+        Text('Reportable Accidents(B): ' + map['reportableAccidents']),
         Text(
             'Man-days lost due to Reportable Accidents: ' + map['manDaysLost']),
         Text('Non-Reportabel Accidents(C): ' + map['nonReportableAccidents']),

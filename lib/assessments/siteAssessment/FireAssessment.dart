@@ -54,9 +54,11 @@ class _FireAssessmentState extends State<FireAssessment> {
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                             )),
-                                        Text(assessmentProvider
-                                                .fireQuestions[index]
-                                            ['validation']),
+                                        Text('(Guidance: ' +
+                                            assessmentProvider
+                                                    .fireQuestions[index]
+                                                ['validation'] +
+                                            ')'),
                                         Row(
                                           children: [
                                             Radio(
@@ -116,6 +118,10 @@ class _FireAssessmentState extends State<FireAssessment> {
                             );
                           },
                         ),
+                      ),
+                      RaisedButton(
+                        child: Text('Upload Supporting Documents'),
+                        onPressed: () {},
                       ),
                       RaisedButton(
                         child: Text('Next'),

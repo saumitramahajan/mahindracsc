@@ -119,8 +119,11 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                             : SizedBox(),
                         TextField(
                           controller: _justificationController,
-                          decoration:
-                              InputDecoration(labelText: 'Justification'),
+                          decoration: InputDecoration(
+                              labelText:
+                                  (assessmentProvider.assessmentType == 'site')
+                                      ? 'Opportunities for Improvement'
+                                      : 'Justification'),
                         ),
                         RaisedButton(
                           child: Text('Upload Supporting document'),
@@ -148,7 +151,7 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                     },
                                   )
                                 : SizedBox(),
-                            (assessmentProvider.i < 25)
+                            (assessmentProvider.i < 33)
                                 ? RaisedButton(
                                     child: Text('Next'),
                                     onPressed: () {

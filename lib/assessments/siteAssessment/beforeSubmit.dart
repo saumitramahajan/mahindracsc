@@ -26,9 +26,11 @@ class _BeforeSubmitState extends State<BeforeSubmit> {
               slivers: [
                 SliverAppBar(
                   pinned: true,
-                  title: Text('Assessment Total: ' +
-                      assessmentProvider.assessmentTotal.toString() +
-                      '/400'),
+                  title: (assessmentProvider.assessmentType == 'site')
+                      ? Text('Assessment')
+                      : Text('Assessment Total: ' +
+                          assessmentProvider.assessmentTotal.toString() +
+                          '/400'),
                   automaticallyImplyLeading: false,
                   backgroundColor: Colors.white,
                   textTheme: TextTheme(
@@ -69,14 +71,15 @@ class _BeforeSubmitState extends State<BeforeSubmit> {
                           children: [
                             Text(assessmentProvider.questionList[index]
                                 ['statement']),
-                            Text(assessmentProvider.assessmentAnswers[index]
-                                    ['level']
-                                .toString())
+                            Text("Selected Level: " +
+                                assessmentProvider.assessmentAnswers[index]
+                                        ['level']
+                                    .toString())
                           ],
                         )),
                       );
                     },
-                    childCount: 25,
+                    childCount: 33,
                   ),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 5,
