@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../assesseeDashboard.dart';
@@ -32,6 +31,7 @@ class _MonthlySafetyReportIT extends State<MonthlySafetyReportIT> {
           .collection("cycles")
           .document(widget.cycleId)
           .updateData({
+        "adCategory": 'category2',
         "adManPower": _manpower,
         "adFatal": _fatal,
         "adOnDutyFatal": _fatalaccidents,
@@ -41,24 +41,6 @@ class _MonthlySafetyReportIT extends State<MonthlySafetyReportIT> {
       }).then((_) {
         print("success!");
       });
-
-      String adminUid = '';
-      await Firestore.instance
-          .collection('users')
-          .where('role', arrayContains: 'admin')
-          .getDocuments()
-          .then((querySnapshot) {
-        adminUid = querySnapshot.documents[0].documentID;
-      });
-
-      Firestore.instance.collection('activities').document().setData({
-        'content': 'Annual data uploaded for location ${widget.locationName}',
-        'date': Timestamp.now(),
-        'cycleDocumentID': widget.cycleId,
-        'showTo': [
-          {'role': 'admin', 'type': 'annualData', 'uid': adminUid}
-        ]
-      });
     } else {
       firestoreInstance
           .collection('locations')
@@ -66,6 +48,7 @@ class _MonthlySafetyReportIT extends State<MonthlySafetyReportIT> {
           .collection('annualData')
           .document('month${DateTime.now().month}')
           .setData({
+        "adCategory": 'category2',
         "manPower": _manpower,
         "fatal": _fatal,
         "onDutyFatal": _fatalaccidents,

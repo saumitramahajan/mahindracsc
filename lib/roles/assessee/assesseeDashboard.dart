@@ -35,24 +35,51 @@ class _AssesseeDashboardState extends State<AssesseeDashboard> {
     QuerySnapshot eventsQuery =
         await ref.where("assessee", isEqualTo: assesseeUid).getDocuments();
     loc = eventsQuery.documents[0]['category'];
-    String locationId = eventsQuery.documents[0].documentID;
-    print(locationId);
-    var isIT = loc.indexOf("IT");
-    if (isIT == -1) {
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-        return MonthlySafetyReport(
-          type: type,
-          locationId: locationId,
-        );
-      }));
+
+    if (type == 'assessment') {
+      String cycleId;
+      await Firestore.instance
+          .collection('cycles')
+          .where('assesseeUid', isEqualTo: assesseeUid)
+          .getDocuments()
+          .then((cyclesQS) {
+        cycleId = cyclesQS.documents[0].documentID;
+      });
+      var isIT = loc.indexOf("IT");
+      if (isIT == -1) {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return MonthlySafetyReport(
+            type: type,
+            cycleId: cycleId,
+          );
+        }));
+      } else {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return MonthlySafetyReportIT(
+            type: type,
+            cycleId: cycleId,
+          );
+        }));
+      }
     } else {
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-        return MonthlySafetyReportIT(
-          type: type,
-          locationId: locationId,
-        );
-      }));
-      return loc;
+      String locationId = eventsQuery.documents[0].documentID;
+      print(locationId);
+      var isIT = loc.indexOf("IT");
+      if (isIT == -1) {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return MonthlySafetyReport(
+            type: type,
+            locationId: locationId,
+          );
+        }));
+      } else {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return MonthlySafetyReportIT(
+            type: type,
+            locationId: locationId,
+          );
+        }));
+      }
     }
   }
 

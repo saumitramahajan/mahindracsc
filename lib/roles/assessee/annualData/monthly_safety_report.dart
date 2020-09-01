@@ -52,6 +52,7 @@ class _MonthlySafetyReport extends State<MonthlySafetyReport> {
           .collection("cycles")
           .document(widget.cycleId)
           .updateData({
+        "adCategory": 'category1',
         "adManPower": _manpower,
         "adFatal": _fatal,
         "adFatalAccidents": _fatalaccidents,
@@ -73,23 +74,6 @@ class _MonthlySafetyReport extends State<MonthlySafetyReport> {
       }).then((_) {
         print("success!");
       });
-      String adminUid = '';
-      await Firestore.instance
-          .collection('users')
-          .where('role', arrayContains: 'admin')
-          .getDocuments()
-          .then((querySnapshot) {
-        adminUid = querySnapshot.documents[0].documentID;
-      });
-
-      Firestore.instance.collection('activities').document().setData({
-        'content': 'Annual data uploaded for location ${widget.locationName}',
-        'date': Timestamp.now(),
-        'cycleDocumentID': widget.cycleId,
-        'showTo': [
-          {'role': 'admin', 'type': 'annualData', 'uid': adminUid}
-        ]
-      });
     } else {
       Firestore.instance
           .collection('locations')
@@ -97,6 +81,7 @@ class _MonthlySafetyReport extends State<MonthlySafetyReport> {
           .collection('monthlyData')
           .document('month${DateTime.now().month}')
           .setData({
+        "adCategory": 'category1',
         "manPower": _manpower,
         "fatal": _fatal,
         "fatalAccidents": _fatalaccidents,

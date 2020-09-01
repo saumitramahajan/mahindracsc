@@ -360,6 +360,7 @@ class AdminRepository {
         }
       });
     });
+    print(annualDataList.toString());
 
     return annualDataList;
   }
@@ -369,23 +370,25 @@ Map<String, String> category1Map(DocumentSnapshot cycle) {
   Map<String, String> map = {};
   map['location'] = cycle.data['location'];
   map['category'] = cycle.data['adCategory'];
-  map['closureOf'] = cycle.data['adClosureOf'];
-  map['fatal'] = cycle.data['adFatal'];
-  map['fatalaAccidents'] = cycle.data['adFatalAccidents'];
-  map['fireIncidents'] = cycle.data['adFireIncident'];
-  map['fireIncidentMinor'] = cycle.data['adFireIncidentMinor'];
-  map['FirstaidAccidents'] = cycle.data['adFirstaidAccidents'];
-  map['identified'] = cycle.data['adIdentified'];
-  map['manDaysLost'] = cycle.data['adManDaysLost'];
-  map['manDaysLostNra'] = cycle.data['adManDaysLostNra'];
-  map['manPower'] = cycle.data['adManPower'];
-  map['nearMissIncidents'] = cycle.data['adNearMissIncidents'];
-  map['nonReportableAccidents'] = cycle.data['adNoReportableAccidents'];
-  map['reportableAccidents'] = cycle.data['adReportableAccidents'];
-  map['safetyActivityRate'] = cycle.data['adSafetyActivityRate'];
-  map['themeBasedInspections'] = cycle.data['adThemeBasedInspections'];
-  map['totalAccidents'] = cycle.data['adTotalAccidents'];
-  map['kaizen'] = cycle.data['adKaizen'];
+  map['closureOf'] = cycle.data['adClosureOf'].toString();
+  map['fatal'] = cycle.data['adFatal'].toString();
+  map['fatalAccidents'] = cycle.data['adFatalAccidents'].toString();
+  map['fireIncidents'] = cycle.data['adFireIncident'].toString();
+  map['fireIncidentMinor'] = cycle.data['adFireIncidentMinor'].toString();
+  map['firstaidAccidents'] = cycle.data['adFirstaidAccidents'].toString();
+  map['identified'] = cycle.data['adIdentified'].toString();
+  map['manDaysLost'] = cycle.data['adManDaysLost'].toString();
+  map['manDaysLostNra'] = cycle.data['adManDaysLostNra'].toString();
+  map['manPower'] = cycle.data['adManPower'].toString();
+  map['nearMissIncidents'] = cycle.data['adNearMissIncident'].toString();
+  map['nonReportableAccidents'] =
+      cycle.data['adNoReportableAccidents'].toString();
+  map['reportableAccidents'] = cycle.data['adReportableAccidents'].toString();
+  map['safetyActivityRate'] = cycle.data['adSafetyActivityRate'].toString();
+  map['themeBasedInspections'] =
+      cycle.data['adThemeBasedInspections'].toString();
+  map['totalAccidents'] = cycle.data['adTotalAccidents'].toString();
+  map['kaizen'] = cycle.data['adKaizen'].toString();
 
   return map;
 }
@@ -394,12 +397,12 @@ Map<String, String> category2Map(DocumentSnapshot cycle) {
   Map<String, String> map = {};
   map['location'] = cycle.data['location'];
   map['category'] = cycle.data['adCategory'];
-  map['manPower'] = cycle.data['adManPower'];
-  map['fatal'] = cycle.data['adFatal'];
-  map['onDutyFatal'] = cycle.data['adonDutyFatal'];
-  map['fireIncidentsMajor'] = cycle.data['adFireIncidentMajor'];
-  map['fireIncidentMinor'] = cycle.data['adFireIncidentMinor'];
-  map['reportableAccidents'] = cycle.data['adReportableAccidents'];
+  map['manPower'] = cycle.data['adManPower'].toString();
+  map['fatal'] = cycle.data['adFatal'].toString();
+  map['onDutyFatal'] = cycle.data['adonDutyFatal'].toString();
+  map['fireIncidentsMajor'] = cycle.data['adFireIncidentMajor'].toString();
+  map['fireIncidentMinor'] = cycle.data['adFireIncidentMinor'].toString();
+  map['reportableAccidents'] = cycle.data['adReportableAccidents'].toString();
 
   return map;
 }

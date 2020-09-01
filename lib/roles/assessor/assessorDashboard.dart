@@ -27,18 +27,6 @@ class _AssessorDashboardState extends State<AssessorDashboard> {
                         SiteAssessment('site', 'fh4nK1KHz5DeEn0BkHL3')));
               },
             ),
-            RaisedButton(
-              child: Text('Activities'),
-              onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return ChangeNotifierProvider(
-                    create: (_) => ActivitiesProvider(),
-                    child: Activities(),
-                  );
-                }));
-              },
-            ),
           ],
         ),
       ),

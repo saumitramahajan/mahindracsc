@@ -21,40 +21,46 @@ class _AssessmentAnnualDataState extends State<AssessmentAnnualData> {
           ? Center(
               child: CircularProgressIndicator(),
             )
-          : Container(
-              child: ListView.builder(
-                itemCount: adprovider.assessmentAnnualDataList.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        if (opens[index]) {
-                          opens[index] = false;
-                        } else {
-                          opens[index] = true;
-                        }
-                        print(opens.toString() + index.toString());
-                      });
+          : Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(10.0),
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  child: ListView.builder(
+                    itemCount: adprovider.assessmentAnnualDataList.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            if (opens[index]) {
+                              opens[index] = false;
+                            } else {
+                              opens[index] = true;
+                            }
+                            print(opens.toString() + index.toString());
+                          });
+                        },
+                        child: Card(
+                            child: ExpansionTile(
+                          title: Text('Location: ' +
+                              adprovider.assessmentAnnualDataList[index]
+                                  ['location']),
+                          children: [
+                            (adprovider.assessmentAnnualDataList[index]
+                                        ['category'] ==
+                                    'category1')
+                                ? category1View(
+                                    adprovider.assessmentAnnualDataList[index])
+                                : category2View(
+                                    adprovider.assessmentAnnualDataList[index]),
+                          ],
+                        )),
+                      );
                     },
-                    child: Card(
-                        child: ExpansionTile(
-                      title: Text('Location: ' +
-                          adprovider.assessmentAnnualDataList[index]
-                              ['location']),
-                      children: [
-                        Text('Location: ' +
-                            adprovider.assessmentAnnualDataList[index]
-                                ['location'] +
-                            '1'),
-                        Text('Location: ' +
-                            adprovider.assessmentAnnualDataList[index]
-                                ['location'] +
-                            '2'),
-                      ],
-                    )),
-                  );
-                },
-              ),
+                  ),
+                ),
+              ],
             ),
     );
   }
@@ -62,7 +68,39 @@ class _AssessmentAnnualDataState extends State<AssessmentAnnualData> {
   Widget category1View(Map<String, String> map) {
     return Column(
       children: [
-        Text('Manpower: ' + map['location']),
+        Text('Manpower: ' + map['manPower']),
+        Text('Fatal(A): ' + map['fatal']),
+        Text('Reportable` Accidents(B): ' + map['reportableAccidents']),
+        Text(
+            'Man-days lost due to Reportable Accidents: ' + map['manDaysLost']),
+        Text('Non-Reportabel Accidents(C): ' + map['nonReportableAccidents']),
+        Text('Man-days lost due to Non-Reportable Accidents: ' +
+            map['manDaysLostNra']),
+        Text('First Aid Accidents: ' + map['firstaidAccidents']),
+        Text('Total Accidents: ' + map['totalAccidents']),
+        Text('On Duty Road Accidents(Fatal): ' + map['fatalAccidents']),
+        Text('On Duty Road Accidents(Serious): ' + map['manPower']),
+        Text('Fire Incident(Major): ' + map['fireIncidents']),
+        Text('Fire Incidents(Minor): ' + map['fireIncidentMinor']),
+        Text('Kiazen/Poka-Yoke: ' + map['kaizen']),
+        Text('Identified UA/UC: ' + map['identified']),
+        Text('Safety Activity Rate: ' + map['safetyActivityRate']),
+        Text('Closure of UA/UC: ' + map['closureOf']),
+        Text('Theme Based Inspection: ' + map['themeBasedInspections']),
+        Text('Near Miss Incidents: ' + map['nearMissIncidents']),
+      ],
+    );
+  }
+
+  Widget category2View(Map<String, String> map) {
+    return Column(
+      children: [
+        Text('Manpower: ' + map['manPower']),
+        Text('Fatal: ' + map['fatal']),
+        Text('On Duty Road Accidents: ' + map['onDutyFatal']),
+        Text('Reportable Accidents: ' + map['reportableAccidents']),
+        Text('Fire Incident(Major): ' + map['fireIncidentsMajor']),
+        Text('Fire Incidents(Minor): ' + map['fireIncidentMinor']),
       ],
     );
   }

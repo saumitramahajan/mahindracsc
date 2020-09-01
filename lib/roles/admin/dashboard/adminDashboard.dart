@@ -4,6 +4,7 @@ import 'package:mahindraCSC/roles/admin/activities/loginProvider.dart';
 import 'package:mahindraCSC/roles/admin/annualData/annualData.dart';
 import 'package:mahindraCSC/roles/admin/enrollLocation/enrollLoacation.dart';
 import 'package:mahindraCSC/roles/admin/enrollUsers/enrollUsers.dart';
+import 'package:mahindraCSC/roles/admin/review/dashboard.dart';
 import 'package:provider/provider.dart';
 import '../scheduleAssessment/scheduleAssessment.dart';
 
@@ -68,6 +69,15 @@ class _AdminDashboardState extends State<AdminDashboard> {
                         create: (_) => ActivitiesProvider(),
                         child: Activities(),
                       );
+                    },
+                  ));
+                }),
+            RaisedButton(
+                child: Text('Review Self and Site Assessment'),
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return Dashboard();
                     },
                   ));
                 }),
