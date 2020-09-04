@@ -84,6 +84,7 @@ class SiteAssessmentProvider extends ChangeNotifier {
   Map<String, dynamic> setAssessment(
       {@required double value,
       @required String comment,
+      @required String suggestion,
       //File file,
       @required String level}) {
     print(i);
@@ -93,6 +94,7 @@ class SiteAssessmentProvider extends ChangeNotifier {
       'comment': comment,
       'level': level,
       'fileUrl': null,
+      'suggestion': suggestion,
     };
     if (assessmentAnswers.length < i) {
       assessmentAnswers.add(map);
@@ -110,10 +112,12 @@ class SiteAssessmentProvider extends ChangeNotifier {
       returnMap['value'] = assessmentAnswers[i - 1]['answer'];
       returnMap['level'] = assessmentAnswers[i - 1]['level'];
       returnMap['comment'] = assessmentAnswers[i - 1]['comment'];
+      returnMap['suggestion'] = assessmentAnswers[i - 1]['suggestion'];
     } else {
       returnMap['value'] = 0.0;
       returnMap['level'] = '0';
       returnMap['comment'] = '';
+      returnMap['suggestion'] = '';
     }
     return returnMap;
   }
@@ -127,18 +131,21 @@ class SiteAssessmentProvider extends ChangeNotifier {
     returnMap['value'] = assessmentAnswers[i - 1]['answer'];
     returnMap['level'] = assessmentAnswers[i - 1]['level'];
     returnMap['comment'] = assessmentAnswers[i - 1]['comment'];
+    returnMap['suggestion'] = assessmentAnswers[i - 1]['suggestion'];
     return returnMap;
   }
 
   void submited(
       {double value,
       String comment, //File file,
+      String suggestion,
       @required String level}) {
     Map<String, dynamic> map = {
       'answer': value,
       'comment': comment,
       'level': level,
       'fileUrl': null,
+      'suggestion': suggestion,
     };
     if (assessmentAnswers.length < i) {
       assessmentAnswers.add(map);

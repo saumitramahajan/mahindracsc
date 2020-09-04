@@ -14,7 +14,15 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('MahindraCSC Portal'),
+        backgroundColor: Color(0xfff4001c),
+        title: SizedBox(
+          height: AppBar().preferredSize.height,
+          child: Image.asset(
+            'assets/mahindraAppBar.png',
+            fit: BoxFit.contain,
+          ),
+        ),
+        titleSpacing: 0.0,
       ),
       body: Center(
         child: ChangeNotifierProvider<LoginProvider>(

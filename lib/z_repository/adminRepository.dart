@@ -131,10 +131,8 @@ class AdminRepository {
       String assessee,
       String plantHeadName,
       String plantHeadEmail,
-      String plantHeadPhoneNumber,
       String sectorBusinessSafetySpocName,
-      String sectorBusinessSafetySpocEmail,
-      String sectorBusinessSafetySpocPhoneNumber) async {
+      String sectorBusinessSafetySpocEmail) async {
     await Firestore.instance.collection('locations').document().setData({
       'typeOfLocation': 'mahindra',
       'category': category,
@@ -147,10 +145,8 @@ class AdminRepository {
       'assessee': assessee,
       'plantHeadName': plantHeadName,
       'plantHeadEmail': plantHeadEmail,
-      'plantHeadPhoneNumber': plantHeadPhoneNumber,
       'sectorBusinessSafetySpocName': sectorBusinessSafetySpocName,
       'sectorBusinessSafetySpocEmail': sectorBusinessSafetySpocEmail,
-      'sectorBusinessSafetySpocPhoneNumber': sectorBusinessSafetySpocPhoneNumber
     });
   }
 

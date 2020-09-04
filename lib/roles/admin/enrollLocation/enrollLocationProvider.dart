@@ -42,10 +42,8 @@ class EnrollLocationProvider extends ChangeNotifier {
       String assessee,
       String plantHeadName,
       String plantHeadEmail,
-      String plantHeadPhoneNumber,
       String sectorBusinessSafetySpocName,
-      String sectorBusinessSafetySpocEmail,
-      String sectorBusinessSafetySpocPhoneNumber) async {
+      String sectorBusinessSafetySpocEmail) async {
     try {
       loading = true;
       notifyListeners();
@@ -60,10 +58,8 @@ class EnrollLocationProvider extends ChangeNotifier {
           assessee,
           plantHeadName,
           plantHeadEmail,
-          plantHeadPhoneNumber,
           sectorBusinessSafetySpocName,
-          sectorBusinessSafetySpocEmail,
-          sectorBusinessSafetySpocPhoneNumber);
+          sectorBusinessSafetySpocEmail);
       enrolled = true;
       loading = false;
       notifyListeners();

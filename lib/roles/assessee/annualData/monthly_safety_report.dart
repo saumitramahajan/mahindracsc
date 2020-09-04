@@ -413,7 +413,7 @@ class _MonthlySafetyReport extends State<MonthlySafetyReport> {
                 },
               ),
               Text(
-                'Identified UA /UC',
+                'Identified UA /UC for Month',
                 style: TextStyle(fontSize: 22),
                 textAlign: TextAlign.left,
               ),
@@ -421,7 +421,7 @@ class _MonthlySafetyReport extends State<MonthlySafetyReport> {
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Numbers',
-                  hintText: 'Identified UA /UC',
+                  hintText: 'Identified UA /UC for Month',
                 ),
                 keyboardType: TextInputType.number,
                 onChanged: (String str) {
@@ -451,7 +451,7 @@ class _MonthlySafetyReport extends State<MonthlySafetyReport> {
                 },
               ),
               Text(
-                'Closure of UA/UC',
+                'Closure of UA/UC till Date',
                 style: TextStyle(fontSize: 22),
                 textAlign: TextAlign.left,
               ),
@@ -459,7 +459,7 @@ class _MonthlySafetyReport extends State<MonthlySafetyReport> {
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Numbers',
-                  hintText: 'Closure of UA/UC',
+                  hintText: 'Closure of UA/UC till Date',
                 ),
                 keyboardType: TextInputType.number,
                 onChanged: (String str) {

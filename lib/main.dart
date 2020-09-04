@@ -11,10 +11,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+    SystemChrome.setPreferredOrientations([
+      /*DeviceOrientation.landscapeLeft, */ DeviceOrientation.landscapeRight
+    ]);
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'TMSW',
         theme: ThemeData(
           // This is the theme of your application.
           //

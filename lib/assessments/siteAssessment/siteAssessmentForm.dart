@@ -15,6 +15,7 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
   double _sliderValue = 0;
   TextEditingController _justificationController = TextEditingController();
   TextEditingController _marksController = TextEditingController(text: '0');
+  TextEditingController _suggestionController = TextEditingController();
   //File file;
   String level = '0';
 
@@ -122,9 +123,16 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                           decoration: InputDecoration(
                               labelText:
                                   (assessmentProvider.assessmentType == 'site')
-                                      ? 'Opportunities for Improvement'
+                                      ? 'Observations'
                                       : 'Justification'),
                         ),
+                        (assessmentProvider.assessmentType == 'site')
+                            ? TextField(
+                                controller: _suggestionController,
+                                decoration:
+                                    InputDecoration(labelText: 'Suggestions'),
+                              )
+                            : SizedBox(),
                         RaisedButton(
                           child: Text('Upload Supporting document'),
                           onPressed: () async {
@@ -147,6 +155,8 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                         level = map['level'];
                                         _justificationController.text =
                                             map['comment'];
+                                        _suggestionController.text =
+                                            map['suggestion'];
                                       });
                                     },
                                   )
@@ -167,12 +177,16 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                                 comment:
                                                     _justificationController
                                                         .text,
-                                                level: level);
+                                                level: level,
+                                                suggestion:
+                                                    _suggestionController.text);
                                         _marksController.text =
                                             map['value'].toString();
                                         level = map['level'];
                                         _justificationController.text =
                                             map['comment'];
+                                        _suggestionController.text =
+                                            map['suggestion'];
                                       });
                                     })
                                 : RaisedButton(
@@ -187,7 +201,9 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                                   _marksController.text),
                                           comment:
                                               _justificationController.text,
-                                          level: level);
+                                          level: level,
+                                          suggestion:
+                                              _suggestionController.text);
                                       Navigator.of(context)
                                           .push(MaterialPageRoute(builder: (_) {
                                         return ChangeNotifierProvider.value(

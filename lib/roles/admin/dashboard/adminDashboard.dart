@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mahindraCSC/roles/admin/activities/activities.dart';
 import 'package:mahindraCSC/roles/admin/activities/loginProvider.dart';
 import 'package:mahindraCSC/roles/admin/annualData/annualData.dart';
+import 'package:mahindraCSC/roles/admin/changePassword/changePassword.dart';
 import 'package:mahindraCSC/roles/admin/enrollLocation/enrollLoacation.dart';
 import 'package:mahindraCSC/roles/admin/enrollUsers/enrollUsers.dart';
 import 'package:mahindraCSC/roles/admin/review/dashboard.dart';
@@ -61,16 +62,10 @@ class _AdminDashboardState extends State<AdminDashboard> {
                   ));
                 }),
             RaisedButton(
-                child: Text('Activities'),
+                child: Text('Change Password'),
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) {
-                      return ChangeNotifierProvider(
-                        create: (_) => ActivitiesProvider(),
-                        child: Activities(),
-                      );
-                    },
-                  ));
+                      builder: (context) => ChangePassword()));
                 }),
             RaisedButton(
                 child: Text('Review Self and Site Assessment'),
