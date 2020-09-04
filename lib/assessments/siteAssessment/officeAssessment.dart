@@ -109,10 +109,11 @@ class _OfficeAssessmentState extends State<OfficeAssessment> {
                         onPressed: () async {
                           await assessmentProvider.setOfficeAssessment(answers);
                           if (assessmentProvider.assessmentType == 'site') {
-                            Navigator.of(context)
+                            /*Navigator.of(context)
                                 .pushReplacement(MaterialPageRoute(
                               builder: (context) => AssessorDashboard(),
-                            ));
+                            ));*/
+                            
                           } else {
                             Navigator.of(context)
                                 .pushReplacement(MaterialPageRoute(

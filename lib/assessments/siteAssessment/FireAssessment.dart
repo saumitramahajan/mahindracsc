@@ -180,7 +180,7 @@ class _FireAssessmentState extends State<FireAssessment> {
                               );
                             },
                           ));
-                          Navigator.of(context).pop();
+                          
                         },
                       )
                     ],
