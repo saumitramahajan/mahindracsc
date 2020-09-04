@@ -155,7 +155,7 @@ class AssessentRepository {
   }
 
   Future<void> uploadSelfAssessmentOffice(
-      List<bool> map, String cycleId) async {
+      List<Map<String,dynamic>> map, String cycleId) async {
     await Firestore.instance
         .collection('cycles')
         .document(cycleId)
@@ -184,7 +184,7 @@ class AssessentRepository {
   }
 
   Future<void> uploadSiteAssessmentOffice(
-      List<bool> map, String cycleId) async {
+      List<Map<String,dynamic>> map, String cycleId) async {
     await Firestore.instance
         .collection('cycles')
         .document(cycleId)

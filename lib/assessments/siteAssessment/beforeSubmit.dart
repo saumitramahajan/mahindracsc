@@ -97,7 +97,7 @@ class _BeforeSubmitState extends State<BeforeSubmit> {
                 assessmentProvider.uploadSelfAssessment();
               }
               assessmentProvider.getFireQuestions();
-              Navigator.of(context).push(MaterialPageRoute(
+              await Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) {
                   return ChangeNotifierProvider.value(
                     value: assessmentProvider,
@@ -105,6 +105,7 @@ class _BeforeSubmitState extends State<BeforeSubmit> {
                   );
                 },
               ));
+              Navigator.of(context).pop();
             },
           )
         ],

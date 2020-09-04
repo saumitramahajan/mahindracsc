@@ -10,7 +10,7 @@ class OfficeAssessment extends StatefulWidget {
 }
 
 class _OfficeAssessmentState extends State<OfficeAssessment> {
-  List<bool> answers = List.generate(10, (index) => false);
+  List<Map<String,dynamic>> answers = List.generate(10, (index) => {'answer':false,'marks':0});
   @override
   Widget build(BuildContext context) {
     final assessmentProvider = Provider.of<SiteAssessmentProvider>(context);
@@ -60,10 +60,10 @@ class _OfficeAssessmentState extends State<OfficeAssessment> {
                                           children: [
                                             Radio(
                                                 value: true,
-                                                groupValue: answers[index],
+                                                groupValue: answers[index]['answer'],
                                                 onChanged: (v) {
                                                   setState(() {
-                                                    answers[index] = true;
+                                                    answers[index]['answer'] = true;
                                                   });
                                                 }),
                                             Text('Yes')
@@ -73,15 +73,28 @@ class _OfficeAssessmentState extends State<OfficeAssessment> {
                                           children: [
                                             Radio(
                                                 value: false,
-                                                groupValue: answers[index],
+                                                groupValue: answers[index]['answer'],
                                                 onChanged: (v) {
                                                   setState(() {
-                                                    answers[index] = false;
+                                                    answers[index]['answer'] = false;
                                                   });
                                                 }),
                                             Text('No')
                                           ],
                                         ),
+                                        (answers[index]['answer'])?TextField(
+                                                      decoration: InputDecoration(
+                                                          labelText:
+                                                              'Enter marks out of 10'),
+                                                      onChanged: (value) {
+                                                        answers[index]
+                                                            ['marks'] = value;
+                                                      },
+                                                      keyboardType: TextInputType
+                                                          .numberWithOptions(
+                                                              decimal: true),
+                                                    )
+                                                  : SizedBox(),
                                       ],
                                     ),
                                   ),

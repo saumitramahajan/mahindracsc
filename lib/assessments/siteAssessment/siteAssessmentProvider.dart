@@ -22,7 +22,7 @@ class SiteAssessmentProvider extends ChangeNotifier {
   bool loading = true;
   List<Map<String, dynamic>> fireanswers =
       List.generate(9, (index) => {'comment': '', 'answer': false});
-  List<bool> officeAnswers = [];
+  List<Map<String,dynamic>> officeAnswers = [];
 
   List<Map<String, dynamic>> assessmentAnswers = [];
   double assessmentTotal = 0;
@@ -225,7 +225,7 @@ class SiteAssessmentProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> setOfficeAssessment(List<bool> answer) async {
+  Future<void> setOfficeAssessment(List<Map<String,dynamic>> answer) async {
     buttonLoading = true;
     notifyListeners();
     officeAnswers = answer;

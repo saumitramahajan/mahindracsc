@@ -191,7 +191,7 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                     })
                                 : RaisedButton(
                                     child: Text('Submit'),
-                                    onPressed: () {
+                                    onPressed: () async{
                                       assessmentProvider.submited(
                                           value: (assessmentProvider
                                                       .assessmentType ==
@@ -204,13 +204,14 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                           level: level,
                                           suggestion:
                                               _suggestionController.text);
-                                      Navigator.of(context)
+                                      await Navigator.of(context)
                                           .push(MaterialPageRoute(builder: (_) {
                                         return ChangeNotifierProvider.value(
                                           value: assessmentProvider,
                                           child: BeforeSubmit(),
                                         );
                                       }));
+                                      Navigator.of(context).pop();
                                     },
                                   ),
                           ],
