@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/FireAssessment.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentSingle.dart';
-import 'package:mahindraCSC/roles/assessee/assesseeDashboard.dart';
+import 'package:mahindraCSC/assessments/siteAssessment/siteRiskProfile.dart';
 import 'package:provider/provider.dart';
 
 class BeforeSubmit extends StatefulWidget {
@@ -97,6 +97,13 @@ class _BeforeSubmitState extends State<BeforeSubmit> {
                 assessmentProvider.uploadSelfAssessment();
               }
               assessmentProvider.getFireQuestions();
+              await Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) {
+                  return SiteRiskProfile(
+                    cycleId: assessmentProvider.cycleId,
+                  );
+                },
+              ));
               await Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) {
                   return ChangeNotifierProvider.value(

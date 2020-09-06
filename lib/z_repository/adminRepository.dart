@@ -244,13 +244,14 @@ class AdminRepository {
       'location': locat,
       'assesseeUid': assessee,
       'startDate': Timestamp.now(),
-      'currentStatus': 'Annual Data Requested',
+      'currentStatus':
+          'Annual Data Uploaded', //Change to annual Data Requested when annual data required.
       'endDate': null,
       'assessorUid': assessorUid,
       'scheduledDate': Timestamp.fromMillisecondsSinceEpoch(
           scheduledDate.millisecondsSinceEpoch)
     });
-    QuerySnapshot selectedLocation = await Firestore.instance
+    /*QuerySnapshot selectedLocation = await Firestore.instance
         .collection('cycles')
         .where('location', isEqualTo: locat)
         .getDocuments();
@@ -284,7 +285,7 @@ class AdminRepository {
         {'role': 'assessee', 'type': 'selfAssessment', 'uid': assessee},
       ],
       'cycleDocumentID': cycleDocumentID,
-    });
+    });*/
   }
 
   Future<List<Map<String, String>>> getCycles() async {

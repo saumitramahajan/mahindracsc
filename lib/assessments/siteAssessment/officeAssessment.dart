@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mahindraCSC/assessments/siteAssessment/officeSafetyProfile.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
+import 'package:mahindraCSC/assessments/siteAssessment/summaryOfRiskProfile.dart';
 import 'package:mahindraCSC/roles/assessee/assesseeDashboard.dart';
 import 'package:mahindraCSC/roles/assessor/assessorDashboard.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +12,8 @@ class OfficeAssessment extends StatefulWidget {
 }
 
 class _OfficeAssessmentState extends State<OfficeAssessment> {
-  List<Map<String,dynamic>> answers = List.generate(10, (index) => {'answer':false,'marks':0});
+  List<Map<String, dynamic>> answers =
+      List.generate(10, (index) => {'answer': false, 'marks': 0});
   @override
   Widget build(BuildContext context) {
     final assessmentProvider = Provider.of<SiteAssessmentProvider>(context);
@@ -60,10 +63,12 @@ class _OfficeAssessmentState extends State<OfficeAssessment> {
                                           children: [
                                             Radio(
                                                 value: true,
-                                                groupValue: answers[index]['answer'],
+                                                groupValue: answers[index]
+                                                    ['answer'],
                                                 onChanged: (v) {
                                                   setState(() {
-                                                    answers[index]['answer'] = true;
+                                                    answers[index]['answer'] =
+                                                        true;
                                                   });
                                                 }),
                                             Text('Yes')
@@ -73,28 +78,31 @@ class _OfficeAssessmentState extends State<OfficeAssessment> {
                                           children: [
                                             Radio(
                                                 value: false,
-                                                groupValue: answers[index]['answer'],
+                                                groupValue: answers[index]
+                                                    ['answer'],
                                                 onChanged: (v) {
                                                   setState(() {
-                                                    answers[index]['answer'] = false;
+                                                    answers[index]['answer'] =
+                                                        false;
                                                   });
                                                 }),
                                             Text('No')
                                           ],
                                         ),
-                                        (answers[index]['answer'])?TextField(
-                                                      decoration: InputDecoration(
-                                                          labelText:
-                                                              'Enter marks out of 10'),
-                                                      onChanged: (value) {
-                                                        answers[index]
-                                                            ['marks'] = value;
-                                                      },
-                                                      keyboardType: TextInputType
-                                                          .numberWithOptions(
-                                                              decimal: true),
-                                                    )
-                                                  : SizedBox(),
+                                        (answers[index]['answer'])
+                                            ? TextField(
+                                                decoration: InputDecoration(
+                                                    labelText:
+                                                        'Enter marks out of 10'),
+                                                onChanged: (value) {
+                                                  answers[index]['marks'] =
+                                                      value;
+                                                },
+                                                keyboardType: TextInputType
+                                                    .numberWithOptions(
+                                                        decimal: true),
+                                              )
+                                            : SizedBox(),
                                       ],
                                     ),
                                   ),
@@ -108,12 +116,23 @@ class _OfficeAssessmentState extends State<OfficeAssessment> {
                         child: Text('Submit'),
                         onPressed: () async {
                           await assessmentProvider.setOfficeAssessment(answers);
+                          await Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) {
+                              return OfficeSafetyRiskProfile(
+                                  cycleId: assessmentProvider.cycleId);
+                            },
+                          ));
+                          await Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) {
+                              return SummaryOfRiskProfile(
+                                  cycleId: assessmentProvider.cycleId);
+                            },
+                          ));
                           if (assessmentProvider.assessmentType == 'site') {
-                            /*Navigator.of(context)
+                            Navigator.of(context)
                                 .pushReplacement(MaterialPageRoute(
                               builder: (context) => AssessorDashboard(),
-                            ));*/
-                            
+                            ));
                           } else {
                             Navigator.of(context)
                                 .pushReplacement(MaterialPageRoute(

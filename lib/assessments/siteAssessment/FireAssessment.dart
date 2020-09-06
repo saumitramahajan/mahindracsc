@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mahindraCSC/assessments/siteAssessment/fireSafetyManagementProfile.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/officeAssessment.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
 import 'package:provider/provider.dart';
@@ -169,9 +170,15 @@ class _FireAssessmentState extends State<FireAssessment> {
                       ),
                       RaisedButton(
                         child: Text('Next'),
-                        onPressed: () async{
+                        onPressed: () async {
                           assessmentProvider.setFireAssessment(answers);
                           assessmentProvider.getOfficeQuestions();
+                          await Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) {
+                              return FireSafetyRiskProfile(
+                                  cycleId: assessmentProvider.cycleId);
+                            },
+                          ));
                           await Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) {
                               return ChangeNotifierProvider.value(
@@ -180,7 +187,6 @@ class _FireAssessmentState extends State<FireAssessment> {
                               );
                             },
                           ));
-                          
                         },
                       )
                     ],

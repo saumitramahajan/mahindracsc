@@ -31,7 +31,7 @@ class _DashboardState extends State<Dashboard> {
                   }),
                 );
               }),
-          RaisedButton(
+          /*RaisedButton(
               child: Text('SiteAssessment'),
               onPressed: () async {
                 Navigator.push(
@@ -43,7 +43,7 @@ class _DashboardState extends State<Dashboard> {
                     );
                   }),
                 );
-              }),
+              }),*/ //Uncomment when Annual Data is required.
         ],
       )),
     );

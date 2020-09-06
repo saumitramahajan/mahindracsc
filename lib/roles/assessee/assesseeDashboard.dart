@@ -98,12 +98,12 @@ class _AssesseeDashboardState extends State<AssesseeDashboard> {
                 getCurrentUser('monthly');
               },
             ),
-            RaisedButton(
+            /*RaisedButton(
               child: Text('Assessment Annual Data'),
               onPressed: () {
                 getCurrentUser('assessment');
               },
-            ),
+            ),*/
             RaisedButton(
                 child: Text('Self Assessment'),
                 onPressed: () {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:mahindraCSC/login/login.dart';
+import 'package:mahindraCSC/roles/assessor/assessorDashboard.dart';
 
 Future<void> main() async {
   runApp(MyApp());
@@ -32,6 +33,9 @@ class MyApp extends StatelessWidget {
           // closer together (more dense) than on mobile platforms.
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
+        routes: <String, WidgetBuilder>{
+          '/assessorDashboard': (_) => new AssessorDashboard(),
+        },
         home: Login());
   }
 }
