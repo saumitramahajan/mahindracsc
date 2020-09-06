@@ -4,13 +4,15 @@ import 'package:flutter/cupertino.dart';
 class AssessmentLocationInfoProvider extends ChangeNotifier {
   bool loading = true;
   bool success = false;
+  String locationId = '';
 
   Map<String, dynamic> infoMap = {};
 
   final AssessmentLocationInfoRepository assessmentRepository =
       AssessmentLocationInfoRepository();
 
-  AssessmentLocationInfoProvider(String locationId) {
+  AssessmentLocationInfoProvider(String locationIdI) {
+    locationId = locationIdI;
     assessorInfo(locationId);
   }
 

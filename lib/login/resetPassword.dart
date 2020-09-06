@@ -15,7 +15,16 @@ class _ResetPasswordState extends State<ResetPassword> {
     final loginProvider = Provider.of<LoginProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Reset Password/New User'),
+        backgroundColor: Color(0xfff4001c),
+        title: SizedBox(
+          height: AppBar().preferredSize.height,
+          child: Image.asset(
+            'assets/mahindraAppBar.png',
+            fit: BoxFit.contain,
+          ),
+        ),
+        titleSpacing: 0.0,
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         child: Column(

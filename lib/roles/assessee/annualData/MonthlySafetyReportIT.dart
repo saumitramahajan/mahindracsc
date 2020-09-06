@@ -63,10 +63,16 @@ class _MonthlySafetyReportIT extends State<MonthlySafetyReportIT> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text('Monthly Safety Report (IT /Finance / AFM) (Assessee Entry) '),
-        centerTitle: true,
-        elevation: 0.0,
+        backgroundColor: Color(0xfff4001c),
+        title: SizedBox(
+          height: AppBar().preferredSize.height,
+          child: Image.asset(
+            'assets/mahindraAppBar.png',
+            fit: BoxFit.contain,
+          ),
+        ),
+        titleSpacing: 0.0,
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Form(

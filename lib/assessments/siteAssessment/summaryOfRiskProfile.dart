@@ -23,7 +23,18 @@ class _SummaryOfRiskProfileState extends State<SummaryOfRiskProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          backgroundColor: Color(0xfff4001c),
+          title: SizedBox(
+            height: AppBar().preferredSize.height,
+            child: Image.asset(
+              'assets/mahindraAppBar.png',
+              fit: BoxFit.contain,
+            ),
+          ),
+          titleSpacing: 0.0,
+          automaticallyImplyLeading: false,
+        ),
         body: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

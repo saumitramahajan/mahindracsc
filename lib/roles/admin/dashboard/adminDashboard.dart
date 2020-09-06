@@ -18,7 +18,57 @@ class _AdminDashboardState extends State<AdminDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Admin Dashboard')),
+      appBar: AppBar(
+        backgroundColor: Color(0xfff4001c),
+        title: SizedBox(
+          height: AppBar().preferredSize.height,
+          child: Image.asset(
+            'assets/mahindraAppBar.png',
+            fit: BoxFit.contain,
+          ),
+        ),
+        titleSpacing: 0.0,
+        automaticallyImplyLeading: false,
+        actions: [
+          DropdownButton(
+            items: [
+              DropdownMenuItem(
+                child: Text('Enroll'),
+                value: 'enroll',
+              ),
+              DropdownMenuItem(
+                child: Text('Enroll Location'),
+                value: 'location',
+              ),
+              DropdownMenuItem(
+                child: Text('Schedule Assessment'),
+                value: 'schedule',
+              ),
+              DropdownMenuItem(
+                child: Text('Review Annual Data'),
+                value: 'annualData',
+              ),
+              DropdownMenuItem(
+                child: Text('Review Self and Site Assessment'),
+                value: 'review',
+              ),
+              DropdownMenuItem(
+                child: Text('Change Password'),
+                value: 'change',
+              ),
+              DropdownMenuItem(
+                child: Text('Sign Out'),
+                value: 'signOut',
+              )
+            ],
+            onChanged: (value) {},
+            value: 'enroll',
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.05,
+          )
+        ],
+      ),
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

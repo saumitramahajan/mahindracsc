@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessment.dart';
 import 'package:mahindraCSC/roles/assessee/activities/activities.dart';
 import 'package:mahindraCSC/roles/assessee/activities/loginProvider.dart';
+import 'package:mahindraCSC/roles/assessee/changePassword/changePassword.dart';
 import 'package:provider/provider.dart';
 
 import 'annualData/MonthlySafetyReportIT.dart';
@@ -87,35 +88,66 @@ class _AssesseeDashboardState extends State<AssesseeDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Dashboard'),
+        backgroundColor: Color(0xfff4001c),
+        title: SizedBox(
+          height: AppBar().preferredSize.height,
+          child: Image.asset(
+            'assets/mahindraAppBar.png',
+            fit: BoxFit.contain,
+          ),
+        ),
+        titleSpacing: 0.0,
         automaticallyImplyLeading: false,
-      ),
-      body: Container(
-        child: Column(
-          children: [
-            RaisedButton(
-              child: Text('Monthly MIS'),
+        actions: [
+          FlatButton(
               onPressed: () {
                 getCurrentUser('monthly');
               },
-            ),
-            /*RaisedButton(
-              child: Text('Assessment Annual Data'),
+              child: Text(
+                'Monthly MIS',
+                style: TextStyle(color: Colors.white),
+              )),
+          FlatButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      SiteAssessment('self', 'fh4nK1KHz5DeEn0BkHL3'),
+                ));
+              },
+              child: Text(
+                'Self Assessment',
+                style: TextStyle(color: Colors.white),
+              )),
+          FlatButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ChangePassword(),
+                ));
+              },
+              child: Text(
+                'Change Password',
+                style: TextStyle(color: Colors.white),
+              )),
+          FlatButton(
+              onPressed: () {},
+              child: Text(
+                'Sign Out',
+                style: TextStyle(color: Colors.white),
+              )),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.05,
+          )
+          /*FlatButton(
               onPressed: () {
                 getCurrentUser('assessment');
               },
-            ),*/
-            RaisedButton(
-                child: Text('Self Assessment'),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>
-                        SiteAssessment('self', 'fh4nK1KHz5DeEn0BkHL3'),
-                  ));
-                }),
-          ],
-        ),
+              child: Text(
+                'Annual Data',
+                style: TextStyle(color: Colors.white),
+              )),*/ //Uncomment when annual data is required. place inbetween
+        ],
       ),
+      body: Container(),
     );
   }
 }

@@ -57,7 +57,16 @@ class _ViewLocationsState extends State<ViewLocations> {
     final viewProvider = Provider.of<ViewLocationProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('LocationList'),
+        backgroundColor: Color(0xfff4001c),
+        title: SizedBox(
+          height: AppBar().preferredSize.height,
+          child: Image.asset(
+            'assets/mahindraAppBar.png',
+            fit: BoxFit.contain,
+          ),
+        ),
+        titleSpacing: 0.0,
+        automaticallyImplyLeading: false,
       ),
       body: viewProvider.loading
           ? Center(

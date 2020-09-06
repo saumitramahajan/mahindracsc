@@ -14,7 +14,18 @@ class _AssessorLocationListInfo extends State<AssessorLocationListInfo> {
   Widget build(BuildContext context) {
     final provider = Provider.of<AssessorLocationListInfoProvider>(context);
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          backgroundColor: Color(0xfff4001c),
+          title: SizedBox(
+            height: AppBar().preferredSize.height,
+            child: Image.asset(
+              'assets/mahindraAppBar.png',
+              fit: BoxFit.contain,
+            ),
+          ),
+          titleSpacing: 0.0,
+          automaticallyImplyLeading: false,
+        ),
         body: Center(
             child: provider.loading
                 ? CircularProgressIndicator()

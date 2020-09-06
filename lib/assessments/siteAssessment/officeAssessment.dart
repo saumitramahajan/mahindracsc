@@ -19,7 +19,15 @@ class _OfficeAssessmentState extends State<OfficeAssessment> {
     final assessmentProvider = Provider.of<SiteAssessmentProvider>(context);
     return Scaffold(
         appBar: AppBar(
-          title: Text('Office Safety Assessment'),
+          backgroundColor: Color(0xfff4001c),
+          title: SizedBox(
+            height: AppBar().preferredSize.height,
+            child: Image.asset(
+              'assets/mahindraAppBar.png',
+              fit: BoxFit.contain,
+            ),
+          ),
+          titleSpacing: 0.0,
         ),
         body: assessmentProvider.loading
             ? Center(

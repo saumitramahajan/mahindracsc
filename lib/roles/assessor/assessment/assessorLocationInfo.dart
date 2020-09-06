@@ -1,3 +1,5 @@
+import 'package:mahindraCSC/assessments/siteAssessment/siteAssessment.dart';
+
 import 'assessorLocationInfoprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +15,18 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
     final provider = Provider.of<AssessmentLocationInfoProvider>(context);
 
     return Scaffold(
-        appBar: AppBar(title: Text('Location Information')),
+        appBar: AppBar(
+          backgroundColor: Color(0xfff4001c),
+          title: SizedBox(
+            height: AppBar().preferredSize.height,
+            child: Image.asset(
+              'assets/mahindraAppBar.png',
+              fit: BoxFit.contain,
+            ),
+          ),
+          titleSpacing: 0.0,
+          automaticallyImplyLeading: false,
+        ),
         body: (provider.loading)
             ? Center(
                 child: CircularProgressIndicator(),
@@ -1054,7 +1067,15 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                           ),
                         ),
                       ),
-                      RaisedButton(child: Text('Next'), onPressed: () {})
+                      RaisedButton(
+                          child: Text('Next'),
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pushReplacement(MaterialPageRoute(
+                              builder: (context) =>
+                                  SiteAssessment('site', provider.locationId),
+                            ));
+                          })
                     ],
                   )),
                 ),

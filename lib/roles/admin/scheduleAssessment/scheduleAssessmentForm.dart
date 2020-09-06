@@ -19,7 +19,16 @@ class _ScheduleAssessmentFormState extends State<ScheduleAssessmentForm> {
     final requestAD = Provider.of<ScheduleAssessmentProvider>(context);
     return Scaffold(
         appBar: AppBar(
-          title: Text('Schedule Assessment'),
+          backgroundColor: Color(0xfff4001c),
+          title: SizedBox(
+            height: AppBar().preferredSize.height,
+            child: Image.asset(
+              'assets/mahindraAppBar.png',
+              fit: BoxFit.contain,
+            ),
+          ),
+          titleSpacing: 0.0,
+          automaticallyImplyLeading: false,
         ),
         body: requestAD.listLoading
             ? Center(child: CircularProgressIndicator())

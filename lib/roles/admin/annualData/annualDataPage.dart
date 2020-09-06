@@ -15,7 +15,18 @@ class _AnnualDataFormState extends State<AnnualDataForm> {
   Widget build(BuildContext context) {
     final adProvider = Provider.of<AnnualDataProvider>(context);
     return Scaffold(
-      appBar: AppBar(title: Text('Review Annual Data')),
+      appBar: AppBar(
+        backgroundColor: Color(0xfff4001c),
+        title: SizedBox(
+          height: AppBar().preferredSize.height,
+          child: Image.asset(
+            'assets/mahindraAppBar.png',
+            fit: BoxFit.contain,
+          ),
+        ),
+        titleSpacing: 0.0,
+        automaticallyImplyLeading: false,
+      ),
       body: Container(
         child: Column(
           children: [
