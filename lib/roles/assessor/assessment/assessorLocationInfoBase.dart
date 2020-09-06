@@ -5,12 +5,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 class AssessorInfo extends StatelessWidget {
-  final String locationId;
-  AssessorInfo({Key key, this.locationId}) : super(key: key);
+  final String cycleId;
+  AssessorInfo({Key key, this.cycleId}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<AssessmentLocationInfoProvider>(
-      create: (_) => AssessmentLocationInfoProvider(locationId),
+      create: (_) => AssessmentLocationInfoProvider(cycleId),
       child: AssessorLocationInfo(),
     );
   }

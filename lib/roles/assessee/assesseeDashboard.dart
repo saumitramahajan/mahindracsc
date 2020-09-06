@@ -88,6 +88,7 @@ class _AssesseeDashboardState extends State<AssesseeDashboard> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Dashboard'),
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         child: Column(

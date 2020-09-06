@@ -1,7 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AssessmentLocationInfoRepository {
-  Future<Map<String, dynamic>> getassessorInfo(String locationId) async {
+  Future<Map<String, dynamic>> getassessorInfo(String cycleId) async {
+    String locationId = '';
+    await Firestore.instance
+        .collection('cycles')
+        .document(cycleId)
+        .get()
+        .then((cycle) async {
+      await Firestore.instance
+          .collection('locations')
+          .where('location', isEqualTo: cycle.data['location'])
+          .getDocuments()
+          .then((value) => locationId = value.documents[0].documentID);
+    });
     DocumentSnapshot info = await Firestore.instance
         .collection('locations')
         .document(locationId)
@@ -54,8 +66,7 @@ class AssessmentLocationInfoRepository {
       'firstAid': info.data['firstAid'],
       'fire': info.data['fire'],
     };
-    print('repository '+keys.toString());
+    print('repository ' + keys.toString());
     return keys;
-
   }
 }
