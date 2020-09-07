@@ -10,7 +10,7 @@ class AdminRepository {
   }
 
   Future<void> uploadUserInfo(String email, String uid, String name,
-      String number, bool assessorVal, bool assesseeVal) async {
+      bool assessorVal, bool assesseeVal) async {
     List<String> role = [];
     if (assessorVal) {
       role.add('assessor');
@@ -18,8 +18,10 @@ class AdminRepository {
     if (assesseeVal) {
       role.add('assessee');
     }
-    await Firestore.instance.collection('users').document(uid).setData(
-        {'name': name, 'number': number, 'email': email, 'role': role});
+    await Firestore.instance
+        .collection('users')
+        .document(uid)
+        .setData({'name': name, 'email': email, 'role': role});
   }
 
   Future<List<Map<String, String>>> getAssesseeMap() async {

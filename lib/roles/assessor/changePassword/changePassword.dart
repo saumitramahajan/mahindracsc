@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mahindraCSC/roles/admin/dashboard/adminDashboard.dart';
 import 'package:mahindraCSC/roles/assessee/annualData/assesseeDashboard.dart';
+import 'package:mahindraCSC/roles/assessor/assessorDashboard.dart';
 
 class ChangePassword extends StatefulWidget {
   @override
@@ -68,7 +69,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                               user.updatePassword(_password.text).then((value) {
                                 Navigator.of(context)
                                     .pushReplacement(MaterialPageRoute(
-                                  builder: (context) => AssesseeDashboard(),
+                                  builder: (context) => AssessorDashboard(),
                                 ));
                               });
                             }

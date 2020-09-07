@@ -6,14 +6,14 @@ class EnrollUsersProvider extends ChangeNotifier {
   bool loading = false;
   bool enrolled = false;
 
-  Future<void> enrollUser(String email, String name, String number,
-      bool assessorVal, bool assesseeVal) async {
+  Future<void> enrollUser(
+      String email, String name, bool assessorVal, bool assesseeVal) async {
     try {
       loading = true;
       notifyListeners();
       String uid = await adminRepository.registerUser(email);
       await adminRepository.uploadUserInfo(
-          email, uid, name, number, assessorVal, assesseeVal);
+          email, uid, name, assessorVal, assesseeVal);
       enrolled = true;
       notifyListeners();
     } catch (e) {
