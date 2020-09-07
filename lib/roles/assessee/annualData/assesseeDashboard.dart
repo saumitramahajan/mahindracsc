@@ -43,6 +43,7 @@ class _AssesseeDashboardState extends State<AssesseeDashboard> {
       }));
       return loc;
     }
+    return null;
   }
 
   @override

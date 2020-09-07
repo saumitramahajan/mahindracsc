@@ -12,7 +12,6 @@ class SiteAssessmentForm extends StatefulWidget {
 }
 
 class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
-  double _sliderValue = 0;
   TextEditingController _justificationController = TextEditingController();
   TextEditingController _marksController = TextEditingController(text: '0');
   TextEditingController _suggestionController = TextEditingController();

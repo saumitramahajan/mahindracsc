@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mahindraCSC/roles/assessee/annualData/assesseeDashboard.dart';
@@ -104,7 +103,7 @@ class _MonthlySafetyReport extends State<MonthlySafetyReport> {
     }
   }
 
-  void _update_totAcc() {
+  void _updateToAcc() {
     totalaccController.text = (_fatal +
             _reportableaccidents +
             _nonreportableaccidents +
@@ -117,10 +116,10 @@ class _MonthlySafetyReport extends State<MonthlySafetyReport> {
     super.initState();
 
     // Start listening to changes.
-    fatalController.addListener(_update_totAcc);
-    reportableaccController.addListener(_update_totAcc);
-    nonreportableaccController.addListener(_update_totAcc);
-    firstaidaccController.addListener(_update_totAcc);
+    fatalController.addListener(_updateToAcc);
+    reportableaccController.addListener(_updateToAcc);
+    nonreportableaccController.addListener(_updateToAcc);
+    firstaidaccController.addListener(_updateToAcc);
   }
 
   @override
@@ -515,7 +514,7 @@ class _MonthlySafetyReport extends State<MonthlySafetyReport> {
               ),
               new FloatingActionButton.extended(
                 onPressed: () async {
-                  await _onPressedSave();
+                  _onPressedSave();
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) => AssesseeDashboard()));
                 },

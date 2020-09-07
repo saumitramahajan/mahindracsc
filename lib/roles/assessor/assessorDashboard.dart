@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mahindraCSC/assessments/siteAssessment/siteAssessment.dart';
 import 'package:mahindraCSC/roles/admin/changePassword/changePassword.dart';
-import 'package:mahindraCSC/roles/assessor/activities/activities.dart';
-import 'package:mahindraCSC/roles/assessor/activities/loginProvider.dart';
-import 'package:mahindraCSC/roles/assessor/assessment/assessorLocationList.dart';
-import 'package:provider/provider.dart';
 
 import 'assessment/assessorlocationListBase.dart';
 

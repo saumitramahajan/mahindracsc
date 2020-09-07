@@ -8,7 +8,7 @@ class EnrollVendorLocation extends StatefulWidget {
 }
 
 class _EnrollVendorLocationState extends State<EnrollVendorLocation> {
-  String _valueAssesseeUid;
+  /*String _valueAssesseeUid;
   String _nameOfBusiness;
   String _location;
   String _plantHeadName;
@@ -16,7 +16,7 @@ class _EnrollVendorLocationState extends State<EnrollVendorLocation> {
   String _plantHeadPhoneNumber;
   String _ssuPersonnalName;
   String _ssuPersonnalEmail;
-  String _ssuPersonnalPhoneNumber;
+  String _ssuPersonnalPhoneNumber;*/
   @override
   Widget build(BuildContext context) {
     final enrollProvider = Provider.of<EnrollLocationProvider>(context);
@@ -28,7 +28,7 @@ class _EnrollVendorLocationState extends State<EnrollVendorLocation> {
           ? Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
               child: Container(
-                child: Column(
+                  /*child: Column(
                   children: [
                     TextFormField(
                       validator: (input) {
@@ -176,8 +176,8 @@ class _EnrollVendorLocationState extends State<EnrollVendorLocation> {
                       },
                     )
                   ],
-                ),
-              ),
+                ),*/
+                  ),
             ),
     );
   }

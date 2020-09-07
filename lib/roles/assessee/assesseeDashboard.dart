@@ -2,10 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessment.dart';
-import 'package:mahindraCSC/roles/assessee/activities/activities.dart';
-import 'package:mahindraCSC/roles/assessee/activities/loginProvider.dart';
 import 'package:mahindraCSC/roles/assessee/changePassword/changePassword.dart';
-import 'package:provider/provider.dart';
 
 import 'annualData/MonthlySafetyReportIT.dart';
 import 'annualData/monthly_safety_report.dart';

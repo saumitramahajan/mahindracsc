@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mahindraCSC/roles/admin/enrollLocation/enrollLocationProvider.dart';
 import 'package:mahindraCSC/roles/admin/enrollLocation/enrollMahindraLocation.dart';
-import 'package:mahindraCSC/roles/admin/enrollLocation/enrollVendorLocation.dart';
 import 'package:mahindraCSC/roles/admin/enrollLocation/viewLocationProvider.dart';
 import 'package:mahindraCSC/roles/admin/enrollLocation/viewLocations.dart';
 import 'package:provider/provider.dart';

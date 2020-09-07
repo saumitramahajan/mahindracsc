@@ -67,6 +67,7 @@ class _LoginFormState extends State<LoginForm> {
                             if (input.isEmpty) {
                               return 'Please type an email';
                             }
+                            return null;
                           },
                           onChanged: (input) => _email = input,
                           decoration: InputDecoration(
@@ -77,6 +78,7 @@ class _LoginFormState extends State<LoginForm> {
                             if (input.length < 6) {
                               return 'Your password needs to be atleast 6 characters';
                             }
+                            return null;
                           },
                           onChanged: (input) => _password = input,
                           decoration: InputDecoration(
