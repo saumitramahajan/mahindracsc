@@ -8,7 +8,7 @@ class EnrollUsersForm extends StatefulWidget {
 }
 
 class _EnrollUsersFormState extends State<EnrollUsersForm> {
-  String _name, _email, _number;
+  String _name, _email;
   bool assessorVal = false;
   bool assesseeVal = false;
   @override

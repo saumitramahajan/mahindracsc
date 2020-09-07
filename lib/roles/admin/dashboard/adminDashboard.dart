@@ -99,7 +99,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                   break;
                 case 'dashboard':
                   {
-                    Navigator.of(context).push(MaterialPageRoute(
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) {
                         return AdminDashboard();
                       },

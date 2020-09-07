@@ -11,24 +11,35 @@ class _ViewLocationsState extends State<ViewLocations> {
   Widget mahindraLocationCard(Map<String, String> map) {
     return Card(
       elevation: 7.0,
-      child: Column(
-        children: [
-          Text('Mahindra'),
-          Text('Category: ' + map['category']),
-          Text('Name of Sector: ' + map['nameOfSector']),
-          Text('Name of Business: ' + map['nameOfBusiness']),
-          Text('Location: ' + map['location']),
-          Text('Last Assessment Stage: ' + map['lastAssessmentStage']),
-          Text('Process Level: ' + map['processLevel']),
-          Text('Result Level: ' + map['resultLevel']),
-          Text('Assessee: ' + map['assessee']),
-          Text('Plant Head Name: ' + map['plantHeadName']),
-          Text('Plant Head Email: ' + map['plantHeadEmail']),
-          Text('Plant Head Phone Number: ' + map['plantHeadPhoneNumber']),
-          Text('Sector/Business Safety SPOC Name: ' + map['spocName']),
-          Text('Sector/Business Safety SPOC Email: ' + map['spocEmail']),
-          Text('Sector/Business Safety SPOC Number: ' + map['spocPhoneNumber']),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Name of Business: ' + map['nameOfBusiness'],
+              style: TextStyle(fontSize: 25),
+            ),
+            Text(
+              'Location: ' + map['location'],
+              style: TextStyle(fontSize: 20),
+            ),
+            Text('Category: ' + map['category']),
+            Text('Name of Sector: ' + map['nameOfSector']),
+            Text('Location: ' + map['location']),
+            Text('Last Assessment Stage: ' + map['lastAssessmentStage']),
+            Text('Process Level: ' + map['processLevel']),
+            Text('Result Level: ' + map['resultLevel']),
+            Text('Assessee: ' + map['assessee']),
+            Text('Plant Head Name: ' + map['plantHeadName']),
+            Text('Plant Head Email: ' + map['plantHeadEmail']),
+            Text('Plant Head Phone Number: ' + map['plantHeadPhoneNumber']),
+            Text('Sector/Business Safety SPOC Name: ' + map['spocName']),
+            Text('Sector/Business Safety SPOC Email: ' + map['spocEmail']),
+            Text('Sector/Business Safety SPOC Number: ' +
+                map['spocPhoneNumber']),
+          ],
+        ),
       ),
     );
   }
@@ -56,26 +67,18 @@ class _ViewLocationsState extends State<ViewLocations> {
   Widget build(BuildContext context) {
     final viewProvider = Provider.of<ViewLocationProvider>(context);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xfff4001c),
-        title: SizedBox(
-          height: AppBar().preferredSize.height,
-          child: Image.asset(
-            'assets/mahindraAppBar.png',
-            fit: BoxFit.contain,
-          ),
-        ),
-        titleSpacing: 0.0,
-        automaticallyImplyLeading: false,
-      ),
       body: viewProvider.loading
           ? Center(
               child: CircularProgressIndicator(),
             )
           : Container(
+              padding: EdgeInsets.all(30.0),
               child: Column(
                 children: [
-                  Text('List of Locations'),
+                  Text(
+                    'List of Locations',
+                    style: TextStyle(fontSize: 30.0),
+                  ),
                   Expanded(
                     child: ListView.builder(
                       itemCount: viewProvider.list.length,

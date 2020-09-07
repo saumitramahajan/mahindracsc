@@ -9,24 +9,19 @@ class EnrollLocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xfff4001c),
-        title: SizedBox(
-          height: AppBar().preferredSize.height,
-          child: Image.asset(
-            'assets/mahindraAppBar.png',
-            fit: BoxFit.contain,
+        appBar: AppBar(
+          backgroundColor: Color(0xfff4001c),
+          title: SizedBox(
+            height: AppBar().preferredSize.height,
+            child: Image.asset(
+              'assets/mahindraAppBar.png',
+              fit: BoxFit.contain,
+            ),
           ),
-        ),
-        titleSpacing: 0.0,
-        automaticallyImplyLeading: false,
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            Text('Select type of Location:'),
-            RaisedButton(
-                child: Text('Mahindra and Mahindra Location'),
+          actions: [
+            IconButton(
+                tooltip: 'Add Location',
+                icon: Icon(Icons.add),
                 onPressed: () {
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) {
@@ -36,20 +31,16 @@ class EnrollLocation extends StatelessWidget {
                     );
                   }));
                 }),
-            RaisedButton(
-                child: Text('View Location'),
-                onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return ChangeNotifierProvider<ViewLocationProvider>(
-                      create: (context) => ViewLocationProvider(),
-                      child: ViewLocations(),
-                    );
-                  }));
-                })
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.05,
+            )
           ],
+          titleSpacing: 0.0,
+          automaticallyImplyLeading: false,
         ),
-      ),
-    );
+        body: ChangeNotifierProvider<ViewLocationProvider>(
+          create: (context) => ViewLocationProvider(),
+          child: ViewLocations(),
+        ));
   }
 }

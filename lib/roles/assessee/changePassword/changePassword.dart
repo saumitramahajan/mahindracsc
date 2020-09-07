@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mahindraCSC/roles/admin/dashboard/adminDashboard.dart';
 import 'package:mahindraCSC/roles/assessee/annualData/assesseeDashboard.dart';
 
 class ChangePassword extends StatefulWidget {
