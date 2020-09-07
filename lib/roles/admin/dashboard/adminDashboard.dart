@@ -30,102 +30,141 @@ class _AdminDashboardState extends State<AdminDashboard> {
           DropdownButton(
             items: [
               DropdownMenuItem(
-                child: Text('Enroll'),
+                child: Text(
+                  'Dashboard',
+                  style: TextStyle(color: Colors.white),
+                ),
+                value: 'dashboard',
+              ),
+              DropdownMenuItem(
+                child: Text(
+                  'Enroll',
+                  style: TextStyle(color: Colors.white),
+                ),
                 value: 'enroll',
               ),
               DropdownMenuItem(
-                child: Text('Enroll Location'),
+                child: Text(
+                  'Enroll Location',
+                  style: TextStyle(color: Colors.white),
+                ),
                 value: 'location',
               ),
               DropdownMenuItem(
-                child: Text('Schedule Assessment'),
+                child: Text(
+                  'Schedule Assessment',
+                  style: TextStyle(color: Colors.white),
+                ),
                 value: 'schedule',
               ),
               DropdownMenuItem(
-                child: Text('Review Annual Data'),
+                child: Text(
+                  'Review Annual Data',
+                  style: TextStyle(color: Colors.white),
+                ),
                 value: 'annualData',
               ),
               DropdownMenuItem(
-                child: Text('Review Self and Site Assessment'),
+                child: Text(
+                  'Review Self and Site Assessment',
+                  style: TextStyle(color: Colors.white),
+                ),
                 value: 'review',
               ),
               DropdownMenuItem(
-                child: Text('Change Password'),
+                child: Text(
+                  'Change Password',
+                  style: TextStyle(color: Colors.white),
+                ),
                 value: 'change',
               ),
               DropdownMenuItem(
-                child: Text('Sign Out'),
+                child: Text(
+                  'Sign Out',
+                  style: TextStyle(color: Colors.white),
+                ),
                 value: 'signOut',
               )
             ],
-            onChanged: (value) {},
-            value: 'enroll',
+            onChanged: (value) {
+              switch (value) {
+                case 'enroll':
+                  {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) {
+                        return EnrollUsers();
+                      },
+                    ));
+                  }
+                  break;
+                case 'dashboard':
+                  {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) {
+                        return AdminDashboard();
+                      },
+                    ));
+                  }
+                  break;
+                case 'location':
+                  {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) {
+                        return EnrollLocation();
+                      },
+                    ));
+                  }
+                  break;
+                case 'schedule':
+                  {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) {
+                        return ScheduleAssessment();
+                      },
+                    ));
+                  }
+                  break;
+                case 'annualData':
+                  {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) {
+                        return AnnualData();
+                      },
+                    ));
+                  }
+                  break;
+                case 'review':
+                  {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) {
+                        return Dashboard();
+                      },
+                    ));
+                  }
+                  break;
+                case 'change':
+                  {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) {
+                        return ChangePassword();
+                      },
+                    ));
+                  }
+                  break;
+                case 'signOut':
+                  {}
+                  break;
+              }
+            },
+            value: 'dashboard',
+            dropdownColor: Color(0xfff4001c),
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.05,
           )
         ],
       ),
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            RaisedButton(
-              child: Text('Enroll'),
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) {
-                    return EnrollUsers();
-                  },
-                ));
-              },
-            ),
-            RaisedButton(
-                child: Text('Enroll Location'),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) {
-                      return EnrollLocation();
-                    },
-                  ));
-                }),
-            RaisedButton(
-                child: Text('Schedule Assessment'),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) {
-                      return ScheduleAssessment();
-                    },
-                  ));
-                }),
-            RaisedButton(
-                child: Text('Review Annual Data'),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) {
-                      return AnnualData();
-                    },
-                  ));
-                }),
-            RaisedButton(
-                child: Text('Change Password'),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ChangePassword()));
-                }),
-            RaisedButton(
-                child: Text('Review Self and Site Assessment'),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) {
-                      return Dashboard();
-                    },
-                  ));
-                }),
-          ],
-        ),
-      ),
+      body: Container(),
     );
   }
 }
