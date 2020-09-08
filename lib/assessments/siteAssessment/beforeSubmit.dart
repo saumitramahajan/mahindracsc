@@ -34,7 +34,7 @@ class _BeforeSubmitState extends State<BeforeSubmit> {
               slivers: [
                 SliverAppBar(
                   pinned: true,
-                  title: (assessmentProvider.assessmentType == 'site')
+                  title: (assessmentProvider.assessmentType != 'site')
                       ? Text('Assessment')
                       : Text('Assessment Total: ' +
                           assessmentProvider.assessmentTotal.toString() +
@@ -79,10 +79,16 @@ class _BeforeSubmitState extends State<BeforeSubmit> {
                           children: [
                             Text(assessmentProvider.questionList[index]
                                 ['statement']),
-                            Text("Selected Level: " +
+                            Text("Level: " +
                                 assessmentProvider.assessmentAnswers[index]
                                         ['level']
-                                    .toString())
+                                    .toString()),
+                            (assessmentProvider.assessmentType == 'site')
+                                ? Text('Score: ' +
+                                    assessmentProvider.assessmentAnswers[index]
+                                            ['answer']
+                                        .toString())
+                                : SizedBox()
                           ],
                         )),
                       );
@@ -105,13 +111,7 @@ class _BeforeSubmitState extends State<BeforeSubmit> {
                 assessmentProvider.uploadSelfAssessment();
               }
               assessmentProvider.getFireQuestions();
-              await Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) {
-                  return SiteRiskProfile(
-                    cycleId: assessmentProvider.cycleId,
-                  );
-                },
-              ));
+
               await Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) {
                   return ChangeNotifierProvider.value(

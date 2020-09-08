@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentForm.dart';
+import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
+import 'package:provider/provider.dart';
 
 class SiteRiskProfile extends StatefulWidget {
   final String cycleId;
@@ -174,7 +177,11 @@ class _SiteRiskProfileState extends State<SiteRiskProfile> {
                                   .document(widget.cycleId)
                                   .updateData(
                                       {'siteRiskProfile': siteRiskProfile});
-                              Navigator.of(context).pop();
+                              ChangeNotifierProvider<SiteAssessmentProvider>(
+                                create: (_) => SiteAssessmentProvider(
+                                    'site', widget.cycleId),
+                                child: SiteAssessmentForm(),
+                              );
                             })
                       ],
                     ),

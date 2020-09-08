@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentForm.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
+import 'package:mahindraCSC/assessments/siteAssessment/siteRiskProfile.dart';
 import 'package:provider/provider.dart';
 
 import 'locationInfoBase.dart';
@@ -13,10 +13,7 @@ class SiteAssessment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return (type == 'site')
-        ? ChangeNotifierProvider<SiteAssessmentProvider>(
-            create: (_) => SiteAssessmentProvider(type, cycleId),
-            child: SiteAssessmentForm(),
-          )
+        ? SiteRiskProfile(cycleId: cycleId)
         : ChangeNotifierProvider(
             create: (_) => SiteAssessmentProvider(type, cycleId),
             child: LocationInfoBase(),

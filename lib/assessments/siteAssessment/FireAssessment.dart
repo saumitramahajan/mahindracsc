@@ -52,121 +52,110 @@ class _FireAssessmentState extends State<FireAssessment> {
                                                 0.075,
                                       )
                                     : SizedBox(),
-                                (index == 0 || answers[0]['answer'] != 'no')
-                                    ? Card(
-                                        child: Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: Column(
-                                            children: [
-                                              Text(
-                                                  assessmentProvider
-                                                          .fireQuestions[index]
-                                                      ['statement'],
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                  )),
-                                              Text('(Guidance: ' +
-                                                  assessmentProvider
-                                                          .fireQuestions[index]
-                                                      ['validation'] +
-                                                  ')'),
-                                              Row(
-                                                children: [
-                                                  Radio(
-                                                      value: 'yes',
-                                                      groupValue: answers[index]
-                                                          ['answer'],
-                                                      onChanged: (v) {
-                                                        setState(() {
-                                                          answers[index]
-                                                                  ['answer'] =
-                                                              'yes';
-                                                        });
-                                                      }),
-                                                  Text('Yes')
-                                                ],
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Radio(
-                                                      value: 'partial',
-                                                      groupValue: answers[index]
-                                                          ['answer'],
-                                                      onChanged: (v) {
-                                                        setState(() {
-                                                          answers[index]
-                                                                  ['answer'] =
-                                                              'partial';
-                                                        });
-                                                      }),
-                                                  Text('Partially Completed')
-                                                ],
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Radio(
-                                                      value: 'no',
-                                                      groupValue: answers[index]
-                                                          ['answer'],
-                                                      onChanged: (v) {
-                                                        setState(() {
-                                                          answers[index]
-                                                              ['answer'] = 'no';
-                                                        });
-                                                      }),
-                                                  Text('No')
-                                                ],
-                                              ),
-                                              (answers[index]['answer'] !=
-                                                          'no' &&
-                                                      assessmentProvider
-                                                                      .fireQuestions[
-                                                                  index]
-                                                              ['condition'] !=
-                                                          'null')
-                                                  ? Text(assessmentProvider
-                                                          .fireQuestions[index]
-                                                      ['condition'])
-                                                  : SizedBox(),
-                                              (answers[index]['answer'] !=
-                                                          'no' &&
-                                                      assessmentProvider
-                                                                  .fireQuestions[
-                                                              index]['condition'] !=
-                                                          'null')
-                                                  ? TextField(
-                                                      onChanged: (v) {
-                                                        answers[index]
-                                                            ['comment'] = v;
-                                                      },
-                                                      decoration:
-                                                          InputDecoration(
-                                                              labelText:
-                                                                  'Comment'),
-                                                    )
-                                                  : SizedBox(),
-                                              (assessmentProvider
-                                                              .assessmentType ==
-                                                          'site' &&
-                                                      index > 0)
-                                                  ? TextField(
-                                                      decoration: InputDecoration(
-                                                          labelText:
-                                                              'Enter marks out of ${marks[index].toString()}'),
-                                                      onChanged: (value) {
-                                                        answers[index]
-                                                            ['marks'] = value;
-                                                      },
-                                                      keyboardType: TextInputType
-                                                          .numberWithOptions(
-                                                              decimal: true),
-                                                    )
-                                                  : SizedBox(),
-                                            ],
-                                          ),
+                                Card(
+                                  child: Container(
+                                    padding: EdgeInsets.all(10),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                            assessmentProvider
+                                                    .fireQuestions[index]
+                                                ['statement'],
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20)),
+                                        Text('(Guidance: ' +
+                                            assessmentProvider
+                                                    .fireQuestions[index]
+                                                ['validation'] +
+                                            ')'),
+                                        Row(
+                                          children: [
+                                            Radio(
+                                                value: 'yes',
+                                                groupValue: answers[index]
+                                                    ['answer'],
+                                                onChanged: (v) {
+                                                  setState(() {
+                                                    answers[index]['answer'] =
+                                                        'yes';
+                                                  });
+                                                }),
+                                            Text('Yes')
+                                          ],
                                         ),
-                                      )
-                                    : SizedBox(),
+                                        Row(
+                                          children: [
+                                            Radio(
+                                                value: 'partial',
+                                                groupValue: answers[index]
+                                                    ['answer'],
+                                                onChanged: (v) {
+                                                  setState(() {
+                                                    answers[index]['answer'] =
+                                                        'partial';
+                                                  });
+                                                }),
+                                            Text('Partially Completed')
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Radio(
+                                                value: 'no',
+                                                groupValue: answers[index]
+                                                    ['answer'],
+                                                onChanged: (v) {
+                                                  setState(() {
+                                                    answers[index]['answer'] =
+                                                        'no';
+                                                  });
+                                                }),
+                                            Text('No')
+                                          ],
+                                        ),
+                                        (answers[index]['answer'] != 'no' &&
+                                                assessmentProvider
+                                                            .fireQuestions[
+                                                        index]['condition'] !=
+                                                    'null')
+                                            ? Text(assessmentProvider
+                                                    .fireQuestions[index]
+                                                ['condition'])
+                                            : SizedBox(),
+                                        (answers[index]['answer'] != 'no' &&
+                                                assessmentProvider
+                                                            .fireQuestions[
+                                                        index]['condition'] !=
+                                                    'null')
+                                            ? TextField(
+                                                onChanged: (v) {
+                                                  answers[index]['comment'] = v;
+                                                },
+                                                decoration: InputDecoration(
+                                                    labelText: 'Comment'),
+                                              )
+                                            : SizedBox(),
+                                        (assessmentProvider.assessmentType ==
+                                                    'site' &&
+                                                index > 0)
+                                            ? TextField(
+                                                decoration: InputDecoration(
+                                                    labelText:
+                                                        'Enter marks out of ${marks[index].toString()}'),
+                                                onChanged: (value) {
+                                                  answers[index]['marks'] =
+                                                      value;
+                                                },
+                                                keyboardType: TextInputType
+                                                    .numberWithOptions(
+                                                        decimal: true),
+                                              )
+                                            : SizedBox(),
+                                      ],
+                                    ),
+                                  ),
+                                )
                               ],
                             );
                           },
@@ -181,12 +170,14 @@ class _FireAssessmentState extends State<FireAssessment> {
                         onPressed: () async {
                           assessmentProvider.setFireAssessment(answers);
                           assessmentProvider.getOfficeQuestions();
-                          await Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) {
-                              return FireSafetyRiskProfile(
-                                  cycleId: assessmentProvider.cycleId);
-                            },
-                          ));
+                          if (assessmentProvider.assessmentType == 'site') {
+                            await Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) {
+                                return FireSafetyRiskProfile(
+                                    cycleId: assessmentProvider.cycleId);
+                              },
+                            ));
+                          }
                           await Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) {
                               return ChangeNotifierProvider.value(

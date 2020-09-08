@@ -5,6 +5,7 @@ import 'package:mahindraCSC/roles/admin/enrollLocation/enrollLoacation.dart';
 import 'package:mahindraCSC/roles/admin/enrollUsers/enrollUsers.dart';
 import 'package:mahindraCSC/roles/admin/review/dashboard.dart';
 import '../scheduleAssessment/scheduleAssessment.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 
 class AdminDashboard extends StatefulWidget {
   @override
@@ -164,7 +165,96 @@ class _AdminDashboardState extends State<AdminDashboard> {
           )
         ],
       ),
-      body: Container(),
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 10.0,
+            ),
+          ),
+          SliverToBoxAdapter(
+              child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.8,
+            child: Carousel(
+              boxFit: BoxFit.fitWidth,
+              images: [
+                AssetImage('assets/Picture1.png'),
+                AssetImage('assets/Picture2.png'),
+                AssetImage('assets/Picture3.png'),
+              ],
+              autoplay: true,
+              indicatorBgPadding: 0,
+              dotBgColor: Colors.transparent,
+              autoplayDuration: Duration(seconds: 6),
+              showIndicator: false,
+            ),
+          )),
+          SliverGrid.count(
+              crossAxisCount: 4,
+              mainAxisSpacing: 10.0,
+              crossAxisSpacing: 10.0,
+              childAspectRatio: 2,
+              children: [
+                Container(
+                  color: Colors.red[50],
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
+                  child: Column(
+                    children: [
+                      Text('Scheduled Assessment: ',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15)),
+                      Text('2',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 70))
+                    ],
+                  ),
+                ),
+                Container(
+                  color: Colors.red[100],
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
+                  child: Column(
+                    children: [
+                      Text('Self Assessment Uploaded: ',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15)),
+                      Text('1',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 70))
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
+                  color: Colors.red[200],
+                  child: Column(
+                    children: [
+                      Text('Site Assessment Uploaded: ',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15)),
+                      Text('1',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 70))
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
+                  color: Colors.red[300],
+                  child: Column(
+                    children: [
+                      Text('Closed: ',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15)),
+                      //SizedBox(height: 20),
+                      Text('0',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 70))
+                    ],
+                  ),
+                )
+              ])
+        ],
+      ),
     );
   }
 }

@@ -45,20 +45,22 @@ class _AssessorLocationListInfo extends State<AssessorLocationListInfo> {
                                   elevation: 5.0,
                                   margin:
                                       EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                          padding: EdgeInsets.fromLTRB(
-                                              10, 10, 10, 10),
-                                          child: Column(children: [
+                                  child: Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                      child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
                                             Text(
-                                                provider.listOfAssessorLocation[
-                                                    index]['location']),
+                                              'Assessment For Location: ' +
+                                                  provider.listOfAssessorLocation[
+                                                      index]['location'],
+                                              style: TextStyle(fontSize: 20),
+                                            ),
+                                            Icon(Icons.arrow_forward)
                                           ])),
-                                    ],
-                                  ),
                                 ),
                                 onTap: () {
                                   print(provider.listOfAssessorLocation[index]

@@ -55,7 +55,7 @@ class _SummaryOfRiskProfileState extends State<SummaryOfRiskProfile> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text('Summary Of Risk Profile',
+                                      Text('Total Summery of reports',
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 25)),
@@ -143,7 +143,7 @@ class _SummaryOfRiskProfileState extends State<SummaryOfRiskProfile> {
                         RaisedButton(
                             child: loading
                                 ? CircularProgressIndicator()
-                                : Text('Next'),
+                                : Text('Submit'),
                             onPressed: () async {
                               setState(() {
                                 loading = true;

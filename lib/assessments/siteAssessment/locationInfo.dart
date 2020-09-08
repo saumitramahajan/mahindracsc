@@ -563,6 +563,12 @@ class _LocationInfoState extends State<LocationInfo> {
                                 decoration:
                                     InputDecoration(labelText: 'Capacity'),
                               )
+                            : SizedBox(),
+                        (_foundryValue)
+                            ? RaisedButton(
+                                child: Text('Upload Supporting Documents'),
+                                onPressed: () {},
+                              )
                             : SizedBox()
                       ],
                     ),
@@ -594,8 +600,15 @@ class _LocationInfoState extends State<LocationInfo> {
                         (_pressValue)
                             ? TextField(
                                 controller: _press,
-                                decoration:
-                                    InputDecoration(labelText: 'Capacity'),
+                                decoration: InputDecoration(
+                                    labelText:
+                                        'Please upload Details of Press Machine'),
+                              )
+                            : SizedBox(),
+                        (_pressValue)
+                            ? RaisedButton(
+                                child: Text('Upload Supporting Documents'),
+                                onPressed: () {},
                               )
                             : SizedBox()
                       ],
@@ -666,6 +679,12 @@ class _LocationInfoState extends State<LocationInfo> {
                                 decoration: InputDecoration(
                                     labelText: 'Quantity in kl'),
                               )
+                            : SizedBox(),
+                        (_thinnerValue)
+                            ? RaisedButton(
+                                child: Text('Upload Supporting Documents'),
+                                onPressed: () {},
+                              )
                             : SizedBox()
                       ],
                     ),
@@ -700,6 +719,12 @@ class _LocationInfoState extends State<LocationInfo> {
                                 decoration: InputDecoration(
                                     labelText: 'Quantity and Name'),
                               )
+                            : SizedBox(),
+                        (_toxicValue)
+                            ? RaisedButton(
+                                child: Text('Upload Supporting Documents'),
+                                onPressed: () {},
+                              )
                             : SizedBox()
                       ],
                     ),
@@ -733,6 +758,12 @@ class _LocationInfoState extends State<LocationInfo> {
                                 controller: _heat,
                                 decoration:
                                     InputDecoration(labelText: 'Capacity'),
+                              )
+                            : SizedBox(),
+                        (_heatValue)
+                            ? RaisedButton(
+                                child: Text('Upload Supporting Documents'),
+                                onPressed: () {},
                               )
                             : SizedBox()
                       ],
@@ -802,6 +833,12 @@ class _LocationInfoState extends State<LocationInfo> {
                                 decoration: InputDecoration(
                                     labelText: 'Number and their Capacity'),
                               )
+                            : SizedBox(),
+                        (_ibrValue)
+                            ? RaisedButton(
+                                child: Text('Upload Supporting Documents'),
+                                onPressed: () {},
+                              )
                             : SizedBox()
                       ],
                     ),
@@ -811,7 +848,7 @@ class _LocationInfoState extends State<LocationInfo> {
                       padding: const EdgeInsets.all(20.0),
                       child: Column(
                         children: [
-                          Text('Incident Statistics',
+                          Text('Incident Statistics for April 2019- March 2020',
                               style: TextStyle(
                                 fontSize: 20.0,
                               )),
@@ -847,7 +884,7 @@ class _LocationInfoState extends State<LocationInfo> {
                   RaisedButton(
                     child: assessmentProvider.locationDataUploading
                         ? CircularProgressIndicator()
-                        : Text('Save'),
+                        : Text('Save and Submit'),
                     onPressed: () async {
                       await assessmentProvider.setLocationData(
                           documentId,

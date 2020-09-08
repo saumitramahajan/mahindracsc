@@ -38,9 +38,17 @@ class EnrollLocation extends StatelessWidget {
           titleSpacing: 0.0,
           automaticallyImplyLeading: false,
         ),
-        body: ChangeNotifierProvider<ViewLocationProvider>(
-          create: (context) => ViewLocationProvider(),
-          child: ViewLocations(),
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width * 0.7,
+              child: ChangeNotifierProvider<ViewLocationProvider>(
+                create: (context) => ViewLocationProvider(),
+                child: ViewLocations(),
+              ),
+            ),
+          ],
         ));
   }
 }

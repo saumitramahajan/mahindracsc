@@ -13,7 +13,7 @@ class OfficeAssessment extends StatefulWidget {
 
 class _OfficeAssessmentState extends State<OfficeAssessment> {
   List<Map<String, dynamic>> answers =
-      List.generate(10, (index) => {'answer': false, 'marks': 0});
+      List.generate(10, (index) => {'answer': 'no', 'marks': 0});
   @override
   Widget build(BuildContext context) {
     final assessmentProvider = Provider.of<SiteAssessmentProvider>(context);
@@ -62,21 +62,21 @@ class _OfficeAssessmentState extends State<OfficeAssessment> {
                                                     .officeQuestions[index]
                                                 ['statement'],
                                             style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            )),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20)),
                                         Text(assessmentProvider
                                                 .officeQuestions[index]
                                             ['validation']),
                                         Row(
                                           children: [
                                             Radio(
-                                                value: true,
+                                                value: 'yes',
                                                 groupValue: answers[index]
                                                     ['answer'],
                                                 onChanged: (v) {
                                                   setState(() {
                                                     answers[index]['answer'] =
-                                                        true;
+                                                        'yes';
                                                   });
                                                 }),
                                             Text('Yes')
@@ -85,19 +85,37 @@ class _OfficeAssessmentState extends State<OfficeAssessment> {
                                         Row(
                                           children: [
                                             Radio(
-                                                value: false,
+                                                value: 'partial',
                                                 groupValue: answers[index]
                                                     ['answer'],
                                                 onChanged: (v) {
                                                   setState(() {
                                                     answers[index]['answer'] =
-                                                        false;
+                                                        'partial';
+                                                  });
+                                                }),
+                                            Text('Partially Complete')
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Radio(
+                                                value: 'no',
+                                                groupValue: answers[index]
+                                                    ['answer'],
+                                                onChanged: (v) {
+                                                  setState(() {
+                                                    answers[index]['answer'] =
+                                                        'no';
                                                   });
                                                 }),
                                             Text('No')
                                           ],
                                         ),
-                                        (answers[index]['answer'])
+                                        (answers[index]['answer'] &&
+                                                assessmentProvider
+                                                        .assessmentType ==
+                                                    'site')
                                             ? TextField(
                                                 decoration: InputDecoration(
                                                     labelText:
@@ -124,18 +142,20 @@ class _OfficeAssessmentState extends State<OfficeAssessment> {
                         child: Text('Submit'),
                         onPressed: () async {
                           await assessmentProvider.setOfficeAssessment(answers);
-                          await Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) {
-                              return OfficeSafetyRiskProfile(
-                                  cycleId: assessmentProvider.cycleId);
-                            },
-                          ));
-                          await Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) {
-                              return SummaryOfRiskProfile(
-                                  cycleId: assessmentProvider.cycleId);
-                            },
-                          ));
+                          if (assessmentProvider.assessmentType == 'site') {
+                            await Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) {
+                                return OfficeSafetyRiskProfile(
+                                    cycleId: assessmentProvider.cycleId);
+                              },
+                            ));
+                            await Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) {
+                                return SummaryOfRiskProfile(
+                                    cycleId: assessmentProvider.cycleId);
+                              },
+                            ));
+                          }
                           if (assessmentProvider.assessmentType == 'site') {
                             Navigator.of(context)
                                 .pushReplacement(MaterialPageRoute(

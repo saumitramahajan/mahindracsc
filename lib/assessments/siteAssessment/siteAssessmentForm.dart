@@ -52,12 +52,23 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * .1,
                         ),
-                        Text(
-                          'Statement:' +
-                              assessmentProvider.currentQuestion['statement'],
-                          style: TextStyle(
-                              fontSize: 20.0, fontWeight: FontWeight.bold),
-                        ),
+                        (assessmentProvider.i < 25)
+                            ? Text(
+                                'Process:' +
+                                    assessmentProvider
+                                        .currentQuestion['statement'],
+                                style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
+                              )
+                            : Text(
+                                'Result:' +
+                                    assessmentProvider
+                                        .currentQuestion['statement'],
+                                style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * .05,
                         ),
@@ -137,8 +148,9 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                         (assessmentProvider.assessmentType == 'site')
                             ? TextField(
                                 controller: _suggestionController,
-                                decoration:
-                                    InputDecoration(labelText: 'Suggestions'),
+                                decoration: InputDecoration(
+                                    labelText:
+                                        'Suggestions for Moving to Next Level'),
                               )
                             : SizedBox(),
                         RaisedButton(

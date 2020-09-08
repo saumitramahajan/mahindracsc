@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessment.dart';
 import 'package:mahindraCSC/roles/assessee/changePassword/changePassword.dart';
-
+import 'package:carousel_pro/carousel_pro.dart';
 import 'annualData/MonthlySafetyReportIT.dart';
 import 'annualData/monthly_safety_report.dart';
 
@@ -144,7 +144,29 @@ class _AssesseeDashboardState extends State<AssesseeDashboard> {
               )),*/ //Uncomment when annual data is required. place inbetween
         ],
       ),
-      body: Container(),
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 10.0,
+            ),
+          ),
+          SliverToBoxAdapter(
+              child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.8,
+            child: Carousel(
+                boxFit: BoxFit.fitWidth,
+                images: [
+                  AssetImage('assets/Picture1.png'),
+                  AssetImage('assets/Picture2.png'),
+                  AssetImage('assets/Picture3.png'),
+                ],
+                autoplay: true,
+                indicatorBgPadding: 0,
+                dotBgColor: Colors.transparent),
+          )),
+        ],
+      ),
     );
   }
 }

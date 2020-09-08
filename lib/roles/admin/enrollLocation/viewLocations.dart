@@ -24,20 +24,45 @@ class _ViewLocationsState extends State<ViewLocations> {
               'Location: ' + map['location'],
               style: TextStyle(fontSize: 20),
             ),
+            Text(
+              'Assessee: ' + map['assessee'],
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(
+              height: 10,
+            ),
             Text('Category: ' + map['category']),
             Text('Name of Sector: ' + map['nameOfSector']),
-            Text('Location: ' + map['location']),
+            SizedBox(
+              height: 10,
+            ),
             Text('Last Assessment Stage: ' + map['lastAssessmentStage']),
             Text('Process Level: ' + map['processLevel']),
             Text('Result Level: ' + map['resultLevel']),
-            Text('Assessee: ' + map['assessee']),
-            Text('Plant Head Name: ' + map['plantHeadName']),
-            Text('Plant Head Email: ' + map['plantHeadEmail']),
-            Text('Plant Head Phone Number: ' + map['plantHeadPhoneNumber']),
-            Text('Sector/Business Safety SPOC Name: ' + map['spocName']),
-            Text('Sector/Business Safety SPOC Email: ' + map['spocEmail']),
-            Text('Sector/Business Safety SPOC Number: ' +
-                map['spocPhoneNumber']),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Plant Head Name: ' + map['plantHeadName']),
+                    Text('Plant Head Email: ' + map['plantHeadEmail']),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                        'Sector/Business Safety SPOC Name: ' + map['spocName']),
+                    Text('Sector/Business Safety SPOC Email: ' +
+                        map['spocEmail']),
+                  ],
+                )
+              ],
+            ),
           ],
         ),
       ),

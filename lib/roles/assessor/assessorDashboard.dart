@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mahindraCSC/roles/assessor/changePassword/changePassword.dart';
-
+import 'package:carousel_pro/carousel_pro.dart';
 import 'assessment/assessorlocationListBase.dart';
 
 class AssessorDashboard extends StatefulWidget {
@@ -26,7 +26,8 @@ class _AssessorDashboardState extends State<AssessorDashboard> {
         actions: [
           FlatButton(
               onPressed: () {
-                //getCurrentUser('monthly');
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => AssessorLocationInfoBase()));
               },
               child: Text(
                 'Site Assessment',
@@ -53,20 +54,28 @@ class _AssessorDashboardState extends State<AssessorDashboard> {
           )
         ],
       ),
-      body: Container(
-        child: Column(
-          children: [
-            RaisedButton(
-              child: Text('Site Assessment'),
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => AssessorLocationInfoBase()
-                    //SiteAssessment('site', 'fh4nK1KHz5DeEn0BkHL3')
-                    ));
-              },
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 10.0,
             ),
-          ],
-        ),
+          ),
+          SliverToBoxAdapter(
+              child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.8,
+            child: Carousel(
+                boxFit: BoxFit.fitWidth,
+                images: [
+                  AssetImage('assets/Picture1.png'),
+                  AssetImage('assets/Picture2.png'),
+                  AssetImage('assets/Picture3.png'),
+                ],
+                autoplay: true,
+                indicatorBgPadding: 0,
+                dotBgColor: Colors.transparent),
+          )),
+        ],
       ),
     );
   }
