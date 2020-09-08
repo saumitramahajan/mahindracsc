@@ -30,7 +30,7 @@ class ScheduleAssessmentProvider extends ChangeNotifier {
         child: Row(
           children: [
             Text('Name of Business: '),
-            Text(locationList[i]['nameOfBusiness']),
+            Text(locationList[i]['nameOfSector']),
           ],
         ),
       );

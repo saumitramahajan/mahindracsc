@@ -113,8 +113,8 @@ class AssessentRepository {
         data['foundryValue'] = value.data['foundryValue'];
         data['pressValue'] = value.data['pressValue'];
         data['press'] = value.data['press'];
-        data['desiel'] = value.data['desiel'];
-        data['desielValue'] = value.data['desielValue'];
+        data['diesel'] = value.data['diesel'];
+        data['dieselValue'] = value.data['dieselValue'];
         data['thinner'] = value.data['thinner'];
         data['thinnerValue'] = value.data['thinnerValue'];
         data['toxic'] = value.data['toxic'];
@@ -155,7 +155,7 @@ class AssessentRepository {
   }
 
   Future<void> uploadSelfAssessmentOffice(
-      List<Map<String,dynamic>> map, String cycleId) async {
+      List<Map<String, dynamic>> map, String cycleId) async {
     await Firestore.instance
         .collection('cycles')
         .document(cycleId)
@@ -184,7 +184,7 @@ class AssessentRepository {
   }
 
   Future<void> uploadSiteAssessmentOffice(
-      List<Map<String,dynamic>> map, String cycleId) async {
+      List<Map<String, dynamic>> map, String cycleId) async {
     await Firestore.instance
         .collection('cycles')
         .document(cycleId)

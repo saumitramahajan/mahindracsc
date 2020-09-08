@@ -30,7 +30,7 @@ class _AnnualDataFormState extends State<AnnualDataForm> {
       body: Container(
         child: Column(
           children: [
-            RaisedButton(
+            /*RaisedButton(
               child: Text('Assessment Annual Data'),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
@@ -43,7 +43,7 @@ class _AnnualDataFormState extends State<AnnualDataForm> {
                   },
                 ));
               },
-            ),
+            ),*/
             RaisedButton(
               child: Text('Monthly Annual Data'),
               onPressed: () {

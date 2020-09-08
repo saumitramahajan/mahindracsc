@@ -2,8 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessment.dart';
+import 'package:mahindraCSC/roles/assessee/assesseeProvider.dart';
 import 'package:mahindraCSC/roles/assessee/changePassword/changePassword.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:provider/provider.dart';
 import 'annualData/MonthlySafetyReportIT.dart';
 import 'annualData/monthly_safety_report.dart';
 
@@ -83,6 +85,7 @@ class _AssesseeDashboardState extends State<AssesseeDashboard> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<AssesseeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xfff4001c),
@@ -105,10 +108,10 @@ class _AssesseeDashboardState extends State<AssesseeDashboard> {
                 style: TextStyle(color: Colors.white),
               )),
           FlatButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>
-                      SiteAssessment('self', 'fh4nK1KHz5DeEn0BkHL3'),
+              onPressed: () async {
+                String cycleid = await provider.getLocationName();
+                await Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => SiteAssessment('self', cycleid),
                 ));
               },
               child: Text(

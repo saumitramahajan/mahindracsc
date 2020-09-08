@@ -17,7 +17,7 @@ class _ViewLocationsState extends State<ViewLocations> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Name of Business: ' + map['nameOfBusiness'],
+              'Name of Business: ' + map['nameOfSector'],
               style: TextStyle(fontSize: 25),
             ),
             Text(

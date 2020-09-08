@@ -177,11 +177,17 @@ class _SiteRiskProfileState extends State<SiteRiskProfile> {
                                   .document(widget.cycleId)
                                   .updateData(
                                       {'siteRiskProfile': siteRiskProfile});
-                              ChangeNotifierProvider<SiteAssessmentProvider>(
-                                create: (_) => SiteAssessmentProvider(
-                                    'site', widget.cycleId),
-                                child: SiteAssessmentForm(),
-                              );
+                              print('print done');
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) {
+                                  return ChangeNotifierProvider<
+                                      SiteAssessmentProvider>(
+                                    create: (_) => SiteAssessmentProvider(
+                                        'site', widget.cycleId),
+                                    child: SiteAssessmentForm(),
+                                  );
+                                },
+                              ));
                             })
                       ],
                     ),

@@ -22,7 +22,7 @@ class SiteAssessmentProvider extends ChangeNotifier {
   bool loading = true;
   List<Map<String, dynamic>> fireanswers =
       List.generate(9, (index) => {'comment': '', 'answer': false});
-  List<Map<String,dynamic>> officeAnswers = [];
+  List<Map<String, dynamic>> officeAnswers = [];
 
   List<Map<String, dynamic>> assessmentAnswers = [];
   double assessmentTotal = 0;
@@ -225,7 +225,7 @@ class SiteAssessmentProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> setOfficeAssessment(List<Map<String,dynamic>> answer) async {
+  Future<void> setOfficeAssessment(List<Map<String, dynamic>> answer) async {
     buttonLoading = true;
     notifyListeners();
     officeAnswers = answer;
@@ -304,7 +304,7 @@ class SiteAssessmentProvider extends ChangeNotifier {
       'safetyInchargeName': safetyInchargeName,
       'safetyInchargeEmail': safetyInchargeEmail,
       'fireInchargeName': fireInchargeName,
-      'fireInchargeEmaail': fireInchargeEmail,
+      'fireInchargeEmail': fireInchargeEmail,
       'officeSafetyInchargeName': officeSafetyInchargeName,
       'officeSafetyInchargeEmail': officeSafetyInchargeEmail,
       'utilitiesName': utilitiesName,
@@ -323,8 +323,8 @@ class SiteAssessmentProvider extends ChangeNotifier {
       'foundryValue': foundryValue,
       'press': press,
       'pressValue': pressValue,
-      'desiel': desiel,
-      'desielValue': desielValue,
+      'diesel': desiel,
+      'dieselValue': desielValue,
       'thinner': thinner,
       'thinnerValue': thinnerValue,
       'toxic': toxic,

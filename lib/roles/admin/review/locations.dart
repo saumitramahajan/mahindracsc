@@ -66,7 +66,11 @@ class _LocationsState extends State<Locations> {
                                     MaterialPageRoute(builder: (context) {
                                       return ChangeNotifierProvider.value(
                                         value: provider,
-                                        child: SelfAssessment(),
+                                        child: SelfAssessment(
+                                          documentId:
+                                              provider.listOfLocations[index]
+                                                  ['documentId'],
+                                        ),
                                       );
                                     }),
                                   );

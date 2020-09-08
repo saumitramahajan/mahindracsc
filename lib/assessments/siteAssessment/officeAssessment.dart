@@ -3,6 +3,7 @@ import 'package:mahindraCSC/assessments/siteAssessment/officeSafetyProfile.dart'
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/summaryOfRiskProfile.dart';
 import 'package:mahindraCSC/roles/assessee/assesseeDashboard.dart';
+import 'package:mahindraCSC/roles/assessee/assesseeProvider.dart';
 import 'package:mahindraCSC/roles/assessor/assessorDashboard.dart';
 import 'package:provider/provider.dart';
 
@@ -112,7 +113,7 @@ class _OfficeAssessmentState extends State<OfficeAssessment> {
                                             Text('No')
                                           ],
                                         ),
-                                        (answers[index]['answer'] &&
+                                        (answers[index]['answer'] == 'yes' &&
                                                 assessmentProvider
                                                         .assessmentType ==
                                                     'site')
@@ -162,10 +163,13 @@ class _OfficeAssessmentState extends State<OfficeAssessment> {
                               builder: (context) => AssessorDashboard(),
                             ));
                           } else {
-                            Navigator.of(context)
-                                .pushReplacement(MaterialPageRoute(
-                              builder: (context) => AssesseeDashboard(),
-                            ));
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(builder: (context) {
+                              return ChangeNotifierProvider<AssesseeProvider>(
+                                create: (_) => AssesseeProvider(),
+                                child: AssesseeDashboard(),
+                              );
+                            }));
                           }
                         },
                       )

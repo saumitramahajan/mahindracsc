@@ -1,9 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'assessmentProvider.dart';
 import 'dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SelfAssessment extends StatefulWidget {
+  String documentId;
+  SelfAssessment({Key key, @required this.documentId}) : super(key: key);
   @override
   _SelfAssessmentState createState() => _SelfAssessmentState();
 }
@@ -185,7 +189,11 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                     (provider.assessmentType != 'self')
                         ? RaisedButton(
                             child: Text('Close Assessment'),
-                            onPressed: () {
+                            onPressed: () async {
+                              await Firestore.instance
+                                  .collection('cycles')
+                                  .document(widget.documentId)
+                                  .updateData({'currentStatus': 'Closed'});
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
