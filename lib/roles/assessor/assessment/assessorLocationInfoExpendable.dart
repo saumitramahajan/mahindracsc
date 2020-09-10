@@ -1,4 +1,4 @@
-import 'package:activities/assessorLocationInfo/assessorLocationInfoprovider.dart';
+/*import 'package:activities/assessorLocationInfo/assessorLocationInfoprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -962,3 +962,4 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
         ]));
   }
 }
+*/

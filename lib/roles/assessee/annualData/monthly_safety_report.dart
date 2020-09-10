@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:mahindraCSC/roles/assessee/annualData/assesseeDashboard.dart';
+import 'package:mahindraCSC/roles/assessee/assesseeDashboard.dart';
+import 'package:mahindraCSC/roles/assessee/assesseeProvider.dart';
+import 'package:provider/provider.dart';
 
 final firestoreInstance = Firestore.instance;
 
@@ -515,8 +517,13 @@ class _MonthlySafetyReport extends State<MonthlySafetyReport> {
               new FloatingActionButton.extended(
                 onPressed: () async {
                   _onPressedSave();
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => AssesseeDashboard()));
+                  Navigator.of(context)
+                      .pushReplacement(MaterialPageRoute(builder: (context) {
+                    return ChangeNotifierProvider<AssesseeProvider>(
+                      create: (_) => AssesseeProvider(),
+                      child: AssesseeDashboard(),
+                    );
+                  }));
                 },
                 icon: Icon(
                   Icons.save,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:mahindraCSC/roles/assessee/assesseeProvider.dart';
+import 'package:provider/provider.dart';
 import '../assesseeDashboard.dart';
 import 'monthly_safety_report.dart';
 
@@ -198,8 +200,13 @@ class _MonthlySafetyReportIT extends State<MonthlySafetyReportIT> {
               new FloatingActionButton.extended(
                 onPressed: () async {
                   await _onPressedSave();
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => AssesseeDashboard()));
+                  Navigator.of(context)
+                      .pushReplacement(MaterialPageRoute(builder: (context) {
+                    return ChangeNotifierProvider<AssesseeProvider>(
+                      create: (_) => AssesseeProvider(),
+                      child: AssesseeDashboard(),
+                    );
+                  }));
                 },
                 icon: Icon(
                   Icons.save,

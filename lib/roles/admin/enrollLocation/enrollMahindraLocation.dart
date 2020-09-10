@@ -84,7 +84,7 @@ class _EnrollMahindraLocationState extends State<EnrollMahindraLocation> {
                               TextFormField(
                                 validator: (input) {
                                   if (input.isEmpty) {
-                                    return 'Enter Name of Business/Sector';
+                                    return 'Enter Name of Site';
                                   }
                                   return null;
                                 },
