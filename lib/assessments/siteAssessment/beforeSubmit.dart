@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/FireAssessment.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentSingle.dart';
-import 'package:mahindraCSC/assessments/siteAssessment/siteRiskProfile.dart';
 import 'package:provider/provider.dart';
 
 class BeforeSubmit extends StatefulWidget {
