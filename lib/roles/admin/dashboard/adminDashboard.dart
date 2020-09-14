@@ -83,6 +83,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                       return EnrollUsers();
                     },
                   ));
+                  Navigator.of(context).pop();
                 },
               ),
               ListTile(
@@ -97,6 +98,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                       return EnrollLocation();
                     },
                   ));
+                  Navigator.of(context).pop();
                 },
               ),
               ListTile(
@@ -111,6 +113,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                       return ScheduleAssessment();
                     },
                   ));
+                  Navigator.of(context).pop();
                 },
               ),
               ListTile(
@@ -125,6 +128,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                       return AnnualData();
                     },
                   ));
+                  Navigator.of(context).pop();
                 },
               ),
               ExpansionTile(
@@ -146,6 +150,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                             );
                           }),
                         );
+                        Navigator.of(context).pop();
                       },
                       child: Text(
                         'Self Assessment',
@@ -162,6 +167,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                             );
                           }),
                         );
+                        Navigator.of(context).pop();
                       },
                       child: Text(
                         'Site Assessment',
@@ -181,6 +187,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                       return ChangePassword();
                     },
                   ));
+                  Navigator.of(context).pop();
                 },
               ),
               ListTile(
@@ -189,8 +196,10 @@ class _AdminDashboardState extends State<AdminDashboard> {
                   style: TextStyle(color: Colors.white),
                 ),
                 dense: false,
-                onTap: () {},
-              ),
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+              )
             ],
           ),
         ),
@@ -293,135 +302,3 @@ class _AdminDashboardState extends State<AdminDashboard> {
     );
   }
 }
-/*DropdownButton(
-            items: [
-              DropdownMenuItem(
-                child: Text(
-                  'Dashboard',
-                  style: TextStyle(color: Colors.white),
-                ),
-                value: 'dashboard',
-              ),
-              DropdownMenuItem(
-                child: Text(
-                  'Enroll',
-                  style: TextStyle(color: Colors.white),
-                ),
-                value: 'enroll',
-              ),
-              DropdownMenuItem(
-                child: Text(
-                  'Enroll Location',
-                  style: TextStyle(color: Colors.white),
-                ),
-                value: 'location',
-              ),
-              DropdownMenuItem(
-                child: Text(
-                  'Schedule Assessment',
-                  style: TextStyle(color: Colors.white),
-                ),
-                value: 'schedule',
-              ),
-              DropdownMenuItem(
-                child: Text(
-                  'Review Annual Data',
-                  style: TextStyle(color: Colors.white),
-                ),
-                value: 'annualData',
-              ),
-              DropdownMenuItem(
-                child: Text(
-                  'Review Self and Site Assessment',
-                  style: TextStyle(color: Colors.white),
-                ),
-                value: 'review',
-              ),
-              DropdownMenuItem(
-                child: Text(
-                  'Change Password',
-                  style: TextStyle(color: Colors.white),
-                ),
-                value: 'change',
-              ),
-              DropdownMenuItem(
-                child: Text(
-                  'Sign Out',
-                  style: TextStyle(color: Colors.white),
-                ),
-                value: 'signOut',
-              )
-            ],
-            onChanged: (value) {
-              switch (value) {
-                case 'enroll':
-                  {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) {
-                        return EnrollUsers();
-                      },
-                    ));
-                  }
-                  break;
-                case 'dashboard':
-                  {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) {
-                        return AdminDashboard();
-                      },
-                    ));
-                  }
-                  break;
-                case 'location':
-                  {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) {
-                        return EnrollLocation();
-                      },
-                    ));
-                  }
-                  break;
-                case 'schedule':
-                  {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) {
-                        return ScheduleAssessment();
-                      },
-                    ));
-                  }
-                  break;
-                case 'annualData':
-                  {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) {
-                        return AnnualData();
-                      },
-                    ));
-                  }
-                  break;
-                case 'review':
-                  {
-                    /*Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) {
-                        return Dashboard();
-                      },
-                    ));*/
-                  }
-                  break;
-                case 'change':
-                  {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) {
-                        return ChangePassword();
-                      },
-                    ));
-                  }
-                  break;
-                case 'signOut':
-                  {}
-                  break;
-              }
-            },
-            value: 'dashboard',
-            dropdownColor: Color(0xfff4001c),
-          ),*/
