@@ -47,52 +47,116 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                           floating: false,
                           flexibleSpace: FlexibleSpaceBar(),
                         ),
+                        /* Row(
+                          children: [
+                            Container(
+                                padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
+                                child: Text(
+                                  'Statement',
+                                  style: TextStyle(color: Colors.grey[600]),
+                                )),
+                            Container(
+                                padding: EdgeInsets.fromLTRB(150, 10, 10, 10),
+                                child: Text(
+                                  'level',
+                                  style: TextStyle(color: Colors.grey[600]),
+                                )),
+                            Container(
+                                padding: EdgeInsets.fromLTRB(100, 10, 10, 10),
+                                child: Text(
+                                  'Justification',
+                                  style: TextStyle(color: Colors.grey[600]),
+                                )),
+                            Container(
+                                padding: EdgeInsets.fromLTRB(150, 10, 10, 10),
+                                child: Text(
+                                  'View file',
+                                  style: TextStyle(color: Colors.grey[600]),
+                                )),
+                            
+                          ],
+                        )*/
                         SliverList(
                             delegate: SliverChildBuilderDelegate(
                           (BuildContext context, index) {
                             return Container(
                               child: new Card(
-                                elevation: 5.0,
-                                margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                        padding:
-                                            EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                        child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text('Statement:' +
-                                                  provider.listOfStatement[
-                                                      index]['statement']),
-                                              Text('Marks:' +
-                                                  provider
-                                                      .listOfAssessment[index]
-                                                          ['answer']
-                                                      .toString()),
-                                              Text('Justification:' +
-                                                  provider.listOfAssessment[
-                                                      index]['comment']),
-                                              Text('FileUrl:' +
-                                                  provider
-                                                      .listOfAssessment[index]
-                                                          ['fileUrl']
-                                                      .toString()),
-                                              Text('Level:' +
-                                                  provider.listOfAssessment[
-                                                      index]['level']),
-                                            ])),
-                                  ],
-                                ),
-                              ),
+                                  elevation: 5.0,
+                                  margin:
+                                      EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+                                  child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          padding: EdgeInsets.fromLTRB(
+                                              10, 10, 10, 10),
+                                          child: SizedBox(
+                                            width: 150,
+                                            child: Text(
+                                              'Safety Organization and Line Management Policy',
+                                              style: TextStyle(
+                                                color: Colors.red[700],
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(children: [
+                                              SizedBox(width: 70),
+                                              Container(
+                                                padding: EdgeInsets.all(10),
+                                                child: Text(
+                                                  '0',
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(width: 105),
+                                              Container(
+                                                padding: EdgeInsets.all(10),
+                                                child: SizedBox(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.15,
+                                                  child: Text(
+                                                    'Justification',
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(width: 70),
+                                              Container(
+                                                padding: EdgeInsets.all(10),
+                                                child: SizedBox(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.15,
+                                                  child: Text(
+                                                    'NIL',
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ]),
+                                          ],
+                                        )
+                                      ])),
                             );
                           },
-                          childCount: provider.listOfAssessment.length,
+                          childCount: 1,
                         )),
                         SliverAppBar(
                           title: (provider.assessmentType == 'self')
@@ -126,7 +190,7 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                                               Text('Statement:' +
                                                   provider.listOfStatementFire[
                                                       index]['statement']),
-                                              Text('Marks:' +
+                                              Text('Response:' +
                                                   provider.listOfFireAssessment[
                                                           index]['answer']
                                                       .toString()),
@@ -173,9 +237,11 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                                               Text('Statement:' +
                                                   provider.listOfStatementOffice[
                                                       index]['statement']),
-                                              Text(provider
-                                                  .listOfOfficeAssessment[index]
-                                                  .toString()),
+                                              Text('Response' +
+                                                  provider
+                                                      .listOfOfficeAssessment[
+                                                          index]
+                                                      .toString()),
                                             ])),
                                   ],
                                 ),

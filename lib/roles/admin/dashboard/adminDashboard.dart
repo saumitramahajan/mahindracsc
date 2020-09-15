@@ -78,12 +78,12 @@ class _AdminDashboardState extends State<AdminDashboard> {
                 ),
                 dense: false,
                 onTap: () {
+                  Navigator.of(context).pop();
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) {
                       return EnrollUsers();
                     },
                   ));
-                  Navigator.of(context).pop();
                 },
               ),
               ListTile(
@@ -93,12 +93,12 @@ class _AdminDashboardState extends State<AdminDashboard> {
                 ),
                 dense: false,
                 onTap: () {
+                  Navigator.of(context).pop();
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) {
                       return EnrollLocation();
                     },
                   ));
-                  Navigator.of(context).pop();
                 },
               ),
               ListTile(
@@ -108,12 +108,12 @@ class _AdminDashboardState extends State<AdminDashboard> {
                 ),
                 dense: false,
                 onTap: () {
+                  Navigator.of(context).pop();
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) {
                       return ScheduleAssessment();
                     },
                   ));
-                  Navigator.of(context).pop();
                 },
               ),
               ListTile(
@@ -123,12 +123,12 @@ class _AdminDashboardState extends State<AdminDashboard> {
                 ),
                 dense: false,
                 onTap: () {
+                  Navigator.of(context).pop();
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) {
                       return AnnualData();
                     },
                   ));
-                  Navigator.of(context).pop();
                 },
               ),
               ExpansionTile(
@@ -141,6 +141,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                 children: [
                   FlatButton(
                       onPressed: () {
+                        Navigator.of(context).pop();
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) {
@@ -150,14 +151,14 @@ class _AdminDashboardState extends State<AdminDashboard> {
                             );
                           }),
                         );
-                        Navigator.of(context).pop();
                       },
                       child: Text(
                         'Self Assessment',
                         style: TextStyle(color: Colors.white),
                       )),
                   FlatButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        Navigator.of(context).pop();
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) {
@@ -167,7 +168,6 @@ class _AdminDashboardState extends State<AdminDashboard> {
                             );
                           }),
                         );
-                        Navigator.of(context).pop();
                       },
                       child: Text(
                         'Site Assessment',

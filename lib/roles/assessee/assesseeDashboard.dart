@@ -6,7 +6,9 @@ import 'package:mahindraCSC/roles/assessee/assesseeProvider.dart';
 import 'package:mahindraCSC/roles/assessee/changePassword/changePassword.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:provider/provider.dart';
+import 'annualData/AnnualSafetyReportIT.dart';
 import 'annualData/MonthlySafetyReportIT.dart';
+import 'annualData/annual_safety_report.dart';
 import 'annualData/monthly_safety_report.dart';
 
 class AssesseeDashboard extends StatefulWidget {
@@ -48,14 +50,14 @@ class _AssesseeDashboardState extends State<AssesseeDashboard> {
       var isIT = loc.indexOf("IT");
       if (isIT == -1) {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return MonthlySafetyReport(
+          return AnnualySafetyReport(
             type: type,
             cycleId: cycleId,
           );
         }));
       } else {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return MonthlySafetyReportIT(
+          return AnnualySafetyReportIT(
             type: type,
             cycleId: cycleId,
           );
@@ -67,14 +69,14 @@ class _AssesseeDashboardState extends State<AssesseeDashboard> {
       var isIT = loc.indexOf("IT");
       if (isIT == -1) {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return MonthlySafetyReport(
+          return AnnualySafetyReport(
             type: type,
             locationId: locationId,
           );
         }));
       } else {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return MonthlySafetyReportIT(
+          return AnnualySafetyReportIT(
             type: type,
             locationId: locationId,
           );
