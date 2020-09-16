@@ -16,7 +16,7 @@ class _LoginState extends State<Login> {
       appBar: AppBar(
         backgroundColor: Color(0xfff4001c),
         title: SizedBox(
-          height: AppBar().preferredSize.height,
+          height: AppBar().preferredSize.height * 2,
           child: Image.asset(
             'assets/mahindraAppBar.png',
             fit: BoxFit.contain,

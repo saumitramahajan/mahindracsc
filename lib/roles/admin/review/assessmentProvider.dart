@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 class AssessmentProvider extends ChangeNotifier {
   bool loading = true;
   bool success = false;
+  bool dataLoading = true;
   String assessmentType = '';
 
   List<Map<String, dynamic>> listOfAssessment = [];
@@ -62,12 +63,12 @@ class AssessmentProvider extends ChangeNotifier {
       listOfStatementOffice =
           await assessmentRepository.getsiteAssessmentStatementOffice();
 
-      loading = false;
+      dataLoading = false;
       success = true;
       notifyListeners();
     } catch (e) {
       print('location error::' + e.toString() + '\n\n');
-      loading = false;
+      dataLoading = false;
       success = false;
       notifyListeners();
     }

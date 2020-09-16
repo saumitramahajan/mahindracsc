@@ -39,6 +39,77 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                     children: [
                       Container(
                         width: MediaQuery.of(context).size.width * 0.7,
+                        /* child: Column(
+                          children: [
+                            Text(
+                              'Site',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            TextField(
+                              decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12.0)),
+                                  ),
+                                  border: InputBorder.none,
+                                  hintText: 'Name'),
+                            ),
+                            Text(
+                              'Occupier',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            TextField(
+                              decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12.0)),
+                                  ),
+                                  border: InputBorder.none,
+                                  hintText: 'Name'),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            TextField(
+                              decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12.0)),
+                                  ),
+                                  border: InputBorder.none,
+                                  hintText: 'Email'),
+                            ),
+                            Text(
+                              'Site Head',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            TextField(
+                              decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12.0)),
+                                  ),
+                                  border: InputBorder.none,
+                                  hintText: 'Name'),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            TextField(
+                              decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12.0)),
+                                  ),
+                                  border: InputBorder.none,
+                                  hintText: 'Email'),
+                            )
+                          ],
+                        ),*/
+
                         child: Card(
                           child: Padding(
                             padding: const EdgeInsets.all(20.0),

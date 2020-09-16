@@ -44,7 +44,7 @@ class AssessmentRepository {
       dataMap['level'] = selfAssessmentList[i]['level'];
       assessmentDataList.add(dataMap);
     }
-
+    print('Data lenght:: ' + assessmentDataList.length.toString() + '\n\n');
     return assessmentDataList;
   }
 
@@ -94,8 +94,10 @@ class AssessmentRepository {
       dataMap['comment'] = siteAssessmentList[i]['comment'];
       dataMap['fileUrl'] = siteAssessmentList[i]['fileUrl'];
       dataMap['level'] = siteAssessmentList[i]['level'];
+      dataMap['suggestion'] = siteAssessmentList[i]['suggestion'];
       siteAssessmentDataList.add(dataMap);
     }
+    print('Data lenght:: ' + siteAssessmentDataList.length.toString() + '\n\n');
     return siteAssessmentDataList;
   }
 
@@ -113,6 +115,7 @@ class AssessmentRepository {
       Map<String, dynamic> dataMap = {};
 
       dataMap['answer'] = fireAssessmentList[i]['answer'];
+      dataMap['marks'] = fireAssessmentList[i]['marks'];
       dataMap['comment'] = fireAssessmentList[i]['comment'];
       fireAssessmentDataList.add(dataMap);
     }
