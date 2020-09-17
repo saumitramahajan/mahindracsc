@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
+import '../../../utilities.dart';
 import 'assessmentProvider.dart';
-import 'dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,139 +13,144 @@ class SelfAssessment extends StatefulWidget {
 class _SelfAssessmentState extends State<SelfAssessment> {
   String groupValue = '1';
   Widget displayContainer = Container();
+  Utilities utilities = Utilities();
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<AssessmentProvider>(context);
 
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color(0xfff4001c),
-          title: SizedBox(
-            height: AppBar().preferredSize.height,
-            child: Image.asset(
-              'assets/mahindraAppBar.png',
-              fit: BoxFit.contain,
+    return Stack(
+      children: [
+        Scaffold(
+            appBar: AppBar(
+              backgroundColor: utilities.mainColor,
+              titleSpacing: 0.0,
+              automaticallyImplyLeading: false,
             ),
-          ),
-          titleSpacing: 0.0,
-          automaticallyImplyLeading: false,
-        ),
-        body: (provider.dataLoading)
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      child: Row(children: [
-                        (provider.assessmentType == 'self')
-                            ? Text(
-                                "Self Assessment",
-                                style: TextStyle(fontSize: 25),
-                              )
-                            : Text('Site Assessment',
-                                style: TextStyle(fontSize: 25)),
-                        SizedBox(
-                          width: 40,
+            body: (provider.dataLoading)
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                        Container(
+                          padding: EdgeInsets.all(10),
+                          child: Row(children: [
+                            (provider.assessmentType == 'self')
+                                ? Text(
+                                    "Self Assessment",
+                                    style: TextStyle(fontSize: 25),
+                                  )
+                                : Text('Site Assessment',
+                                    style: TextStyle(fontSize: 25)),
+                            SizedBox(
+                              width: 40,
+                            ),
+                            DropdownButton(
+                                value: groupValue,
+                                items: [
+                                  DropdownMenuItem(
+                                    child: Text("Process Parameter"),
+                                    value: '1',
+                                  ),
+                                  DropdownMenuItem(
+                                    child: Text("Result Parameter"),
+                                    value: '2',
+                                  ),
+                                  DropdownMenuItem(
+                                    child: Text("Fire Safety Assessment"),
+                                    value: '3',
+                                  ),
+                                  DropdownMenuItem(
+                                    child: Text("Office Safety Assessment"),
+                                    value: '4',
+                                  )
+                                ],
+                                onChanged: (value) {
+                                  setState(() {
+                                    groupValue = value;
+                                    if (provider.assessmentType == 'self') {
+                                      switch (groupValue) {
+                                        case '1':
+                                          {
+                                            displayContainer =
+                                                selfProcessContainer(provider);
+                                          }
+                                          break;
+                                        case '2':
+                                          {
+                                            displayContainer =
+                                                selfResultContainer(provider);
+                                          }
+                                          break;
+                                        case '3':
+                                          {
+                                            displayContainer =
+                                                selfFireContainer(provider);
+                                          }
+                                          break;
+                                        case '4':
+                                          {
+                                            displayContainer =
+                                                selfOfficeContainer(provider);
+                                          }
+                                          break;
+                                      }
+                                    } else {
+                                      switch (groupValue) {
+                                        case '1':
+                                          {
+                                            displayContainer =
+                                                siteProcessContainer(provider);
+                                          }
+                                          break;
+                                        case '2':
+                                          {
+                                            displayContainer =
+                                                siteResultContainer(provider);
+                                          }
+                                          break;
+                                        case '3':
+                                          {
+                                            displayContainer =
+                                                siteFireContainer(provider);
+                                          }
+                                          break;
+                                        case '4':
+                                          {
+                                            displayContainer =
+                                                siteOfficeContainer(provider);
+                                          }
+                                          break;
+                                      }
+                                    }
+                                  });
+                                }),
+                          ]),
                         ),
-                        DropdownButton(
-                            value: groupValue,
-                            items: [
-                              DropdownMenuItem(
-                                child: Text("Process Parameter"),
-                                value: '1',
-                              ),
-                              DropdownMenuItem(
-                                child: Text("Result Parameter"),
-                                value: '2',
-                              ),
-                              DropdownMenuItem(
-                                child: Text("Fire Safety Assessment"),
-                                value: '3',
-                              ),
-                              DropdownMenuItem(
-                                child: Text("Office Safety Assessment"),
-                                value: '4',
-                              )
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              (groupValue != '1')
+                                  ? displayContainer
+                                  : (provider.assessmentType == 'self'
+                                      ? selfProcessContainer(provider)
+                                      : siteProcessContainer(provider))
                             ],
-                            onChanged: (value) {
-                              setState(() {
-                                groupValue = value;
-                                if (provider.assessmentType == 'self') {
-                                  switch (groupValue) {
-                                    case '1':
-                                      {
-                                        displayContainer =
-                                            selfProcessContainer(provider);
-                                      }
-                                      break;
-                                    case '2':
-                                      {
-                                        displayContainer =
-                                            selfResultContainer(provider);
-                                      }
-                                      break;
-                                    case '3':
-                                      {
-                                        displayContainer =
-                                            selfFireContainer(provider);
-                                      }
-                                      break;
-                                    case '4':
-                                      {
-                                        displayContainer =
-                                            selfOfficeContainer(provider);
-                                      }
-                                      break;
-                                  }
-                                } else {
-                                  switch (groupValue) {
-                                    case '1':
-                                      {
-                                        displayContainer =
-                                            siteProcessContainer(provider);
-                                      }
-                                      break;
-                                    case '2':
-                                      {
-                                        displayContainer =
-                                            siteResultContainer(provider);
-                                      }
-                                      break;
-                                    case '3':
-                                      {
-                                        displayContainer =
-                                            siteFireContainer(provider);
-                                      }
-                                      break;
-                                    case '4':
-                                      {
-                                        displayContainer =
-                                            siteOfficeContainer(provider);
-                                      }
-                                      break;
-                                  }
-                                }
-                              });
-                            }),
-                      ]),
-                    ),
-                    Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          (groupValue != '1')
-                              ? displayContainer
-                              : (provider.assessmentType == 'self'
-                                  ? selfProcessContainer(provider)
-                                  : siteProcessContainer(provider))
-                        ],
-                      ),
-                    )
-                  ]));
+                          ),
+                        )
+                      ])),
+        SizedBox(
+          height: AppBar().preferredSize.height * 2,
+          child: Image.asset(
+            'assets/mahindraAppBar.png',
+            fit: BoxFit.contain,
+          ),
+        )
+      ],
+    );
   }
 
   Widget selfProcessContainer(AssessmentProvider provider) {

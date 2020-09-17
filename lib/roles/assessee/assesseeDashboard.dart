@@ -6,10 +6,9 @@ import 'package:mahindraCSC/roles/assessee/assesseeProvider.dart';
 import 'package:mahindraCSC/roles/assessee/changePassword/changePassword.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:provider/provider.dart';
+import '../../utilities.dart';
 import 'annualData/AnnualSafetyReportIT.dart';
-import 'annualData/MonthlySafetyReportIT.dart';
 import 'annualData/annual_safety_report.dart';
-import 'annualData/monthly_safety_report.dart';
 
 class AssesseeDashboard extends StatefulWidget {
   @override
@@ -85,61 +84,58 @@ class _AssesseeDashboardState extends State<AssesseeDashboard> {
     }
   }
 
+  Utilities utilities = Utilities();
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<AssesseeProvider>(context);
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xfff4001c),
-        title: SizedBox(
-          height: AppBar().preferredSize.height,
-          child: Image.asset(
-            'assets/mahindraAppBar.png',
-            fit: BoxFit.contain,
-          ),
-        ),
-        titleSpacing: 0.0,
-        automaticallyImplyLeading: false,
-        actions: [
-          FlatButton(
-              onPressed: () {
-                getCurrentUser('monthly');
-              },
-              child: Text(
-                'Monthly MIS',
-                style: TextStyle(color: Colors.white),
-              )),
-          FlatButton(
-              onPressed: () async {
-                String cycleid = await provider.getLocationName();
-                await Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => SiteAssessment('self', cycleid),
-                ));
-              },
-              child: Text(
-                'Self Assessment',
-                style: TextStyle(color: Colors.white),
-              )),
-          FlatButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ChangePassword(),
-                ));
-              },
-              child: Text(
-                'Change Password',
-                style: TextStyle(color: Colors.white),
-              )),
-          FlatButton(
-              onPressed: () {},
-              child: Text(
-                'Sign Out',
-                style: TextStyle(color: Colors.white),
-              )),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.05,
-          )
-          /*FlatButton(
+    return Stack(
+      children: [
+        Scaffold(
+          appBar: AppBar(
+            backgroundColor: utilities.mainColor,
+            titleSpacing: 0.0,
+            automaticallyImplyLeading: false,
+            actions: [
+              FlatButton(
+                  onPressed: () {
+                    getCurrentUser('monthly');
+                  },
+                  child: Text(
+                    'Monthly MIS',
+                    style: TextStyle(color: Colors.white),
+                  )),
+              FlatButton(
+                  onPressed: () async {
+                    String cycleid = await provider.getLocationName();
+                    await Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => SiteAssessment('self', cycleid),
+                    ));
+                  },
+                  child: Text(
+                    'Self Assessment',
+                    style: TextStyle(color: Colors.white),
+                  )),
+              FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ChangePassword(),
+                    ));
+                  },
+                  child: Text(
+                    'Change Password',
+                    style: TextStyle(color: Colors.white),
+                  )),
+              FlatButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Sign Out',
+                    style: TextStyle(color: Colors.white),
+                  )),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.05,
+              )
+              /*FlatButton(
               onPressed: () {
                 getCurrentUser('assessment');
               },
@@ -147,31 +143,40 @@ class _AssesseeDashboardState extends State<AssesseeDashboard> {
                 'Annual Data',
                 style: TextStyle(color: Colors.white),
               )),*/ //Uncomment when annual data is required. place inbetween
-        ],
-      ),
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 10.0,
-            ),
+            ],
           ),
-          SliverToBoxAdapter(
-              child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.8,
-            child: Carousel(
-                boxFit: BoxFit.fitWidth,
-                images: [
-                  AssetImage('assets/Picture1.png'),
-                  AssetImage('assets/Picture2.png'),
-                  AssetImage('assets/Picture3.png'),
-                ],
-                autoplay: true,
-                indicatorBgPadding: 0,
-                dotBgColor: Colors.transparent),
-          )),
-        ],
-      ),
+          body: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 10.0,
+                ),
+              ),
+              SliverToBoxAdapter(
+                  child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.8,
+                child: Carousel(
+                    boxFit: BoxFit.fitWidth,
+                    images: [
+                      AssetImage('assets/Picture1.png'),
+                      AssetImage('assets/Picture2.png'),
+                      AssetImage('assets/Picture3.png'),
+                    ],
+                    autoplay: true,
+                    indicatorBgPadding: 0,
+                    dotBgColor: Colors.transparent),
+              )),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: AppBar().preferredSize.height * 2,
+          child: Image.asset(
+            'assets/mahindraAppBar.png',
+            fit: BoxFit.contain,
+          ),
+        )
+      ],
     );
   }
 }

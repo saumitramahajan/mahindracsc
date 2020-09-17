@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:mahindraCSC/roles/admin/enrollLocation/viewLocationProvider.dart';
 import 'package:provider/provider.dart';
 
+import '../../../utilities.dart';
+
 class ViewLocations extends StatefulWidget {
   @override
   _ViewLocationsState createState() => _ViewLocationsState();
 }
 
 class _ViewLocationsState extends State<ViewLocations> {
+  Utilities utilities = Utilities();
+
   Widget mahindraLocationCard(Map<String, String> map) {
     return Card(
       elevation: 7.0,
@@ -126,31 +130,31 @@ class _ViewLocationsState extends State<ViewLocations> {
                                     style: TextStyle(color: Colors.grey[600]),
                                   )),
                               Container(
-                                  padding: EdgeInsets.fromLTRB(70, 10, 10, 10),
+                                  padding: EdgeInsets.fromLTRB(80, 10, 10, 10),
                                   child: Text(
                                     'Category',
                                     style: TextStyle(color: Colors.grey[600]),
                                   )),
                               Container(
-                                  padding: EdgeInsets.fromLTRB(80, 10, 10, 10),
+                                  padding: EdgeInsets.fromLTRB(100, 10, 10, 10),
                                   child: Text(
                                     'Name of sector',
                                     style: TextStyle(color: Colors.grey[600]),
                                   )),
                               Container(
-                                  padding: EdgeInsets.fromLTRB(30, 10, 10, 10),
+                                  padding: EdgeInsets.fromLTRB(50, 10, 10, 10),
                                   child: Text(
                                     'Last Assessment Stage',
                                     style: TextStyle(color: Colors.grey[600]),
                                   )),
                               Container(
-                                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                  padding: EdgeInsets.fromLTRB(30, 10, 10, 10),
                                   child: Text(
                                     'Result level',
                                     style: TextStyle(color: Colors.grey[600]),
                                   )),
                               Container(
-                                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                  padding: EdgeInsets.fromLTRB(30, 10, 10, 10),
                                   child: Text(
                                     'Process level',
                                     style: TextStyle(color: Colors.grey[600]),
@@ -170,7 +174,7 @@ class _ViewLocationsState extends State<ViewLocations> {
                                     children: [
                                       Container(
                                         padding:
-                                            EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                            EdgeInsets.fromLTRB(10, 30, 10, 30),
                                         child: SizedBox(
                                           width: 150,
                                           child: Text(
@@ -187,6 +191,9 @@ class _ViewLocationsState extends State<ViewLocations> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
+                                          SizedBox(
+                                            height: 20.0,
+                                          ),
                                           Row(children: [
                                             SizedBox(width: 10),
                                             Text(
@@ -215,7 +222,7 @@ class _ViewLocationsState extends State<ViewLocations> {
                                               width: MediaQuery.of(context)
                                                       .size
                                                       .width *
-                                                  0.19,
+                                                  0.14,
                                               child: Text(
                                                 'Test Location',
                                                 style: TextStyle(
@@ -233,7 +240,7 @@ class _ViewLocationsState extends State<ViewLocations> {
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(width: 120),
+                                            SizedBox(width: 170),
                                             SizedBox(
                                               child: Text(
                                                 '5',
@@ -254,6 +261,9 @@ class _ViewLocationsState extends State<ViewLocations> {
                                               ),
                                             ),
                                           ]),
+                                          SizedBox(
+                                            height: 20.0,
+                                          ),
                                           Row(
                                             children: [
                                               Container(

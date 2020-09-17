@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentForm.dart';
-import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
-import 'package:provider/provider.dart';
+
+import '../../utilities.dart';
 
 class LocationInfo extends StatefulWidget {
   final bool dataExists;
@@ -209,1059 +208,1069 @@ class _LocationInfoState extends State<LocationInfo> {
     }
   }
 
+  Utilities utilities = Utilities();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xfff4001c),
-        title: SizedBox(
-          height: AppBar().preferredSize.height,
+    return Stack(
+      children: [
+        Scaffold(
+          appBar: AppBar(
+            backgroundColor: utilities.mainColor,
+            titleSpacing: 0.0,
+            automaticallyImplyLeading: false,
+          ),
+          body: Center(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.7,
+              child: ListView(
+                //shrinkWrap: true,
+                padding: EdgeInsets.all(15.0),
+                children: <Widget>[
+                  Text(
+                    'Fill in the required feilds',
+                    style: TextStyle(fontSize: 22, color: Colors.red),
+                    textAlign: TextAlign.left,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              ' Site Name',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            TextField(
+                              controller: _siteName,
+                              decoration: InputDecoration(
+                                labelText: 'Name',
+                                border: OutlineInputBorder(
+                                  borderRadius: new BorderRadius.all(
+                                      new Radius.circular(20.0)),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              ' Occupier',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            TextField(
+                              controller: _occupierName,
+                              decoration: InputDecoration(
+                                labelText: 'Name',
+                                border: OutlineInputBorder(
+                                  borderRadius: new BorderRadius.all(
+                                      new Radius.circular(20.0)),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Text(
+                              ' Email (Occupier)',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            TextField(
+                              controller: _occupierEmail,
+                              decoration: InputDecoration(
+                                labelText: 'Email',
+                                border: OutlineInputBorder(
+                                  borderRadius: new BorderRadius.all(
+                                      new Radius.circular(20.0)),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              ' Site Head',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            TextField(
+                              controller: _headName,
+                              decoration: InputDecoration(
+                                labelText: 'Name',
+                                border: OutlineInputBorder(
+                                  borderRadius: new BorderRadius.all(
+                                      new Radius.circular(20.0)),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Text(
+                              'Email  (Site Head)',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            TextField(
+                              controller: _headEmail,
+                              decoration: InputDecoration(
+                                labelText: 'Email',
+                                border: OutlineInputBorder(
+                                  borderRadius: new BorderRadius.all(
+                                      new Radius.circular(20.0)),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'Safety Incharge',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            TextField(
+                              controller: _safetyInchargeName,
+                              decoration: InputDecoration(
+                                labelText: 'Name',
+                                border: OutlineInputBorder(
+                                  borderRadius: new BorderRadius.all(
+                                      new Radius.circular(20.0)),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Text(
+                              'Email (Safety Incharge)',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            TextField(
+                              controller: _safetyInchargeEmail,
+                              decoration: InputDecoration(
+                                labelText: 'Email',
+                                border: OutlineInputBorder(
+                                  borderRadius: new BorderRadius.all(
+                                      new Radius.circular(20.0)),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'Fire Incharge',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            TextField(
+                              controller: _fireInchargeName,
+                              decoration: InputDecoration(
+                                labelText: 'Name',
+                                border: OutlineInputBorder(
+                                  borderRadius: new BorderRadius.all(
+                                      new Radius.circular(20.0)),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Text(
+                              'Email (Fire Incharge)',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            TextField(
+                              controller: _fireInchargeEmail,
+                              decoration: InputDecoration(
+                                labelText: 'Email',
+                                border: OutlineInputBorder(
+                                  borderRadius: new BorderRadius.all(
+                                      new Radius.circular(20.0)),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'Office Safety Inchage',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            TextField(
+                              controller: _officeSafetyInchargeName,
+                              decoration: InputDecoration(
+                                labelText: 'Name',
+                                border: OutlineInputBorder(
+                                  borderRadius: new BorderRadius.all(
+                                      new Radius.circular(20.0)),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Text(
+                              'Email (Office Safety Incharge)',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            TextField(
+                              controller: _officeSafetyInchargeEmail,
+                              decoration: InputDecoration(
+                                labelText: 'Email',
+                                border: OutlineInputBorder(
+                                  borderRadius: new BorderRadius.all(
+                                      new Radius.circular(20.0)),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'Utilities Incharge',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            TextField(
+                              controller: _utilitiesName,
+                              decoration: InputDecoration(
+                                labelText: 'Name',
+                                border: OutlineInputBorder(
+                                  borderRadius: new BorderRadius.all(
+                                      new Radius.circular(20.0)),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Text(
+                              'Email (Utitlities Incharge)',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            TextField(
+                              controller: _utilitiesEmail,
+                              decoration: InputDecoration(
+                                labelText: 'Email',
+                                border: OutlineInputBorder(
+                                  borderRadius: new BorderRadius.all(
+                                      new Radius.circular(20.0)),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'Is your site covered under " The Manufacture, Storage, and Import of Hazardous Chemical Rules 1989"',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            RadioListTile(
+                                title: Text('Yes'),
+                                value: true,
+                                groupValue: _ruleValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _ruleValue = value;
+                                  });
+                                }),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.1,
+                            ),
+                            RadioListTile(
+                                title: Text('No'),
+                                value: false,
+                                groupValue: _ruleValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _ruleValue = value;
+                                  });
+                                }),
+                            (_ruleValue)
+                                ? TextField(
+                                    controller: _rule,
+                                    decoration: InputDecoration(
+                                        labelText:
+                                            'Mention the Reason for Applicability'),
+                                  )
+                                : SizedBox()
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Text(
+                              'Is your site has LPG / Propane',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            RadioListTile(
+                                title: Text('Yes'),
+                                value: true,
+                                groupValue: _lpgValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _lpgValue = value;
+                                  });
+                                }),
+                            RadioListTile(
+                                title: Text('No'),
+                                value: false,
+                                groupValue: _lpgValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _lpgValue = value;
+                                  });
+                                }),
+                            (_lpgValue)
+                                ? TextField(
+                                    controller: _lpg,
+                                    decoration: InputDecoration(
+                                        labelText: 'Quantity in Tonnes'),
+                                  )
+                                : SizedBox()
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'Is your site has Gasoline',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            RadioListTile(
+                                title: Text('Yes'),
+                                value: true,
+                                groupValue: _gasolineValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _gasolineValue = value;
+                                  });
+                                }),
+                            RadioListTile(
+                                title: Text('No'),
+                                value: false,
+                                groupValue: _gasolineValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _gasolineValue = value;
+                                  });
+                                }),
+                            (_gasolineValue)
+                                ? TextField(
+                                    controller: _gasoline,
+                                    decoration: InputDecoration(
+                                        labelText: 'Quantity in kl'),
+                                  )
+                                : SizedBox()
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Text(
+                              'Is your site has CNG / PNG',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            RadioListTile(
+                                title: Text('Yes'),
+                                value: true,
+                                groupValue: _cngValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _cngValue = value;
+                                  });
+                                }),
+                            RadioListTile(
+                                title: Text('No'),
+                                value: false,
+                                groupValue: _cngValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _cngValue = value;
+                                  });
+                                }),
+                            (_cngValue)
+                                ? TextField(
+                                    controller: _cng,
+                                    decoration: InputDecoration(
+                                        labelText: 'Quantity in KG'),
+                                  )
+                                : SizedBox()
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'Is your site has Paint shop',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            RadioListTile(
+                                title: Text('Yes'),
+                                value: true,
+                                groupValue: _paintShopValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _paintShopValue = value;
+                                  });
+                                }),
+                            RadioListTile(
+                                title: Text('No'),
+                                value: false,
+                                groupValue: _paintShopValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _paintShopValue = value;
+                                  });
+                                }),
+                            (_paintShopValue)
+                                ? TextField(
+                                    controller: _paintShop,
+                                    decoration:
+                                        InputDecoration(labelText: 'Capacity'),
+                                  )
+                                : SizedBox()
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Text(
+                              'Is your site has Steel Melting / Foundry',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            RadioListTile(
+                                title: Text('Yes'),
+                                value: true,
+                                groupValue: _foundryValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _foundryValue = value;
+                                  });
+                                }),
+                            RadioListTile(
+                                title: Text('No'),
+                                value: false,
+                                groupValue: _foundryValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _foundryValue = value;
+                                  });
+                                }),
+                            (_foundryValue)
+                                ? TextField(
+                                    controller: _foundry,
+                                    decoration:
+                                        InputDecoration(labelText: 'Capacity'),
+                                  )
+                                : SizedBox(),
+                            (_foundryValue)
+                                ? RaisedButton(
+                                    child: Text('Upload Supporting Documents'),
+                                    onPressed: () {},
+                                  )
+                                : SizedBox()
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'Is your site has Press machine',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            RadioListTile(
+                                title: Text('Yes'),
+                                value: true,
+                                groupValue: _pressValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _pressValue = value;
+                                  });
+                                }),
+                            RadioListTile(
+                                title: Text('No'),
+                                value: false,
+                                groupValue: _pressValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _pressValue = value;
+                                  });
+                                }),
+                            (_pressValue)
+                                ? TextField(
+                                    controller: _press,
+                                    decoration: InputDecoration(
+                                        labelText:
+                                            'Please upload Details of Press Machine'),
+                                  )
+                                : SizedBox(),
+                            (_pressValue)
+                                ? RaisedButton(
+                                    child: Text('Upload Supporting Documents'),
+                                    onPressed: () {},
+                                  )
+                                : SizedBox()
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Text(
+                              'Is your site has diesel storage',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            RadioListTile(
+                                title: Text('Yes'),
+                                value: true,
+                                groupValue: _desielValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _desielValue = value;
+                                  });
+                                }),
+                            RadioListTile(
+                                title: Text('No'),
+                                value: false,
+                                groupValue: _desielValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _desielValue = value;
+                                  });
+                                }),
+                            (_desielValue)
+                                ? TextField(
+                                    controller: _desiel,
+                                    decoration: InputDecoration(
+                                        labelText: 'Quantity in kl'),
+                                  )
+                                : SizedBox()
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'Is your site has Thinner / other Class A Storage',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            RadioListTile(
+                                title: Text('Yes'),
+                                value: true,
+                                groupValue: _thinnerValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _thinnerValue = value;
+                                  });
+                                }),
+                            RadioListTile(
+                                title: Text('No'),
+                                value: false,
+                                groupValue: _thinnerValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _thinnerValue = value;
+                                  });
+                                }),
+                            (_thinnerValue)
+                                ? TextField(
+                                    controller: _thinner,
+                                    decoration: InputDecoration(
+                                        labelText: 'Quantity in kl'),
+                                  )
+                                : SizedBox(),
+                            (_thinnerValue)
+                                ? RaisedButton(
+                                    child: Text('Upload Supporting Documents'),
+                                    onPressed: () {},
+                                  )
+                                : SizedBox()
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Text(
+                              'Is your site has Toxic Chemicals',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            RadioListTile(
+                                title: Text('Yes'),
+                                value: true,
+                                groupValue: _toxicValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _toxicValue = value;
+                                  });
+                                }),
+                            RadioListTile(
+                                title: Text('No'),
+                                value: false,
+                                groupValue: _toxicValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _toxicValue = value;
+                                  });
+                                }),
+                            (_toxicValue)
+                                ? TextField(
+                                    controller: _toxic,
+                                    decoration: InputDecoration(
+                                        labelText: 'Quantity and Name'),
+                                  )
+                                : SizedBox(),
+                            (_toxicValue)
+                                ? RaisedButton(
+                                    child: Text('Upload Supporting Documents'),
+                                    onPressed: () {},
+                                  )
+                                : SizedBox()
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'Is your site has Heat treatment',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            RadioListTile(
+                                title: Text('Yes'),
+                                value: true,
+                                groupValue: _heatValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _heatValue = value;
+                                  });
+                                }),
+                            RadioListTile(
+                                title: Text('No'),
+                                value: false,
+                                groupValue: _heatValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _heatValue = value;
+                                  });
+                                }),
+                            (_heatValue)
+                                ? TextField(
+                                    controller: _heat,
+                                    decoration:
+                                        InputDecoration(labelText: 'Capacity'),
+                                  )
+                                : SizedBox(),
+                            (_heatValue)
+                                ? RaisedButton(
+                                    child: Text('Upload Supporting Documents'),
+                                    onPressed: () {},
+                                  )
+                                : SizedBox()
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Text(
+                              'Is your site has Engine Test Bed',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            RadioListTile(
+                                title: Text('Yes'),
+                                value: true,
+                                groupValue: _testBedValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _testBedValue = value;
+                                  });
+                                }),
+                            RadioListTile(
+                                title: Text('No'),
+                                value: false,
+                                groupValue: _testBedValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _testBedValue = value;
+                                  });
+                                }),
+                            (_testBedValue)
+                                ? TextField(
+                                    controller: _testBed,
+                                    decoration:
+                                        InputDecoration(labelText: 'Nos'),
+                                  )
+                                : SizedBox()
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'Is your site has Boiler - is it covered under IBR ( Indian Boiler Regulation)',
+                              style: TextStyle(fontSize: 22),
+                              textAlign: TextAlign.left,
+                            ),
+                            RadioListTile(
+                                title: Text('Yes'),
+                                value: true,
+                                groupValue: _ibrValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _ibrValue = value;
+                                  });
+                                }),
+                            RadioListTile(
+                                title: Text('No'),
+                                value: false,
+                                groupValue: _ibrValue,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _ibrValue = value;
+                                  });
+                                }),
+                            (_ibrValue)
+                                ? TextField(
+                                    controller: _ibr,
+                                    decoration: InputDecoration(
+                                        labelText: 'Number and their Capacity'),
+                                  )
+                                : SizedBox(),
+                            (_ibrValue)
+                                ? RaisedButton(
+                                    child: Text('Upload Supporting Documents'),
+                                    onPressed: () {},
+                                  )
+                                : SizedBox()
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Text(
+                                'Incident Statistics for April 2019- March 2020',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                )),
+                            TextField(
+                              controller: _fatal,
+                              decoration:
+                                  InputDecoration(labelText: 'Fatal(Nos)'),
+                            ),
+                            TextField(
+                              controller: _reportable,
+                              decoration:
+                                  InputDecoration(labelText: 'Reportable(Nos)'),
+                            ),
+                            TextField(
+                              controller: _nonReportable,
+                              decoration: InputDecoration(
+                                  labelText: 'Non-Reportable(Nos)'),
+                            ),
+                            TextField(
+                              controller: _firstAid,
+                              decoration: InputDecoration(
+                                  labelText: 'First Aid Cases(Nos)'),
+                            ),
+                            TextField(
+                              controller: _fire,
+                              decoration: InputDecoration(
+                                  labelText: 'Fire Incidents(Major)'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      SizedBox(
+                        width: 350,
+                      ),
+                      new FloatingActionButton.extended(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.save,
+                        ),
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(16.0))),
+                        label: Text("Submit"),
+                      ),
+                      SizedBox(
+                        width: 50,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: AppBar().preferredSize.height * 2,
           child: Image.asset(
             'assets/mahindraAppBar.png',
             fit: BoxFit.contain,
           ),
-        ),
-        titleSpacing: 0.0,
-        automaticallyImplyLeading: false,
-      ),
-      body: Center(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.7,
-          child: ListView(
-            //shrinkWrap: true,
-            padding: EdgeInsets.all(15.0),
-            children: <Widget>[
-              Text(
-                'Fill in the required feilds',
-                style: TextStyle(fontSize: 22, color: Colors.red),
-                textAlign: TextAlign.left,
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          ' Site Name',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        TextField(
-                          controller: _siteName,
-                          decoration: InputDecoration(
-                            labelText: 'Name',
-                            border: OutlineInputBorder(
-                              borderRadius: new BorderRadius.all(
-                                  new Radius.circular(20.0)),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          ' Occupier',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        TextField(
-                          controller: _occupierName,
-                          decoration: InputDecoration(
-                            labelText: 'Name',
-                            border: OutlineInputBorder(
-                              borderRadius: new BorderRadius.all(
-                                  new Radius.circular(20.0)),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.1,
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Text(
-                          ' Email (Occupier)',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        TextField(
-                          controller: _occupierEmail,
-                          decoration: InputDecoration(
-                            labelText: 'Email',
-                            border: OutlineInputBorder(
-                              borderRadius: new BorderRadius.all(
-                                  new Radius.circular(20.0)),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          ' Site Head',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        TextField(
-                          controller: _headName,
-                          decoration: InputDecoration(
-                            labelText: 'Name',
-                            border: OutlineInputBorder(
-                              borderRadius: new BorderRadius.all(
-                                  new Radius.circular(20.0)),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.1,
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Text(
-                          'Email  (Site Head)',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        TextField(
-                          controller: _headEmail,
-                          decoration: InputDecoration(
-                            labelText: 'Email',
-                            border: OutlineInputBorder(
-                              borderRadius: new BorderRadius.all(
-                                  new Radius.circular(20.0)),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Safety Incharge',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        TextField(
-                          controller: _safetyInchargeName,
-                          decoration: InputDecoration(
-                            labelText: 'Name',
-                            border: OutlineInputBorder(
-                              borderRadius: new BorderRadius.all(
-                                  new Radius.circular(20.0)),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.1,
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Text(
-                          'Email (Safety Incharge)',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        TextField(
-                          controller: _safetyInchargeEmail,
-                          decoration: InputDecoration(
-                            labelText: 'Email',
-                            border: OutlineInputBorder(
-                              borderRadius: new BorderRadius.all(
-                                  new Radius.circular(20.0)),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Fire Incharge',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        TextField(
-                          controller: _fireInchargeName,
-                          decoration: InputDecoration(
-                            labelText: 'Name',
-                            border: OutlineInputBorder(
-                              borderRadius: new BorderRadius.all(
-                                  new Radius.circular(20.0)),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.1,
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Text(
-                          'Email (Fire Incharge)',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        TextField(
-                          controller: _fireInchargeEmail,
-                          decoration: InputDecoration(
-                            labelText: 'Email',
-                            border: OutlineInputBorder(
-                              borderRadius: new BorderRadius.all(
-                                  new Radius.circular(20.0)),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Office Safety Inchage',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        TextField(
-                          controller: _officeSafetyInchargeName,
-                          decoration: InputDecoration(
-                            labelText: 'Name',
-                            border: OutlineInputBorder(
-                              borderRadius: new BorderRadius.all(
-                                  new Radius.circular(20.0)),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.1,
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Text(
-                          'Email (Office Safety Incharge)',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        TextField(
-                          controller: _officeSafetyInchargeEmail,
-                          decoration: InputDecoration(
-                            labelText: 'Email',
-                            border: OutlineInputBorder(
-                              borderRadius: new BorderRadius.all(
-                                  new Radius.circular(20.0)),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Utilities Incharge',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        TextField(
-                          controller: _utilitiesName,
-                          decoration: InputDecoration(
-                            labelText: 'Name',
-                            border: OutlineInputBorder(
-                              borderRadius: new BorderRadius.all(
-                                  new Radius.circular(20.0)),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.1,
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Text(
-                          'Email (Utitlities Incharge)',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        TextField(
-                          controller: _utilitiesEmail,
-                          decoration: InputDecoration(
-                            labelText: 'Email',
-                            border: OutlineInputBorder(
-                              borderRadius: new BorderRadius.all(
-                                  new Radius.circular(20.0)),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Is your site covered under " The Manufacture, Storage, and Import of Hazardous Chemical Rules 1989"',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        RadioListTile(
-                            title: Text('Yes'),
-                            value: true,
-                            groupValue: _ruleValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _ruleValue = value;
-                              });
-                            }),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.1,
-                        ),
-                        RadioListTile(
-                            title: Text('No'),
-                            value: false,
-                            groupValue: _ruleValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _ruleValue = value;
-                              });
-                            }),
-                        (_ruleValue)
-                            ? TextField(
-                                controller: _rule,
-                                decoration: InputDecoration(
-                                    labelText:
-                                        'Mention the Reason for Applicability'),
-                              )
-                            : SizedBox()
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.1,
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Text(
-                          'Is your site has LPG / Propane',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        RadioListTile(
-                            title: Text('Yes'),
-                            value: true,
-                            groupValue: _lpgValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _lpgValue = value;
-                              });
-                            }),
-                        RadioListTile(
-                            title: Text('No'),
-                            value: false,
-                            groupValue: _lpgValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _lpgValue = value;
-                              });
-                            }),
-                        (_lpgValue)
-                            ? TextField(
-                                controller: _lpg,
-                                decoration: InputDecoration(
-                                    labelText: 'Quantity in Tonnes'),
-                              )
-                            : SizedBox()
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Is your site has Gasoline',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        RadioListTile(
-                            title: Text('Yes'),
-                            value: true,
-                            groupValue: _gasolineValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _gasolineValue = value;
-                              });
-                            }),
-                        RadioListTile(
-                            title: Text('No'),
-                            value: false,
-                            groupValue: _gasolineValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _gasolineValue = value;
-                              });
-                            }),
-                        (_gasolineValue)
-                            ? TextField(
-                                controller: _gasoline,
-                                decoration: InputDecoration(
-                                    labelText: 'Quantity in kl'),
-                              )
-                            : SizedBox()
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.1,
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Text(
-                          'Is your site has CNG / PNG',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        RadioListTile(
-                            title: Text('Yes'),
-                            value: true,
-                            groupValue: _cngValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _cngValue = value;
-                              });
-                            }),
-                        RadioListTile(
-                            title: Text('No'),
-                            value: false,
-                            groupValue: _cngValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _cngValue = value;
-                              });
-                            }),
-                        (_cngValue)
-                            ? TextField(
-                                controller: _cng,
-                                decoration: InputDecoration(
-                                    labelText: 'Quantity in KG'),
-                              )
-                            : SizedBox()
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Is your site has Paint shop',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        RadioListTile(
-                            title: Text('Yes'),
-                            value: true,
-                            groupValue: _paintShopValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _paintShopValue = value;
-                              });
-                            }),
-                        RadioListTile(
-                            title: Text('No'),
-                            value: false,
-                            groupValue: _paintShopValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _paintShopValue = value;
-                              });
-                            }),
-                        (_paintShopValue)
-                            ? TextField(
-                                controller: _paintShop,
-                                decoration:
-                                    InputDecoration(labelText: 'Capacity'),
-                              )
-                            : SizedBox()
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.1,
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Text(
-                          'Is your site has Steel Melting / Foundry',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        RadioListTile(
-                            title: Text('Yes'),
-                            value: true,
-                            groupValue: _foundryValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _foundryValue = value;
-                              });
-                            }),
-                        RadioListTile(
-                            title: Text('No'),
-                            value: false,
-                            groupValue: _foundryValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _foundryValue = value;
-                              });
-                            }),
-                        (_foundryValue)
-                            ? TextField(
-                                controller: _foundry,
-                                decoration:
-                                    InputDecoration(labelText: 'Capacity'),
-                              )
-                            : SizedBox(),
-                        (_foundryValue)
-                            ? RaisedButton(
-                                child: Text('Upload Supporting Documents'),
-                                onPressed: () {},
-                              )
-                            : SizedBox()
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Is your site has Press machine',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        RadioListTile(
-                            title: Text('Yes'),
-                            value: true,
-                            groupValue: _pressValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _pressValue = value;
-                              });
-                            }),
-                        RadioListTile(
-                            title: Text('No'),
-                            value: false,
-                            groupValue: _pressValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _pressValue = value;
-                              });
-                            }),
-                        (_pressValue)
-                            ? TextField(
-                                controller: _press,
-                                decoration: InputDecoration(
-                                    labelText:
-                                        'Please upload Details of Press Machine'),
-                              )
-                            : SizedBox(),
-                        (_pressValue)
-                            ? RaisedButton(
-                                child: Text('Upload Supporting Documents'),
-                                onPressed: () {},
-                              )
-                            : SizedBox()
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.1,
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Text(
-                          'Is your site has diesel storage',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        RadioListTile(
-                            title: Text('Yes'),
-                            value: true,
-                            groupValue: _desielValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _desielValue = value;
-                              });
-                            }),
-                        RadioListTile(
-                            title: Text('No'),
-                            value: false,
-                            groupValue: _desielValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _desielValue = value;
-                              });
-                            }),
-                        (_desielValue)
-                            ? TextField(
-                                controller: _desiel,
-                                decoration: InputDecoration(
-                                    labelText: 'Quantity in kl'),
-                              )
-                            : SizedBox()
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Is your site has Thinner / other Class A Storage',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        RadioListTile(
-                            title: Text('Yes'),
-                            value: true,
-                            groupValue: _thinnerValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _thinnerValue = value;
-                              });
-                            }),
-                        RadioListTile(
-                            title: Text('No'),
-                            value: false,
-                            groupValue: _thinnerValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _thinnerValue = value;
-                              });
-                            }),
-                        (_thinnerValue)
-                            ? TextField(
-                                controller: _thinner,
-                                decoration: InputDecoration(
-                                    labelText: 'Quantity in kl'),
-                              )
-                            : SizedBox(),
-                        (_thinnerValue)
-                            ? RaisedButton(
-                                child: Text('Upload Supporting Documents'),
-                                onPressed: () {},
-                              )
-                            : SizedBox()
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.1,
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Text(
-                          'Is your site has Toxic Chemicals',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        RadioListTile(
-                            title: Text('Yes'),
-                            value: true,
-                            groupValue: _toxicValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _toxicValue = value;
-                              });
-                            }),
-                        RadioListTile(
-                            title: Text('No'),
-                            value: false,
-                            groupValue: _toxicValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _toxicValue = value;
-                              });
-                            }),
-                        (_toxicValue)
-                            ? TextField(
-                                controller: _toxic,
-                                decoration: InputDecoration(
-                                    labelText: 'Quantity and Name'),
-                              )
-                            : SizedBox(),
-                        (_toxicValue)
-                            ? RaisedButton(
-                                child: Text('Upload Supporting Documents'),
-                                onPressed: () {},
-                              )
-                            : SizedBox()
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Is your site has Heat treatment',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        RadioListTile(
-                            title: Text('Yes'),
-                            value: true,
-                            groupValue: _heatValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _heatValue = value;
-                              });
-                            }),
-                        RadioListTile(
-                            title: Text('No'),
-                            value: false,
-                            groupValue: _heatValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _heatValue = value;
-                              });
-                            }),
-                        (_heatValue)
-                            ? TextField(
-                                controller: _heat,
-                                decoration:
-                                    InputDecoration(labelText: 'Capacity'),
-                              )
-                            : SizedBox(),
-                        (_heatValue)
-                            ? RaisedButton(
-                                child: Text('Upload Supporting Documents'),
-                                onPressed: () {},
-                              )
-                            : SizedBox()
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.1,
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Text(
-                          'Is your site has Engine Test Bed',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        RadioListTile(
-                            title: Text('Yes'),
-                            value: true,
-                            groupValue: _testBedValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _testBedValue = value;
-                              });
-                            }),
-                        RadioListTile(
-                            title: Text('No'),
-                            value: false,
-                            groupValue: _testBedValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _testBedValue = value;
-                              });
-                            }),
-                        (_testBedValue)
-                            ? TextField(
-                                controller: _testBed,
-                                decoration: InputDecoration(labelText: 'Nos'),
-                              )
-                            : SizedBox()
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Is your site has Boiler - is it covered under IBR ( Indian Boiler Regulation)',
-                          style: TextStyle(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                        RadioListTile(
-                            title: Text('Yes'),
-                            value: true,
-                            groupValue: _ibrValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _ibrValue = value;
-                              });
-                            }),
-                        RadioListTile(
-                            title: Text('No'),
-                            value: false,
-                            groupValue: _ibrValue,
-                            onChanged: (value) {
-                              setState(() {
-                                _ibrValue = value;
-                              });
-                            }),
-                        (_ibrValue)
-                            ? TextField(
-                                controller: _ibr,
-                                decoration: InputDecoration(
-                                    labelText: 'Number and their Capacity'),
-                              )
-                            : SizedBox(),
-                        (_ibrValue)
-                            ? RaisedButton(
-                                child: Text('Upload Supporting Documents'),
-                                onPressed: () {},
-                              )
-                            : SizedBox()
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.1,
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Text('Incident Statistics for April 2019- March 2020',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                            )),
-                        TextField(
-                          controller: _fatal,
-                          decoration: InputDecoration(labelText: 'Fatal(Nos)'),
-                        ),
-                        TextField(
-                          controller: _reportable,
-                          decoration:
-                              InputDecoration(labelText: 'Reportable(Nos)'),
-                        ),
-                        TextField(
-                          controller: _nonReportable,
-                          decoration:
-                              InputDecoration(labelText: 'Non-Reportable(Nos)'),
-                        ),
-                        TextField(
-                          controller: _firstAid,
-                          decoration: InputDecoration(
-                              labelText: 'First Aid Cases(Nos)'),
-                        ),
-                        TextField(
-                          controller: _fire,
-                          decoration: InputDecoration(
-                              labelText: 'Fire Incidents(Major)'),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  SizedBox(
-                    width: 350,
-                  ),
-                  new FloatingActionButton.extended(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.save,
-                    ),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(16.0))),
-                    label: Text("Submit"),
-                  ),
-                  SizedBox(
-                    width: 50,
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
+        )
+      ],
     );
   }
 }
