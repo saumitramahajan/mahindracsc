@@ -11,18 +11,18 @@ class EnrollMahindraLocation extends StatefulWidget {
 
 class _EnrollMahindraLocationState extends State<EnrollMahindraLocation> {
   String _valueCategory = 'Manufacturing,Hospitality and Construction Sector';
-  String _valueLastAssessmentStage;
-  String _valueProcessLevel;
-  String _valueResultLevel;
-  String _valueAssesseeUid;
+  String _valueLastAssessmentStage = '';
+  String _valueProcessLevel = '';
+  String _valueResultLevel = '';
+  String _valueAssesseeUid = '';
 
-  String _nameOfSector;
-  String _nameOfBusiness;
-  String _location;
-  String _plantHeadName;
-  String _plantHeadEmail;
-  String _sectorBusinessSafetySpocName;
-  String _sectorBusinessSafetySpocEmail;
+  String _nameOfSector = '';
+  String _nameOfBusiness = '';
+  String _location = '';
+  String _plantHeadName = '';
+  String _plantHeadEmail = '';
+  String _sectorBusinessSafetySpocName = '';
+  String _sectorBusinessSafetySpocEmail = '';
 
   Utilities utilities = Utilities();
 
@@ -252,31 +252,64 @@ class _EnrollMahindraLocationState extends State<EnrollMahindraLocation> {
                                   RaisedButton(
                                     child: Text('Enroll'),
                                     onPressed: () async {
-                                      await enrollProvider
-                                          .enrollMahindraLocation(
-                                              _valueCategory,
-                                              _nameOfSector,
-                                              _nameOfBusiness,
-                                              _location,
-                                              _valueLastAssessmentStage,
-                                              _valueProcessLevel,
-                                              _valueResultLevel,
-                                              _valueAssesseeUid,
-                                              _plantHeadName,
-                                              _plantHeadEmail,
-                                              _sectorBusinessSafetySpocName,
-                                              _sectorBusinessSafetySpocEmail);
-                                      if (enrollProvider.enrolled) {
-                                        Navigator.of(context).pop();
+                                      if (_location != '' &&
+                                          _nameOfSector != '' &&
+                                          _plantHeadEmail != '' &&
+                                          _plantHeadName != '' &&
+                                          _sectorBusinessSafetySpocEmail !=
+                                              '' &&
+                                          _sectorBusinessSafetySpocName != '' &&
+                                          _valueAssesseeUid != '' &&
+                                          _valueCategory != '' &&
+                                          _valueLastAssessmentStage != '' &&
+                                          _valueProcessLevel != '' &&
+                                          _valueResultLevel != '') {
+                                        await enrollProvider
+                                            .enrollMahindraLocation(
+                                                _valueCategory,
+                                                _nameOfSector,
+                                                _nameOfBusiness,
+                                                _location,
+                                                _valueLastAssessmentStage,
+                                                _valueProcessLevel,
+                                                _valueResultLevel,
+                                                _valueAssesseeUid,
+                                                _plantHeadName,
+                                                _plantHeadEmail,
+                                                _sectorBusinessSafetySpocName,
+                                                _sectorBusinessSafetySpocEmail);
+                                        if (enrollProvider.enrolled) {
+                                          Navigator.of(context).pop();
+                                        } else {
+                                          showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  title:
+                                                      new Text('Enroll Failed'),
+                                                  content: new Text(
+                                                      'Something has occured.Please try again later.'),
+                                                  actions: <Widget>[
+                                                    new FlatButton(
+                                                      child: new Text('Close'),
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                    )
+                                                  ],
+                                                );
+                                              });
+                                        }
                                       } else {
                                         showDialog(
                                             context: context,
                                             builder: (BuildContext context) {
                                               return AlertDialog(
                                                 title:
-                                                    new Text('Enroll Failed'),
+                                                    new Text('Form Incomplete'),
                                                 content: new Text(
-                                                    'Something has occured.Please try again later.'),
+                                                    'Please fill all fields in the form.'),
                                                 actions: <Widget>[
                                                   new FlatButton(
                                                     child: new Text('Close'),

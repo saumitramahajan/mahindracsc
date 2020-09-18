@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:mahindraCSC/roles/admin/enrollLocation/enrollLocationProvider.dart';
 import 'package:mahindraCSC/roles/admin/enrollLocation/enrollMahindraLocation.dart';
@@ -7,8 +9,13 @@ import 'package:provider/provider.dart';
 
 import '../../../utilities.dart';
 
-class EnrollLocation extends StatelessWidget {
-  Utilities utilities = Utilities();
+class EnrollLocation extends StatefulWidget {
+  @override
+  _EnrollLocationState createState() => _EnrollLocationState();
+}
+
+class _EnrollLocationState extends State<EnrollLocation> {
+  final Utilities utilities = Utilities();
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -20,14 +27,15 @@ class EnrollLocation extends StatelessWidget {
                 IconButton(
                     tooltip: 'Add Location',
                     icon: Icon(Icons.add),
-                    onPressed: () {
-                      Navigator.of(context)
+                    onPressed: () async {
+                      await Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
                         return ChangeNotifierProvider<EnrollLocationProvider>(
                           create: (context) => EnrollLocationProvider(),
                           child: EnrollMahindraLocation(),
                         );
                       }));
+                      Navigator.of(context).pop();
                     }),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.05,

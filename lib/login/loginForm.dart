@@ -96,8 +96,8 @@ class _LoginFormState extends State<LoginForm> {
                           RaisedButton(
                               child: Text('Login'),
                               onPressed: () async {
-                                // _email = 'themahindrasafetyway@mahindra.com';
-                                //_password = 'mahindra';
+                                _email = 'themahindrasafetyway@mahindra.com';
+                                _password = 'mahindra';
                                 await loginProvider.loginProvider(
                                     _email, _password);
                                 if (loginProvider.userExists) {

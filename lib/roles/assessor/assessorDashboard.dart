@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mahindraCSC/login/login.dart';
 import 'package:mahindraCSC/roles/assessor/changePassword/changePassword.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import '../../utilities.dart';
@@ -41,7 +43,12 @@ class _AssessorDashboardState extends State<AssessorDashboard> {
                     style: TextStyle(color: Colors.white),
                   )),
               FlatButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await FirebaseAuth.instance.signOut();
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => Login(),
+                    ));
+                  },
                   child: Text(
                     'Sign Out',
                     style: TextStyle(color: Colors.white),

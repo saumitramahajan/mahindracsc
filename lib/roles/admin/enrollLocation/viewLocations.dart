@@ -108,7 +108,7 @@ class _ViewLocationsState extends State<ViewLocations> {
                           Container(
                             padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                             child: Text(
-                              'List of Locations:',
+                              'List of Sites:',
                               style: TextStyle(
                                   fontSize: 25,
                                   fontWeight: FontWeight.bold,
@@ -120,29 +120,23 @@ class _ViewLocationsState extends State<ViewLocations> {
                               Container(
                                   padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
                                   child: Text(
-                                    'Name of Business',
+                                    'Name of Sector',
                                     style: TextStyle(color: Colors.grey[600]),
                                   )),
                               Container(
-                                  padding: EdgeInsets.fromLTRB(50, 10, 10, 10),
+                                  padding: EdgeInsets.fromLTRB(70, 10, 10, 10),
                                   child: Text(
                                     'Assessee',
                                     style: TextStyle(color: Colors.grey[600]),
                                   )),
                               Container(
-                                  padding: EdgeInsets.fromLTRB(80, 10, 10, 10),
+                                  padding: EdgeInsets.fromLTRB(100, 10, 10, 10),
                                   child: Text(
                                     'Category',
                                     style: TextStyle(color: Colors.grey[600]),
                                   )),
                               Container(
-                                  padding: EdgeInsets.fromLTRB(100, 10, 10, 10),
-                                  child: Text(
-                                    'Name of sector',
-                                    style: TextStyle(color: Colors.grey[600]),
-                                  )),
-                              Container(
-                                  padding: EdgeInsets.fromLTRB(50, 10, 10, 10),
+                                  padding: EdgeInsets.fromLTRB(220, 10, 10, 10),
                                   child: Text(
                                     'Last Assessment Stage',
                                     style: TextStyle(color: Colors.grey[600]),
@@ -163,7 +157,7 @@ class _ViewLocationsState extends State<ViewLocations> {
                           ),
                           Expanded(
                               child: ListView.builder(
-                            itemCount: 1,
+                            itemCount: viewProvider.list.length,
                             itemBuilder: (context, index) {
                               return Card(
                                 elevation: 5.0,
@@ -178,7 +172,8 @@ class _ViewLocationsState extends State<ViewLocations> {
                                         child: SizedBox(
                                           width: 150,
                                           child: Text(
-                                            'Test Mahindra location',
+                                            viewProvider.list[index]
+                                                ['nameOfSector'],
                                             style: TextStyle(
                                               color: Colors.red[700],
                                               fontWeight: FontWeight.bold,
@@ -197,7 +192,8 @@ class _ViewLocationsState extends State<ViewLocations> {
                                           Row(children: [
                                             SizedBox(width: 10),
                                             Text(
-                                              'Test Assessee',
+                                              viewProvider.list[index]
+                                                  ['assessee'],
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 14,
@@ -208,23 +204,10 @@ class _ViewLocationsState extends State<ViewLocations> {
                                               width: MediaQuery.of(context)
                                                       .size
                                                       .width *
-                                                  0.1,
+                                                  0.2,
                                               child: Text(
-                                                'Manufacturing,Hospatility,  Construction',
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 14,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(width: 50),
-                                            SizedBox(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.14,
-                                              child: Text(
-                                                'Test Location',
+                                                viewProvider.list[index]
+                                                    ['category'],
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 14,
@@ -232,8 +215,12 @@ class _ViewLocationsState extends State<ViewLocations> {
                                               ),
                                             ),
                                             SizedBox(
+                                              width: 70,
+                                            ),
+                                            SizedBox(
                                               child: Text(
-                                                '10',
+                                                viewProvider.list[index]
+                                                    ['lastAssessmentStage'],
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 14,
@@ -243,7 +230,8 @@ class _ViewLocationsState extends State<ViewLocations> {
                                             SizedBox(width: 170),
                                             SizedBox(
                                               child: Text(
-                                                '5',
+                                                viewProvider.list[index]
+                                                    ['resultLevel'],
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 14,
@@ -253,7 +241,8 @@ class _ViewLocationsState extends State<ViewLocations> {
                                             SizedBox(width: 90),
                                             SizedBox(
                                               child: Text(
-                                                '5',
+                                                viewProvider.list[index]
+                                                    ['processLevel'],
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 14,
@@ -288,7 +277,9 @@ class _ViewLocationsState extends State<ViewLocations> {
                                                         padding:
                                                             EdgeInsets.all(2),
                                                         child: Text(
-                                                          'Plant Headhead',
+                                                          viewProvider
+                                                                  .list[index]
+                                                              ['plantHeadName'],
                                                           style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -299,7 +290,9 @@ class _ViewLocationsState extends State<ViewLocations> {
                                                         padding:
                                                             EdgeInsets.all(2),
                                                         child: Text(
-                                                          'plant@mahindra.com',
+                                                          viewProvider
+                                                                  .list[index][
+                                                              'plantHeadEmail'],
                                                           style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -326,7 +319,8 @@ class _ViewLocationsState extends State<ViewLocations> {
                                                       padding:
                                                           EdgeInsets.all(2),
                                                       child: Text(
-                                                        'Plant Headhead',
+                                                        viewProvider.list[index]
+                                                            ['spocName'],
                                                         style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -337,7 +331,8 @@ class _ViewLocationsState extends State<ViewLocations> {
                                                       padding:
                                                           EdgeInsets.all(2),
                                                       child: Text(
-                                                        'plant@mahindra.com',
+                                                        viewProvider.list[index]
+                                                            ['spocEmail'],
                                                         style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -348,6 +343,9 @@ class _ViewLocationsState extends State<ViewLocations> {
                                               ),
                                             ],
                                           ),
+                                          SizedBox(
+                                            height: 15,
+                                          )
                                         ],
                                       ),
                                     ]),

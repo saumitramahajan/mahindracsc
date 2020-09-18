@@ -50,9 +50,9 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                             SizedBox(
                               height: MediaQuery.of(context).size.height * .1,
                             ),
-                            (assessmentProvider.i < 25)
+                            (assessmentProvider.i < 26)
                                 ? Text(
-                                    'Process:' +
+                                    'Process Parameter: ' +
                                         assessmentProvider
                                             .currentQuestion['statement'],
                                     style: TextStyle(
@@ -60,7 +60,7 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                         fontWeight: FontWeight.bold),
                                   )
                                 : Text(
-                                    'Result:' +
+                                    'Result Parameter: ' +
                                         assessmentProvider
                                             .currentQuestion['statement'],
                                     style: TextStyle(

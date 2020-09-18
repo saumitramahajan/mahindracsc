@@ -602,6 +602,7 @@ class _LocationInfoState extends State<LocationInfo> {
                     height: 50,
                   ),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Expanded(
                         flex: 4,
@@ -692,6 +693,7 @@ class _LocationInfoState extends State<LocationInfo> {
                     height: 50,
                   ),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Expanded(
                         flex: 4,
@@ -778,6 +780,7 @@ class _LocationInfoState extends State<LocationInfo> {
                     height: 50,
                   ),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Expanded(
                         flex: 4,
@@ -870,6 +873,7 @@ class _LocationInfoState extends State<LocationInfo> {
                     height: 50,
                   ),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Expanded(
                         flex: 4,
@@ -963,6 +967,7 @@ class _LocationInfoState extends State<LocationInfo> {
                     height: 50,
                   ),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Expanded(
                         flex: 4,
@@ -1061,6 +1066,7 @@ class _LocationInfoState extends State<LocationInfo> {
                     height: 50,
                   ),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Expanded(
                         flex: 4,
@@ -1153,6 +1159,7 @@ class _LocationInfoState extends State<LocationInfo> {
                     height: 50,
                   ),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Expanded(
                         flex: 4,
@@ -1252,66 +1259,101 @@ class _LocationInfoState extends State<LocationInfo> {
                     width: 15,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      SizedBox(
-                        width: 350,
-                      ),
                       new FloatingActionButton.extended(
                         onPressed: () async {
-                          await assessmentProvider.setLocationData(
-                              documentId,
-                              _siteName.text,
-                              _occupierName.text,
-                              _occupierEmail.text,
-                              _headName.text,
-                              _headEmail.text,
-                              _safetyInchargeName.text,
-                              _safetyInchargeEmail.text,
-                              _fireInchargeName.text,
-                              _fireInchargeEmail.text,
-                              _officeSafetyInchargeName.text,
-                              _officeSafetyInchargeEmail.text,
-                              _utilitiesName.text,
-                              _utilitiesEmail.text,
-                              _rule.text,
-                              _lpg.text,
-                              _gasoline.text,
-                              _cng.text,
-                              _paintShop.text,
-                              _foundry.text,
-                              _press.text,
-                              _desiel.text,
-                              _thinner.text,
-                              _toxic.text,
-                              _heat.text,
-                              _testBed.text,
-                              _ibr.text,
-                              _fatal.text,
-                              _reportable.text,
-                              _nonReportable.text,
-                              _firstAid.text,
-                              _fire.text,
-                              _ruleValue,
-                              _lpgValue,
-                              _gasolineValue,
-                              _cngValue,
-                              _paintShopValue,
-                              _foundryValue,
-                              _pressValue,
-                              _desielValue,
-                              _thinnerValue,
-                              _toxicValue,
-                              _heatValue,
-                              _testBedValue,
-                              _ibrValue);
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) {
-                              return ChangeNotifierProvider.value(
-                                value: assessmentProvider,
-                                child: SiteAssessmentForm(),
-                              );
-                            },
-                          ));
+                          if (_siteName.text != '' &&
+                              _occupierEmail.text != '' &&
+                              _occupierName.text != '' &&
+                              _headEmail.text != '' &&
+                              _headName.text != '' &&
+                              _safetyInchargeEmail.text != '' &&
+                              _safetyInchargeName.text != '' &&
+                              _fireInchargeName.text != '' &&
+                              _fireInchargeEmail.text != '' &&
+                              _officeSafetyInchargeEmail.text != '' &&
+                              _officeSafetyInchargeName.text != '' &&
+                              _utilitiesEmail.text != '' &&
+                              _utilitiesName.text != '' &&
+                              _fatal.text != '' &&
+                              _reportable.text != '' &&
+                              _nonReportable.text != '' &&
+                              _firstAid.text != '' &&
+                              _fire.text != '') {
+                            await assessmentProvider.setLocationData(
+                                documentId,
+                                _siteName.text,
+                                _occupierName.text,
+                                _occupierEmail.text,
+                                _headName.text,
+                                _headEmail.text,
+                                _safetyInchargeName.text,
+                                _safetyInchargeEmail.text,
+                                _fireInchargeName.text,
+                                _fireInchargeEmail.text,
+                                _officeSafetyInchargeName.text,
+                                _officeSafetyInchargeEmail.text,
+                                _utilitiesName.text,
+                                _utilitiesEmail.text,
+                                _rule.text,
+                                _lpg.text,
+                                _gasoline.text,
+                                _cng.text,
+                                _paintShop.text,
+                                _foundry.text,
+                                _press.text,
+                                _desiel.text,
+                                _thinner.text,
+                                _toxic.text,
+                                _heat.text,
+                                _testBed.text,
+                                _ibr.text,
+                                _fatal.text,
+                                _reportable.text,
+                                _nonReportable.text,
+                                _firstAid.text,
+                                _fire.text,
+                                _ruleValue,
+                                _lpgValue,
+                                _gasolineValue,
+                                _cngValue,
+                                _paintShopValue,
+                                _foundryValue,
+                                _pressValue,
+                                _desielValue,
+                                _thinnerValue,
+                                _toxicValue,
+                                _heatValue,
+                                _testBedValue,
+                                _ibrValue);
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) {
+                                return ChangeNotifierProvider.value(
+                                  value: assessmentProvider,
+                                  child: SiteAssessmentForm(),
+                                );
+                              },
+                            ));
+                          } else {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: new Text('Form Incomplete'),
+                                    content: new Text(
+                                        'Please fill all fields in the form.'),
+                                    actions: <Widget>[
+                                      new FlatButton(
+                                        child: new Text('Close'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      )
+                                    ],
+                                  );
+                                });
+                          }
                         },
                         icon: Icon(
                           Icons.save,

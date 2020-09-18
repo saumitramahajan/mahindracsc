@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mahindraCSC/login/login.dart';
 import 'package:mahindraCSC/roles/admin/annualData/annualData.dart';
 import 'package:mahindraCSC/roles/admin/changePassword/changePassword.dart';
 import 'package:mahindraCSC/roles/admin/enrollLocation/enrollLoacation.dart';
@@ -191,12 +193,12 @@ class _AdminDashboardState extends State<AdminDashboard> {
                       ),
                       dense: false,
                       onTap: () {
+                        Navigator.of(context).pop();
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) {
                             return ChangePassword();
                           },
                         ));
-                        Navigator.of(context).pop();
                       },
                     ),
                     ListTile(
@@ -205,8 +207,11 @@ class _AdminDashboardState extends State<AdminDashboard> {
                         style: TextStyle(color: Colors.white),
                       ),
                       dense: false,
-                      onTap: () {
-                        Navigator.of(context).pop();
+                      onTap: () async {
+                        await FirebaseAuth.instance.signOut();
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => Login(),
+                        ));
                       },
                     )
                   ],

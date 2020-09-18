@@ -90,7 +90,6 @@ class AdminRepository {
       'typeOfLocation': 'mahindra',
       'category': document.data['category'],
       'nameOfSector': document.data['nameOfSector'],
-      'nameOfBusiness': document.data['nameOfBusiness'],
       'location': document.data['location'],
       'lastAssessmentStage': document.data['lastAssessmentStage'],
       'processLevel': document.data['processLevel'],
@@ -209,17 +208,15 @@ class AdminRepository {
             await getAssesseeName(locations.documents[i]['assessee']);
         location['assesseeId'] = locations.documents[i]['assessee'];
         location['location'] = locations.documents[i]['location'];
-        location['nameOfBusiness'] = locations.documents[i]['nameOfBusiness'];
+        location['nameOfSector'] = locations.documents[i]['nameOfSector'];
         location['plantHeadEmail'] = locations.documents[i]['plantHeadEmail'];
         location['plantHeadName'] = locations.documents[i]['plantHeadName'];
-        location['plantHeadPhoneNumber'] =
-            locations.documents[i]['plantHeadPhoneNumber'];
+
         location['sectorBusinessSafetySpocEmail'] =
             locations.documents[i]['sectorBusinessSafetySpocEmail'];
         location['sectorBusinessSafetySpocName'] =
             locations.documents[i]['sectorBusinessSafetySpocName'];
-        location['sectorBusinessSafetySpocPhoneNumber'] =
-            locations.documents[i]['sectorBusinessSafetySpocPhoneNumber'];
+
         location['category'] = locations.documents[i]['category'];
         location['lastAssessmentStage'] =
             locations.documents[i]['lastAssessmentStage'];

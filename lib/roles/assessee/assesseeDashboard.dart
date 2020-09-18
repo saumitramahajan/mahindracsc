@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessment.dart';
+import 'package:mahindraCSC/login/login.dart';
 import 'package:mahindraCSC/roles/assessee/assesseeProvider.dart';
 import 'package:mahindraCSC/roles/assessee/changePassword/changePassword.dart';
 import 'package:carousel_pro/carousel_pro.dart';
@@ -127,7 +128,12 @@ class _AssesseeDashboardState extends State<AssesseeDashboard> {
                     style: TextStyle(color: Colors.white),
                   )),
               FlatButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await FirebaseAuth.instance.signOut();
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => Login(),
+                    ));
+                  },
                   child: Text(
                     'Sign Out',
                     style: TextStyle(color: Colors.white),

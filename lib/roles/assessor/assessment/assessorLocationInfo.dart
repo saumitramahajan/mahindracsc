@@ -30,1016 +30,795 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                   )
                 : Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.7,
+                      width: MediaQuery.of(context).size.width * 0.95,
                       child: SingleChildScrollView(
                           child: Column(
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                              child: Padding(
+                            width: MediaQuery.of(context).size.width * 0.95,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 40, 10, 0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.all(10),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          'Name Of the Site',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        SizedBox(width: 20),
+                                        Text(
+                                          ((provider.infoMap['siteName'] == '')
+                                              ? ''
+                                              : provider.infoMap['siteName']
+                                                  .toString()),
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                    decoration: new BoxDecoration(
+                                      borderRadius:
+                                          new BorderRadius.circular(5.0),
+                                      color: Colors.red[700],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                              width: MediaQuery.of(context).size.width * 0.95,
+                              child: Card(
+                                  child: Padding(
                                 padding: const EdgeInsets.all(20.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                child: Row(
                                   children: [
-                                    RichText(
-                                        text: TextSpan(
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18),
-                                            children: <TextSpan>[
-                                          TextSpan(
-                                            text: 'Name of the Site:',
+                                    Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text('Occupier',
+                                                      style: TextStyle(
+                                                          color: Colors.grey)),
+                                                  SizedBox(height: 30),
+                                                  Text('Site Head',
+                                                      style: TextStyle(
+                                                          color: Colors.grey)),
+                                                  SizedBox(height: 30),
+                                                  Text('Safety Incharge',
+                                                      style: TextStyle(
+                                                          color: Colors.grey)),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                width: 40,
+                                              ),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    ((provider.infoMap[
+                                                                'occupierName'] ==
+                                                            '')
+                                                        ? ''
+                                                        : provider.infoMap[
+                                                            'occupierName']),
+                                                  ),
+                                                  Text(
+                                                    ((provider.infoMap[
+                                                                'occupierEmail'] ==
+                                                            '')
+                                                        ? ''
+                                                        : provider.infoMap[
+                                                            'occupierEmail']),
+                                                  ),
+                                                  SizedBox(height: 30),
+                                                  Text(
+                                                    ((provider.infoMap[
+                                                                'headName'] ==
+                                                            '')
+                                                        ? ''
+                                                        : provider.infoMap[
+                                                            'headName']),
+                                                  ),
+                                                  Text(
+                                                    ((provider.infoMap[
+                                                                'headEmail'] ==
+                                                            '')
+                                                        ? ''
+                                                        : provider.infoMap[
+                                                            'headEmail']),
+                                                  ),
+                                                  SizedBox(height: 30),
+                                                  Text(
+                                                    ((provider.infoMap[
+                                                                'safetyInchargeName'] ==
+                                                            '')
+                                                        ? ''
+                                                        : provider.infoMap[
+                                                            'safetyInchargeName']),
+                                                  ),
+                                                  Text(
+                                                    ((provider.infoMap[
+                                                                'safetyInchargeEmail'] ==
+                                                            '')
+                                                        ? ''
+                                                        : provider.infoMap[
+                                                            'safetyInchargeEmail']),
+                                                  )
+                                                ],
+                                              ),
+                                            ],
                                           ),
-                                          TextSpan(
-                                              text: ((provider.infoMap[
-                                                          'siteName'] ==
-                                                      '')
-                                                  ? 'Not Entered Yet'
-                                                  : provider
-                                                      .infoMap['siteName']),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold))
-                                        ]))
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                              child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      RichText(
-                                          text: TextSpan(
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 18),
+                                        ]),
+                                    SizedBox(width: 200),
+                                    Column(
+                                      children: [
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
-                                            TextSpan(
-                                                text: 'Name of the Occupier:'),
-                                            TextSpan(
-                                                text: ((provider.infoMap[
-                                                            'occupierName'] ==
-                                                        '')
-                                                    ? 'Not Entered Yet'
-                                                    : provider.infoMap[
-                                                        'occupierName']),
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold))
-                                          ])),
-                                      RichText(
-                                        text: TextSpan(
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18),
-                                            children: [
-                                              TextSpan(
-                                                  text:
-                                                      'Email of the Occupier:'),
-                                              TextSpan(
-                                                  text: ((provider.infoMap[
-                                                              'occupierEmail'] ==
+                                                Text('Fire Incharge',
+                                                    style: TextStyle(
+                                                        color: Colors.grey)),
+                                                SizedBox(height: 30),
+                                                Text('Office Safety Incharge',
+                                                    style: TextStyle(
+                                                        color: Colors.grey)),
+                                                SizedBox(height: 30),
+                                                Text('Utilities Incharge',
+                                                    style: TextStyle(
+                                                        color: Colors.grey)),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              width: 40,
+                                            ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  ((provider.infoMap[
+                                                              'fireInchargeName'] ==
                                                           '')
-                                                      ? 'Not Entered Yet'
+                                                      ? ''
                                                       : provider.infoMap[
-                                                          'occupierEmail']),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold))
-                                            ]),
-                                      ),
-                                    ]),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                              child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    RichText(
-                                        text: TextSpan(
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18),
-                                            children: [
-                                          TextSpan(
-                                              text: 'Name of the Site Head:'),
-                                          TextSpan(
-                                              text: ((provider.infoMap[
-                                                          'headName'] ==
-                                                      '')
-                                                  ? 'Not Entered Yet'
-                                                  : provider
-                                                      .infoMap['headName']),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold))
-                                        ])),
-                                    RichText(
-                                        text: TextSpan(
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18),
-                                            children: [
-                                          TextSpan(
-                                              text: 'Email of the Site Head:'),
-                                          TextSpan(
-                                              text: ((provider.infoMap[
-                                                          'headEmail'] ==
-                                                      '')
-                                                  ? 'Not Entered Yet'
-                                                  : provider
-                                                      .infoMap['headEmail']),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold))
-                                        ])),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                              child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    RichText(
-                                        text: TextSpan(
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18),
-                                            children: [
-                                          TextSpan(
-                                              text:
-                                                  'Name of the Safety Incharge:'),
-                                          TextSpan(
-                                              text: ((provider.infoMap[
-                                                          'safetyInchargeName'] ==
-                                                      '')
-                                                  ? 'Not Entered Yet'
-                                                  : provider.infoMap[
-                                                      'safetyInchargeName']),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold))
-                                        ])),
-                                    RichText(
-                                        text: TextSpan(
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18),
-                                            children: [
-                                          TextSpan(
-                                              text:
-                                                  'Email of the Safety Incharge:'),
-                                          TextSpan(
-                                              text: ((provider.infoMap[
-                                                          'safetyInchargeEmail'] ==
-                                                      '')
-                                                  ? 'Not Entered Yet'
-                                                  : provider.infoMap[
-                                                      'safetyInchargeEmail']),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold))
-                                        ])),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                              child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    RichText(
-                                        text: TextSpan(
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18),
-                                            children: [
-                                          TextSpan(
-                                              text:
-                                                  'Name of the Fire Incharge:'),
-                                          TextSpan(
-                                              text: ((provider.infoMap[
-                                                          'fireInchargeName'] ==
-                                                      '')
-                                                  ? 'Not Entered Yet'
-                                                  : provider.infoMap[
-                                                      'fireInchargeName']),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold))
-                                        ])),
-                                    RichText(
-                                        text: TextSpan(
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18),
-                                            children: [
-                                          TextSpan(
-                                              text:
-                                                  'Email of the Fire Incharge:'),
-                                          TextSpan(
-                                              text: ((provider.infoMap[
-                                                          'fireInchargeEmail'] ==
-                                                      '')
-                                                  ? 'Not Entered Yet'
-                                                  : provider.infoMap[
-                                                      'fireInchargeEmail']),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold))
-                                        ])),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                              child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    RichText(
-                                        text: TextSpan(
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18),
-                                            children: [
-                                          TextSpan(
-                                              text:
-                                                  'Name of the Office Safety Incharge:'),
-                                          TextSpan(
-                                              text: ((provider.infoMap[
-                                                          'officeSafetyInchargeName'] ==
-                                                      '')
-                                                  ? 'Not Entered Yet'
-                                                  : provider.infoMap[
-                                                      'officeSafetyInchargeName']),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold))
-                                        ])),
-                                    RichText(
-                                        text: TextSpan(
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18),
-                                            children: [
-                                          TextSpan(
-                                              text:
-                                                  'Email of the Office Safety Incharge:'),
-                                          TextSpan(
-                                              text: ((provider.infoMap[
-                                                          'officeSafetyInchargeEmail'] ==
-                                                      '')
-                                                  ? 'Not Entered Yet'
-                                                  : provider.infoMap[
-                                                      'officeSafetyInchargeEmail']),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold))
-                                        ])),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                              child: Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    RichText(
-                                        text: TextSpan(
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18),
-                                            children: [
-                                          TextSpan(
-                                              text:
-                                                  'Name of the Utilities Incharge:'),
-                                          TextSpan(
-                                              text: ((provider.infoMap[
-                                                          'utilitiesName'] ==
-                                                      '')
-                                                  ? 'Not Entered Yet'
-                                                  : provider.infoMap[
-                                                      'utilitiesName']),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold))
-                                        ])),
-                                    RichText(
-                                        text: TextSpan(
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18),
-                                            children: [
-                                          TextSpan(
-                                              text:
-                                                  'Email of the Utilities Incharge:'),
-                                          TextSpan(
-                                              text: ((provider.infoMap[
-                                                          'utilitiesEmail'] ==
-                                                      '')
-                                                  ? 'Not Entered Yet'
-                                                  : provider.infoMap[
-                                                      'utilitiesEmail']),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold))
-                                        ])),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                                child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  RichText(
-                                      text: TextSpan(
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18),
-                                          children: [
-                                        TextSpan(
-                                            text:
-                                                'Is your site covered under " The Manufacture, Storage, and Import of Hazardous Chemical Rules 1989":'),
-                                        TextSpan(
-                                            text:
-                                                (provider.infoMap['ruleValue'])
-                                                    ? 'Yes'
-                                                    : 'No',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                      ])),
-                                  provider.infoMap['ruleValue']
-                                      ? RichText(
-                                          text: TextSpan(
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 18),
-                                              children: [
-                                              TextSpan(
-                                                  text:
-                                                      'Mention the Reason For Applicability:'),
-                                              TextSpan(
-                                                  text: ((provider.infoMap[
-                                                              'rule'] ==
+                                                          'fireInchargeName']),
+                                                ),
+                                                Text(
+                                                  ((provider.infoMap[
+                                                              'fireInchargeEmail'] ==
                                                           '')
-                                                      ? 'Not Entered Yet'
-                                                      : provider.infoMap['rule']
-                                                          .toString()),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold))
-                                            ]))
-                                      : SizedBox(),
-                                ],
-                              ),
-                            )),
-                          ),
+                                                      ? ''
+                                                      : provider.infoMap[
+                                                          'fireInchargeEmail']),
+                                                ),
+                                                SizedBox(height: 30),
+                                                Text(
+                                                  ((provider.infoMap[
+                                                              'officeSafetyInchargeName'] ==
+                                                          '')
+                                                      ? ''
+                                                      : provider.infoMap[
+                                                          'officeSafetyInchargeName']),
+                                                ),
+                                                Text(
+                                                  ((provider.infoMap[
+                                                              'officeSafetyInchargeEmail'] ==
+                                                          '')
+                                                      ? ''
+                                                      : provider.infoMap[
+                                                          'officeSafetyInchargeEmail']),
+                                                ),
+                                                SizedBox(height: 30),
+                                                Text(
+                                                  ((provider.infoMap[
+                                                              'utilitiesName'] ==
+                                                          '')
+                                                      ? ''
+                                                      : provider.infoMap[
+                                                          'utilitiesName']),
+                                                ),
+                                                Text(
+                                                  ((provider.infoMap[
+                                                              'utilitiesEmail'] ==
+                                                          '')
+                                                      ? ''
+                                                      : provider.infoMap[
+                                                          'utilitiesEmail']),
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ))),
                           Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
+                              width: MediaQuery.of(context).size.width * 0.95,
+                              child: Card(
                                 child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  RichText(
-                                      text: TextSpan(
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18),
-                                          children: [
-                                        TextSpan(
-                                            text:
-                                                'Is your site has LPG / Propane:'),
-                                        TextSpan(
-                                            text: (provider.infoMap['lpgValue'])
+                                    padding: const EdgeInsets.all(20.0),
+                                    child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Does your site covered under " The Manufacture, Storage, and Import of Hazardous Chemical Rules 1989"?',
+                                            style:
+                                                TextStyle(color: Colors.grey),
+                                          ),
+                                          Text(
+                                            ((provider.infoMap['ruleValue'] ==
+                                                    true)
                                                 ? 'Yes'
-                                                : 'No',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                      ])),
-                                  provider.infoMap['lpgValue']
-                                      ? RichText(
-                                          text: TextSpan(
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 18),
-                                              children: [
-                                              TextSpan(
-                                                  text: 'Quantity in Tonnes:'),
-                                              TextSpan(
-                                                  text: ((provider
-                                                              .infoMap['lpg'] ==
-                                                          '')
-                                                      ? 'Not Entered Yet'
-                                                      : provider.infoMap['lpg']
-                                                          .toString()),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold))
-                                            ]))
-                                      : SizedBox(),
-                                ],
-                              ),
-                            )),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                                child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  RichText(
-                                      text: TextSpan(
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18),
-                                          children: [
-                                        TextSpan(
-                                            text: 'Is your site has Gasoline:'),
-                                        TextSpan(
-                                            text: ((provider
-                                                        .infoMap['gasoline'] ==
-                                                    '')
-                                                ? 'Not Entered Yet'
-                                                : provider.infoMap['gasoline']
-                                                    .toString()),
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                      ])),
-                                  provider.infoMap['gasolineValue']
-                                      ? RichText(
-                                          text: TextSpan(
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 18),
-                                              children: [
-                                              TextSpan(text: 'Quantity in kl:'),
-                                              TextSpan(
-                                                  text: ((provider.infoMap[
-                                                              'gasolineValue'] ==
-                                                          '')
-                                                      ? 'Not Entered Yet'
-                                                      : provider.infoMap[
-                                                              'gasolineValue']
-                                                          .toString()),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold))
-                                            ]))
-                                      : SizedBox(),
-                                ],
-                              ),
-                            )),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                                child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  RichText(
-                                      text: TextSpan(
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18),
-                                          children: [
-                                        TextSpan(
-                                            text:
-                                                'Is your site has CNG / PNG:'),
-                                        TextSpan(
-                                            text:
-                                                ((provider.infoMap['cng'] == '')
-                                                    ? 'Not Entered Yet'
-                                                    : provider.infoMap['cng']
-                                                        .toString()),
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                      ])),
-                                  provider.infoMap['cngValue']
-                                      ? RichText(
-                                          text: TextSpan(
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 18),
-                                              children: [
-                                              TextSpan(text: 'Quantity in kg:'),
-                                              TextSpan(
-                                                  text: ((provider.infoMap[
-                                                              'cngValue'] ==
-                                                          '')
-                                                      ? 'Not Entered Yet'
-                                                      : provider
-                                                          .infoMap['cngValue']
-                                                          .toString()),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold))
-                                            ]))
-                                      : SizedBox(),
-                                ],
-                              ),
-                            )),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                                child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  RichText(
-                                      text: TextSpan(
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18),
-                                          children: [
-                                        TextSpan(
-                                            text:
-                                                'Is your site has Paint Shop:'),
-                                        TextSpan(
-                                            text: ((provider
-                                                        .infoMap['paintShop'] ==
-                                                    '')
-                                                ? 'Not Entered Yet'
-                                                : provider.infoMap['paintShop']
-                                                    .toString()),
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                      ])),
-                                  provider.infoMap['paintShopValue']
-                                      ? RichText(
-                                          text: TextSpan(
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 18),
-                                              children: [
-                                              TextSpan(text: 'Capacity:'),
-                                              TextSpan(
-                                                  text: ((provider.infoMap[
-                                                              'paintShopValue'] ==
-                                                          '')
-                                                      ? 'Not Entered Yet'
-                                                      : provider.infoMap[
-                                                              'paintShopValue']
-                                                          .toString()),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold))
-                                            ]))
-                                      : SizedBox(),
-                                ],
-                              ),
-                            )),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                                child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  RichText(
-                                      text: TextSpan(
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18),
-                                          children: [
-                                        TextSpan(
-                                            text:
-                                                'Is your site has Melting / Foundry:'),
-                                        TextSpan(
-                                            text: ((provider
-                                                        .infoMap['foundry'] ==
-                                                    '')
-                                                ? 'Not Entered Yet'
-                                                : provider.infoMap['foundry']
-                                                    .toString()),
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                      ])),
-                                  provider.infoMap['foundryValue']
-                                      ? RichText(
-                                          text: TextSpan(
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 18),
-                                              children: [
-                                              TextSpan(text: 'Capacity:'),
-                                              TextSpan(
-                                                  text: ((provider.infoMap[
-                                                              'foundryValue'] ==
-                                                          '')
-                                                      ? 'Not Entered Yet'
-                                                      : provider.infoMap[
-                                                              'foundryValue']
-                                                          .toString()),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold))
-                                            ]))
-                                      : SizedBox(),
-                                ],
-                              ),
-                            )),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                                child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  RichText(
-                                      text: TextSpan(
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18),
-                                          children: [
-                                        TextSpan(
-                                            text:
-                                                'Is your site has Press machine:'),
-                                        TextSpan(
-                                            text: ((provider.infoMap['press'] ==
-                                                    '')
-                                                ? 'Not Entered Yet'
-                                                : provider.infoMap['press']
-                                                    .toString()),
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                      ])),
-                                  provider.infoMap['pressValue']
-                                      ? RichText(
-                                          text: TextSpan(
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 18),
-                                              children: [
-                                              TextSpan(text: 'Capacity:'),
-                                              TextSpan(
-                                                  text: ((provider.infoMap[
-                                                              'pressValue'] ==
-                                                          '')
-                                                      ? 'Not Entered Yet'
-                                                      : provider
-                                                          .infoMap['pressValue']
-                                                          .toString()),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold))
-                                            ]))
-                                      : SizedBox(),
-                                ],
-                              ),
-                            )),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                                child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  RichText(
-                                      text: TextSpan(
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18),
-                                          children: [
-                                        TextSpan(
-                                            text:
-                                                'Is your site has diesel storage:'),
-                                        TextSpan(
-                                            text:
-                                                ((provider.infoMap['diesel'] ==
-                                                        '')
-                                                    ? 'Not Entered Yet'
-                                                    : provider.infoMap['diesel']
-                                                        .toString()),
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                      ])),
-                                  provider.infoMap['dieselValue']
-                                      ? RichText(
-                                          text: TextSpan(
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 18),
-                                              children: [
-                                              TextSpan(text: 'Quantity in kl:'),
-                                              TextSpan(
-                                                  text: ((provider.infoMap[
-                                                              'dieselValue'] ==
-                                                          '')
-                                                      ? 'Not Entered Yet'
-                                                      : provider.infoMap[
-                                                              'dieselValue']
-                                                          .toString()),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold))
-                                            ]))
-                                      : SizedBox(),
-                                ],
-                              ),
-                            )),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                                child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  RichText(
-                                      text: TextSpan(
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18),
-                                          children: [
-                                        TextSpan(
-                                            text:
-                                                'Is your site has Thinner / other Class A Storage:'),
-                                        TextSpan(
-                                            text: ((provider
-                                                        .infoMap['thinner'] ==
-                                                    '')
-                                                ? 'Not Entered Yet'
-                                                : provider.infoMap['thinner']
-                                                    .toString()),
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                      ])),
-                                  provider.infoMap['thinnerValue']
-                                      ? RichText(
-                                          text: TextSpan(
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 18),
-                                              children: [
-                                              TextSpan(text: 'Quantity in kl:'),
-                                              TextSpan(
-                                                  text: ((provider.infoMap[
-                                                              'thinnerValue'] ==
-                                                          '')
-                                                      ? 'Not Entered Yet'
-                                                      : provider.infoMap[
-                                                              'thinnerValue']
-                                                          .toString()),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold))
-                                            ]))
-                                      : SizedBox(),
-                                ],
-                              ),
-                            )),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                                child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  RichText(
-                                      text: TextSpan(
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18),
-                                          children: [
-                                        TextSpan(
-                                            text:
-                                                'Is your site has Toxic Chemicals:'),
-                                        TextSpan(
-                                            text: ((provider.infoMap['toxic'] ==
-                                                    '')
-                                                ? 'Not Entered Yet'
-                                                : provider.infoMap['toxic']
-                                                    .toString()),
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                      ])),
-                                  provider.infoMap['toxicValue']
-                                      ? RichText(
-                                          text: TextSpan(
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 18),
-                                              children: [
-                                              TextSpan(
-                                                  text: 'Quantity and Name:'),
-                                              TextSpan(
-                                                  text: ((provider.infoMap[
-                                                              'toxicValue'] ==
-                                                          '')
-                                                      ? 'Not Entered Yet'
-                                                      : provider
-                                                          .infoMap['toxicValue']
-                                                          .toString()),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold))
-                                            ]))
-                                      : SizedBox(),
-                                ],
-                              ),
-                            )),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                                child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  RichText(
-                                      text: TextSpan(
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18),
-                                          children: [
-                                        TextSpan(
-                                            text:
-                                                'Is your site has Heat treatment:'),
-                                        TextSpan(
-                                            text: ((provider.infoMap['heat'] ==
-                                                    '')
-                                                ? 'Not Entered Yet'
-                                                : provider.infoMap['heat']
-                                                    .toString()),
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                      ])),
-                                  provider.infoMap['heatValue']
-                                      ? RichText(
-                                          text: TextSpan(
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 18),
-                                              children: [
-                                              TextSpan(text: 'Capacity:'),
-                                              TextSpan(
-                                                  text: ((provider.infoMap[
-                                                              'heatValue'] ==
-                                                          '')
-                                                      ? 'Not Entered Yet'
-                                                      : provider
-                                                          .infoMap['heatValue']
-                                                          .toString()),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold))
-                                            ]))
-                                      : SizedBox(),
-                                ],
-                              ),
-                            )),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                                child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  RichText(
-                                      text: TextSpan(
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18),
-                                          children: [
-                                        TextSpan(
-                                            text: 'Is your site has Test Bed:'),
-                                        TextSpan(
-                                            text: (provider
-                                                    .infoMap['testBedValue'])
+                                                : 'No'),
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          (provider.infoMap['ruleValue'])
+                                              ? SizedBox(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'Mention the Reason For Applicability:',
+                                                        style: TextStyle(
+                                                            color: Colors.grey),
+                                                      ),
+                                                      Text(
+                                                        ((provider.infoMap[
+                                                                    'rule'] ==
+                                                                '')
+                                                            ? ''
+                                                            : provider
+                                                                .infoMap['rule']
+                                                                .toString()),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              : SizedBox(),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          Text(
+                                            'Does your site has LPG/Propane?',
+                                            style:
+                                                TextStyle(color: Colors.grey),
+                                          ),
+                                          Text(
+                                            ((provider.infoMap['lpgValue'] ==
+                                                    true)
                                                 ? 'Yes'
-                                                : 'No',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                      ])),
-                                  provider.infoMap['testBedValue']
-                                      ? RichText(
-                                          text: TextSpan(
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 18),
-                                              children: [
-                                              TextSpan(text: 'Nos:'),
-                                              TextSpan(
-                                                  text: ((provider.infoMap[
-                                                              'testBed'] ==
-                                                          '')
-                                                      ? 'Not Entered Yet'
-                                                      : provider
-                                                          .infoMap['testBed']
-                                                          .toString()),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold))
-                                            ]))
-                                      : SizedBox(),
-                                ],
-                              ),
-                            )),
-                          ),
+                                                : 'No'),
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          (provider.infoMap['lpgValue'])
+                                              ? SizedBox(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'Quantitiy in Tonnes:',
+                                                        style: TextStyle(
+                                                            color: Colors.grey),
+                                                      ),
+                                                      Text(
+                                                        ((provider.infoMap[
+                                                                    'lpg'] ==
+                                                                '')
+                                                            ? ''
+                                                            : provider
+                                                                .infoMap['lpg']
+                                                                .toString()),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              : SizedBox(),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          Text(
+                                            'Does your site has Gasoline?',
+                                            style:
+                                                TextStyle(color: Colors.grey),
+                                          ),
+                                          Text(
+                                            ((provider.infoMap[
+                                                        'gasolineValue'] ==
+                                                    true)
+                                                ? 'Yes'
+                                                : 'No'),
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          (provider.infoMap['gasolineValue'])
+                                              ? SizedBox(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'Quantitiy in kl:',
+                                                        style: TextStyle(
+                                                            color: Colors.grey),
+                                                      ),
+                                                      Text(
+                                                        ((provider.infoMap[
+                                                                    'gasoline'] ==
+                                                                '')
+                                                            ? ''
+                                                            : provider.infoMap[
+                                                                    'gasoline']
+                                                                .toString()),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              : SizedBox(),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          Text(
+                                            'Does your site has CNG/PNG?',
+                                            style:
+                                                TextStyle(color: Colors.grey),
+                                          ),
+                                          Text(
+                                            ((provider.infoMap['cngValue'] ==
+                                                    true)
+                                                ? 'Yes'
+                                                : 'No'),
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          (provider.infoMap['cngValue'])
+                                              ? SizedBox(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'Quantitiy in kg:',
+                                                        style: TextStyle(
+                                                            color: Colors.grey),
+                                                      ),
+                                                      Text(
+                                                        ((provider.infoMap[
+                                                                    'cng'] ==
+                                                                '')
+                                                            ? ''
+                                                            : provider
+                                                                .infoMap['cng']
+                                                                .toString()),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              : SizedBox(),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          Text(
+                                            'Does your site has Paint Shop?',
+                                            style:
+                                                TextStyle(color: Colors.grey),
+                                          ),
+                                          Text(
+                                            ((provider.infoMap[
+                                                        'paintShopValue'] ==
+                                                    true)
+                                                ? 'Yes'
+                                                : 'No'),
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          (provider.infoMap['paintShopValue'])
+                                              ? SizedBox(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'Capacity:',
+                                                        style: TextStyle(
+                                                            color: Colors.grey),
+                                                      ),
+                                                      Text(
+                                                        ((provider.infoMap[
+                                                                    'paintShop'] ==
+                                                                '')
+                                                            ? ''
+                                                            : provider.infoMap[
+                                                                    'paintShop']
+                                                                .toString()),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              : SizedBox(),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          Text(
+                                            'Does your site has Melting/Foundry?',
+                                            style:
+                                                TextStyle(color: Colors.grey),
+                                          ),
+                                          Text(
+                                            ((provider.infoMap[
+                                                        'foundryValue'] ==
+                                                    true)
+                                                ? 'Yes'
+                                                : 'No'),
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          (provider.infoMap['foundryValue'])
+                                              ? SizedBox(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'Capacity:',
+                                                        style: TextStyle(
+                                                            color: Colors.grey),
+                                                      ),
+                                                      Text(
+                                                        ((provider.infoMap[
+                                                                    'foundry'] ==
+                                                                '')
+                                                            ? ''
+                                                            : provider.infoMap[
+                                                                    'foundry']
+                                                                .toString()),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              : SizedBox(),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          Text(
+                                            'Does your site has Press Machine?',
+                                            style:
+                                                TextStyle(color: Colors.grey),
+                                          ),
+                                          Text(
+                                            ((provider.infoMap['pressValue'] ==
+                                                    true)
+                                                ? 'Yes'
+                                                : 'No'),
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          (provider.infoMap['pressValue'])
+                                              ? SizedBox(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'Capacity:',
+                                                        style: TextStyle(
+                                                            color: Colors.grey),
+                                                      ),
+                                                      Text(
+                                                        ((provider.infoMap[
+                                                                    'press'] ==
+                                                                '')
+                                                            ? ''
+                                                            : provider.infoMap[
+                                                                    'press']
+                                                                .toString()),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              : SizedBox(),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          Text(
+                                            'Does your site has diesel Storage?',
+                                            style:
+                                                TextStyle(color: Colors.grey),
+                                          ),
+                                          Text(
+                                            ((provider.infoMap['dieselValue'] ==
+                                                    true)
+                                                ? 'Yes'
+                                                : 'No'),
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          (provider.infoMap['dieselValue'])
+                                              ? SizedBox(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'Quantitiy in kl:',
+                                                        style: TextStyle(
+                                                            color: Colors.grey),
+                                                      ),
+                                                      Text(
+                                                        ((provider.infoMap[
+                                                                    'diesel'] ==
+                                                                '')
+                                                            ? ''
+                                                            : provider.infoMap[
+                                                                    'diesel']
+                                                                .toString()),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              : SizedBox(),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          Text(
+                                            'Does your site has thinner/Other Class A storage?',
+                                            style:
+                                                TextStyle(color: Colors.grey),
+                                          ),
+                                          Text(
+                                            ((provider.infoMap[
+                                                        'thinnerValue'] ==
+                                                    true)
+                                                ? 'Yes'
+                                                : 'No'),
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          (provider.infoMap['thinnerValue'])
+                                              ? SizedBox(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'Quantitiy in kl:',
+                                                        style: TextStyle(
+                                                            color: Colors.grey),
+                                                      ),
+                                                      Text(
+                                                        ((provider.infoMap[
+                                                                    'thinner'] ==
+                                                                '')
+                                                            ? ''
+                                                            : provider.infoMap[
+                                                                    'thinner']
+                                                                .toString()),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              : SizedBox(),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          Text(
+                                            'Does your site has Toxic Chemicals?',
+                                            style:
+                                                TextStyle(color: Colors.grey),
+                                          ),
+                                          Text(
+                                            ((provider.infoMap['toxicValue'] ==
+                                                    true)
+                                                ? 'Yes'
+                                                : 'No'),
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          (provider.infoMap['toxicValue'])
+                                              ? SizedBox(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'Quantitiy and Name:',
+                                                        style: TextStyle(
+                                                            color: Colors.grey),
+                                                      ),
+                                                      Text(
+                                                        ((provider.infoMap[
+                                                                    'toxic'] ==
+                                                                '')
+                                                            ? ''
+                                                            : provider.infoMap[
+                                                                    'toxic']
+                                                                .toString()),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              : SizedBox(),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          Text(
+                                            'Does your site has Heat Treatment?',
+                                            style:
+                                                TextStyle(color: Colors.grey),
+                                          ),
+                                          Text(
+                                            ((provider.infoMap['heatValue'] ==
+                                                    true)
+                                                ? 'Yes'
+                                                : 'No'),
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          (provider.infoMap['heatValue'])
+                                              ? SizedBox(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'Quantitiy and Name:',
+                                                        style: TextStyle(
+                                                            color: Colors.grey),
+                                                      ),
+                                                      Text(
+                                                        ((provider.infoMap[
+                                                                    'heat'] ==
+                                                                '')
+                                                            ? ''
+                                                            : provider
+                                                                .infoMap['heat']
+                                                                .toString()),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              : SizedBox(),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          Text(
+                                            'Does your site has Test Bed?',
+                                            style:
+                                                TextStyle(color: Colors.grey),
+                                          ),
+                                          Text(
+                                            ((provider.infoMap[
+                                                        'testBedValue'] ==
+                                                    true)
+                                                ? 'Yes'
+                                                : 'No'),
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          (provider.infoMap['testBedValue'])
+                                              ? SizedBox(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'Nos:',
+                                                        style: TextStyle(
+                                                            color: Colors.grey),
+                                                      ),
+                                                      Text(
+                                                        ((provider.infoMap[
+                                                                    'testBed'] ==
+                                                                '')
+                                                            ? ''
+                                                            : provider.infoMap[
+                                                                    'testBed']
+                                                                .toString()),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              : SizedBox(),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          Text(
+                                            'Does your site has Boiler?Does it covered under IBR(Indian Boiler Regulation)?',
+                                            style:
+                                                TextStyle(color: Colors.grey),
+                                          ),
+                                          Text(
+                                            ((provider.infoMap['ibrValue'] ==
+                                                    true)
+                                                ? 'Yes'
+                                                : 'No'),
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          (provider.infoMap['ibrValue'])
+                                              ? SizedBox(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'Number and their capacity:',
+                                                        style: TextStyle(
+                                                            color: Colors.grey),
+                                                      ),
+                                                      Text(
+                                                        ((provider.infoMap[
+                                                                    'ibr'] ==
+                                                                '')
+                                                            ? ''
+                                                            : provider
+                                                                .infoMap['ibr']
+                                                                .toString()),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              : SizedBox(),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                        ])),
+                              )),
                           Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Card(
-                                child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  RichText(
-                                      text: TextSpan(
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18),
-                                          children: [
-                                        TextSpan(
-                                            text:
-                                                'Is your site has Boiler - is it covered under IBR ( Indian Boiler Regulation):'),
-                                        TextSpan(
-                                            text:
-                                                ((provider.infoMap['ibr'] == '')
-                                                    ? 'Not Entered Yet'
-                                                    : provider.infoMap['ibr']
-                                                        .toString()),
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold))
-                                      ])),
-                                  provider.infoMap['ibrValue']
-                                      ? RichText(
-                                          text: TextSpan(
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 18),
-                                              children: [
-                                              TextSpan(
-                                                  text:
-                                                      'Number and their Capacity:'),
-                                              TextSpan(
-                                                  text: ((provider.infoMap[
-                                                              'ibrValue'] ==
-                                                          '')
-                                                      ? 'Not Entered Yet'
-                                                      : provider
-                                                          .infoMap['ibrValue']
-                                                          .toString()),
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold))
-                                            ]))
-                                      : SizedBox(),
-                                ],
-                              ),
-                            )),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
+                            width: MediaQuery.of(context).size.width * 0.95,
                             child: Card(
                               child: Padding(
                                 padding: const EdgeInsets.all(20.0),
@@ -1051,110 +830,79 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                           fontSize: 20.0,
                                         )),
                                     SizedBox(height: 20),
-                                    RichText(
-                                        text: TextSpan(
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18),
-                                            children: [
-                                          TextSpan(text: 'Fatal(Nos):'),
-                                          TextSpan(
-                                              text: ((provider
-                                                          .infoMap['fatal'] ==
-                                                      '')
-                                                  ? 'Not Entered Yet'
+                                    Row(
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text('Fatal(Nos):',
+                                                style: TextStyle(
+                                                    color: Colors.grey)),
+                                            Text('Reportable(Nos):',
+                                                style: TextStyle(
+                                                    color: Colors.grey)),
+                                            Text('Non-Reportable(Nos):',
+                                                style: TextStyle(
+                                                    color: Colors.grey)),
+                                            Text('First Aid Cases(Nos):',
+                                                style: TextStyle(
+                                                    color: Colors.grey)),
+                                            Text('Fire Incident(Nos):',
+                                                style: TextStyle(
+                                                    color: Colors.grey)),
+                                          ],
+                                        ),
+                                        SizedBox(width: 10),
+                                        Column(
+                                          children: [
+                                            Text(
+                                              ((provider.infoMap['fatal'] == '')
+                                                  ? ''
                                                   : provider.infoMap['fatal']
                                                       .toString()),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold))
-                                        ])),
-                                    RichText(
-                                        text: TextSpan(
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18),
-                                            children: [
-                                          TextSpan(text: 'Reportable(Nos):'),
-                                          TextSpan(
-                                              text: ((provider.infoMap[
+                                            ),
+                                            Text(
+                                              ((provider.infoMap[
                                                           'reportable'] ==
                                                       '')
-                                                  ? 'Not Entered Yet'
+                                                  ? ''
                                                   : provider
                                                       .infoMap['reportable']
                                                       .toString()),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold))
-                                        ])),
-                                    RichText(
-                                        text: TextSpan(
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18),
-                                            children: [
-                                          TextSpan(
-                                              text: 'Non-Reportable(Nos):'),
-                                          TextSpan(
-                                              text: ((provider.infoMap[
+                                            ),
+                                            Text(
+                                              ((provider.infoMap[
                                                           'nonReportable'] ==
                                                       '')
-                                                  ? 'Not Entered Yet'
+                                                  ? ''
                                                   : provider
                                                       .infoMap['nonReportable']
                                                       .toString()),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold))
-                                        ])),
-                                    RichText(
-                                        text: TextSpan(
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18),
-                                            children: [
-                                          TextSpan(
-                                              text: 'First Aid Cases(Nos):'),
-                                          TextSpan(
-                                              text: ((provider.infoMap[
-                                                          'firstAid'] ==
+                                            ),
+                                            Text(
+                                              ((provider.infoMap['firstAid'] ==
                                                       '')
-                                                  ? 'Not Entered Yet'
+                                                  ? ''
                                                   : provider.infoMap['firstAid']
                                                       .toString()),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold))
-                                        ])),
-                                    RichText(
-                                        text: TextSpan(
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18),
-                                            children: [
-                                          TextSpan(
-                                              text: 'Fire Incidents(Nos):'),
-                                          TextSpan(
-                                              text:
-                                                  ((provider.infoMap['fire'] ==
-                                                          '')
-                                                      ? 'Not Entered Yet'
-                                                      : provider.infoMap['fire']
-                                                          .toString()),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold))
-                                        ])),
+                                            ),
+                                            Text(
+                                              ((provider.infoMap['fire'] == '')
+                                                  ? ''
+                                                  : provider.infoMap['fire']
+                                                      .toString()),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ],
                                 ),
                               ),
                             ),
                           ),
-                          RaisedButton(
-                              child: Text('Next'),
-                              onPressed: () {
-                                Navigator.of(context)
-                                    .pushReplacement(MaterialPageRoute(
-                                  builder: (context) => SiteAssessment(
-                                      'site', provider.locationId),
-                                ));
-                              })
+                          RaisedButton(child: Text('Next'), onPressed: () {})
                         ],
                       )),
                     ),
