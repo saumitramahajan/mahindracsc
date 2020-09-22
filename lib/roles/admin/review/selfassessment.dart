@@ -37,6 +37,9 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                         Container(
                           padding: EdgeInsets.all(10),
                           child: Row(children: [
+                            SizedBox(
+                              width: 150,
+                            ),
                             (provider.assessmentType == 'self')
                                 ? Text(
                                     "Self Assessment",

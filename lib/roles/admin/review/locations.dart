@@ -28,9 +28,15 @@ class _LocationsState extends State<Locations> {
                     ? CircularProgressIndicator()
                     : Container(
                         child: Column(children: [
+                          SizedBox(
+                            height: 20,
+                          ),
                           Text(
                             'Locations:',
                             style: TextStyle(fontSize: 25),
+                          ),
+                          SizedBox(
+                            height: 20,
                           ),
                           Expanded(
                             child: ListView.builder(

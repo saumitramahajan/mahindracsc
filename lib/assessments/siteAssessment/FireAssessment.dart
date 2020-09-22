@@ -38,6 +38,10 @@ class _FireAssessmentState extends State<FireAssessment> {
                       width: MediaQuery.of(context).size.width * 0.7,
                       child: Column(
                         children: [
+                          Text(
+                            'Fire Safety Assessment',
+                            style: TextStyle(fontSize: 25),
+                          ),
                           Expanded(
                             child: ListView.builder(
                               itemCount:

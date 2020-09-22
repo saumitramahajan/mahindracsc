@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:mahindraCSC/roles/assessee/annualData/assesseeDashboard.dart';
+import 'package:mahindraCSC/roles/assessee/assesseeDashboard.dart';
 
 import '../../../utilities.dart';
 
@@ -429,6 +429,7 @@ class _AnnualySafetyReport extends State<AnnualySafetyReport> {
                                 textAlign: TextAlign.left,
                               ),
                               TextField(
+                                enabled: false,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(
                                     borderRadius: new BorderRadius.all(

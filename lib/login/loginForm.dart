@@ -17,7 +17,7 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  String _email, _password;
+  String _email = '', _password = '';
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   @override
@@ -96,8 +96,10 @@ class _LoginFormState extends State<LoginForm> {
                           RaisedButton(
                               child: Text('Login'),
                               onPressed: () async {
-                                _email = 'themahindrasafetyway@mahindra.com';
-                                _password = 'mahindra';
+                                /* if (_email == '' && _password == '') {
+                                  _email = 'themahindrasafetyway@mahindra.com';
+                                  _password = 'mahindra';
+                                }*/
                                 await loginProvider.loginProvider(
                                     _email, _password);
                                 if (loginProvider.userExists) {

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:mahindraCSC/login/login.dart';
 import 'package:mahindraCSC/roles/assessor/assessorDashboard.dart';
+import 'package:mahindraCSC/utilities.dart';
 
 Future<void> main() async {
   runApp(MyApp());
@@ -10,6 +11,7 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  Utilities utilities = Utilities();
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -27,7 +29,8 @@ class MyApp extends StatelessWidget {
           // or simply save your changes to "hot reload" in a Flutter IDE).
           // Notice that the counter didn't reset back to zero; the application
           // is not restarted.
-          primarySwatch: Colors.blue,
+          primarySwatch: utilities.mainColor,
+          fontFamily: 'Lato',
           // This makes the visual density adapt to the platform that you run
           // the app on. For desktop platforms, the controls will be smaller and
           // closer together (more dense) than on mobile platforms.

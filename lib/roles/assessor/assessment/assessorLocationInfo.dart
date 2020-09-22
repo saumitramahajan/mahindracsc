@@ -1,4 +1,5 @@
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessment.dart';
+import 'package:mahindraCSC/roles/admin/review/assessmentProvider.dart';
 import 'package:mahindraCSC/utilities.dart';
 
 import 'assessorLocationInfoprovider.dart';
@@ -41,31 +42,40 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Container(
-                                    padding: EdgeInsets.all(10),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          'Name Of the Site',
-                                          style: TextStyle(color: Colors.white),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.all(20),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              'Name Of the Site:',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 15),
+                                            ),
+                                            SizedBox(width: 10),
+                                            Text(
+                                              ((provider.infoMap['siteName'] ==
+                                                      '')
+                                                  ? ''
+                                                  : provider.infoMap['siteName']
+                                                      .toString()),
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.white),
+                                            ),
+                                          ],
                                         ),
-                                        SizedBox(width: 20),
-                                        Text(
-                                          ((provider.infoMap['siteName'] == '')
-                                              ? ''
-                                              : provider.infoMap['siteName']
-                                                  .toString()),
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.white),
+                                        decoration: new BoxDecoration(
+                                          borderRadius: new BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              topRight: Radius.circular(20)),
+                                          color: Colors.red[700],
                                         ),
-                                      ],
-                                    ),
-                                    decoration: new BoxDecoration(
-                                      borderRadius:
-                                          new BorderRadius.circular(5.0),
-                                      color: Colors.red[700],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
@@ -90,15 +100,15 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Text('Occupier',
+                                                  Text('Occupier:',
                                                       style: TextStyle(
                                                           color: Colors.grey)),
-                                                  SizedBox(height: 30),
-                                                  Text('Site Head',
+                                                  SizedBox(height: 40),
+                                                  Text('Site Head:',
                                                       style: TextStyle(
                                                           color: Colors.grey)),
-                                                  SizedBox(height: 30),
-                                                  Text('Safety Incharge',
+                                                  SizedBox(height: 40),
+                                                  Text('Safety Incharge:',
                                                       style: TextStyle(
                                                           color: Colors.grey)),
                                                 ],
@@ -110,56 +120,85 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Text(
-                                                    ((provider.infoMap[
-                                                                'occupierName'] ==
-                                                            '')
-                                                        ? ''
-                                                        : provider.infoMap[
-                                                            'occupierName']),
+                                                  SizedBox(
+                                                      child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                        Text(
+                                                          ((provider.infoMap[
+                                                                      'occupierName'] ==
+                                                                  '')
+                                                              ? ''
+                                                              : provider
+                                                                      .infoMap[
+                                                                  'occupierName']),
+                                                        ),
+                                                        Text(
+                                                          ((provider.infoMap[
+                                                                      'occupierEmail'] ==
+                                                                  '')
+                                                              ? ''
+                                                              : provider
+                                                                      .infoMap[
+                                                                  'occupierEmail']),
+                                                        ),
+                                                      ])),
+                                                  SizedBox(height: 20),
+                                                  SizedBox(
+                                                      child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                        Text(
+                                                          ((provider.infoMap[
+                                                                      'headName'] ==
+                                                                  '')
+                                                              ? ''
+                                                              : provider
+                                                                      .infoMap[
+                                                                  'headName']),
+                                                        ),
+                                                        Text(
+                                                          ((provider.infoMap[
+                                                                      'headEmail'] ==
+                                                                  '')
+                                                              ? ''
+                                                              : provider
+                                                                      .infoMap[
+                                                                  'headEmail']),
+                                                        ),
+                                                      ])),
+                                                  SizedBox(height: 20),
+                                                  SizedBox(
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          ((provider.infoMap[
+                                                                      'safetyInchargeName'] ==
+                                                                  '')
+                                                              ? ''
+                                                              : provider
+                                                                      .infoMap[
+                                                                  'safetyInchargeName']),
+                                                        ),
+                                                        Text(
+                                                          ((provider.infoMap[
+                                                                      'safetyInchargeEmail'] ==
+                                                                  '')
+                                                              ? ''
+                                                              : provider
+                                                                      .infoMap[
+                                                                  'safetyInchargeEmail']),
+                                                        )
+                                                      ],
+                                                    ),
                                                   ),
-                                                  Text(
-                                                    ((provider.infoMap[
-                                                                'occupierEmail'] ==
-                                                            '')
-                                                        ? ''
-                                                        : provider.infoMap[
-                                                            'occupierEmail']),
-                                                  ),
-                                                  SizedBox(height: 30),
-                                                  Text(
-                                                    ((provider.infoMap[
-                                                                'headName'] ==
-                                                            '')
-                                                        ? ''
-                                                        : provider.infoMap[
-                                                            'headName']),
-                                                  ),
-                                                  Text(
-                                                    ((provider.infoMap[
-                                                                'headEmail'] ==
-                                                            '')
-                                                        ? ''
-                                                        : provider.infoMap[
-                                                            'headEmail']),
-                                                  ),
-                                                  SizedBox(height: 30),
-                                                  Text(
-                                                    ((provider.infoMap[
-                                                                'safetyInchargeName'] ==
-                                                            '')
-                                                        ? ''
-                                                        : provider.infoMap[
-                                                            'safetyInchargeName']),
-                                                  ),
-                                                  Text(
-                                                    ((provider.infoMap[
-                                                                'safetyInchargeEmail'] ==
-                                                            '')
-                                                        ? ''
-                                                        : provider.infoMap[
-                                                            'safetyInchargeEmail']),
-                                                  )
                                                 ],
                                               ),
                                             ],
@@ -176,15 +215,15 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text('Fire Incharge',
+                                                Text('Fire Incharge:',
                                                     style: TextStyle(
                                                         color: Colors.grey)),
-                                                SizedBox(height: 30),
-                                                Text('Office Safety Incharge',
+                                                SizedBox(height: 40),
+                                                Text('Office Safety Incharge:',
                                                     style: TextStyle(
                                                         color: Colors.grey)),
-                                                SizedBox(height: 30),
-                                                Text('Utilities Incharge',
+                                                SizedBox(height: 40),
+                                                Text('Utilities Incharge:',
                                                     style: TextStyle(
                                                         color: Colors.grey)),
                                               ],
@@ -196,56 +235,74 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
-                                                  ((provider.infoMap[
-                                                              'fireInchargeName'] ==
-                                                          '')
-                                                      ? ''
-                                                      : provider.infoMap[
-                                                          'fireInchargeName']),
+                                                SizedBox(
+                                                  child: Column(
+                                                    children: [
+                                                      Text(
+                                                        ((provider.infoMap[
+                                                                    'fireInchargeName'] ==
+                                                                '')
+                                                            ? ''
+                                                            : provider.infoMap[
+                                                                'fireInchargeName']),
+                                                      ),
+                                                      Text(
+                                                        ((provider.infoMap[
+                                                                    'fireInchargeEmail'] ==
+                                                                '')
+                                                            ? ''
+                                                            : provider.infoMap[
+                                                                'fireInchargeEmail']),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                                Text(
-                                                  ((provider.infoMap[
-                                                              'fireInchargeEmail'] ==
-                                                          '')
-                                                      ? ''
-                                                      : provider.infoMap[
-                                                          'fireInchargeEmail']),
+                                                SizedBox(height: 20),
+                                                SizedBox(
+                                                  child: Column(
+                                                    children: [
+                                                      Text(
+                                                        ((provider.infoMap[
+                                                                    'officeSafetyInchargeName'] ==
+                                                                '')
+                                                            ? ''
+                                                            : provider.infoMap[
+                                                                'officeSafetyInchargeName']),
+                                                      ),
+                                                      Text(
+                                                        ((provider.infoMap[
+                                                                    'officeSafetyInchargeEmail'] ==
+                                                                '')
+                                                            ? ''
+                                                            : provider.infoMap[
+                                                                'officeSafetyInchargeEmail']),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                                SizedBox(height: 30),
-                                                Text(
-                                                  ((provider.infoMap[
-                                                              'officeSafetyInchargeName'] ==
-                                                          '')
-                                                      ? ''
-                                                      : provider.infoMap[
-                                                          'officeSafetyInchargeName']),
+                                                SizedBox(height: 20),
+                                                SizedBox(
+                                                  child: Column(
+                                                    children: [
+                                                      Text(
+                                                        ((provider.infoMap[
+                                                                    'utilitiesName'] ==
+                                                                '')
+                                                            ? ''
+                                                            : provider.infoMap[
+                                                                'utilitiesName']),
+                                                      ),
+                                                      Text(
+                                                        ((provider.infoMap[
+                                                                    'utilitiesEmail'] ==
+                                                                '')
+                                                            ? ''
+                                                            : provider.infoMap[
+                                                                'utilitiesEmail']),
+                                                      )
+                                                    ],
+                                                  ),
                                                 ),
-                                                Text(
-                                                  ((provider.infoMap[
-                                                              'officeSafetyInchargeEmail'] ==
-                                                          '')
-                                                      ? ''
-                                                      : provider.infoMap[
-                                                          'officeSafetyInchargeEmail']),
-                                                ),
-                                                SizedBox(height: 30),
-                                                Text(
-                                                  ((provider.infoMap[
-                                                              'utilitiesName'] ==
-                                                          '')
-                                                      ? ''
-                                                      : provider.infoMap[
-                                                          'utilitiesName']),
-                                                ),
-                                                Text(
-                                                  ((provider.infoMap[
-                                                              'utilitiesEmail'] ==
-                                                          '')
-                                                      ? ''
-                                                      : provider.infoMap[
-                                                          'utilitiesEmail']),
-                                                )
                                               ],
                                             ),
                                           ],
@@ -276,7 +333,7 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                                 : 'No'),
                                           ),
                                           SizedBox(
-                                            height: 20,
+                                            height: 5,
                                           ),
                                           (provider.infoMap['ruleValue'])
                                               ? SizedBox(
@@ -318,7 +375,7 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                                 : 'No'),
                                           ),
                                           SizedBox(
-                                            height: 20,
+                                            height: 5,
                                           ),
                                           (provider.infoMap['lpgValue'])
                                               ? SizedBox(
@@ -361,7 +418,7 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                                 : 'No'),
                                           ),
                                           SizedBox(
-                                            height: 20,
+                                            height: 5,
                                           ),
                                           (provider.infoMap['gasolineValue'])
                                               ? SizedBox(
@@ -403,7 +460,7 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                                 : 'No'),
                                           ),
                                           SizedBox(
-                                            height: 20,
+                                            height: 5,
                                           ),
                                           (provider.infoMap['cngValue'])
                                               ? SizedBox(
@@ -446,7 +503,7 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                                 : 'No'),
                                           ),
                                           SizedBox(
-                                            height: 20,
+                                            height: 5,
                                           ),
                                           (provider.infoMap['paintShopValue'])
                                               ? SizedBox(
@@ -489,7 +546,7 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                                 : 'No'),
                                           ),
                                           SizedBox(
-                                            height: 20,
+                                            height: 5,
                                           ),
                                           (provider.infoMap['foundryValue'])
                                               ? SizedBox(
@@ -531,7 +588,7 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                                 : 'No'),
                                           ),
                                           SizedBox(
-                                            height: 20,
+                                            height: 5,
                                           ),
                                           (provider.infoMap['pressValue'])
                                               ? SizedBox(
@@ -573,7 +630,7 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                                 : 'No'),
                                           ),
                                           SizedBox(
-                                            height: 20,
+                                            height: 5,
                                           ),
                                           (provider.infoMap['dieselValue'])
                                               ? SizedBox(
@@ -616,7 +673,7 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                                 : 'No'),
                                           ),
                                           SizedBox(
-                                            height: 20,
+                                            height: 5,
                                           ),
                                           (provider.infoMap['thinnerValue'])
                                               ? SizedBox(
@@ -658,7 +715,7 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                                 : 'No'),
                                           ),
                                           SizedBox(
-                                            height: 20,
+                                            height: 5,
                                           ),
                                           (provider.infoMap['toxicValue'])
                                               ? SizedBox(
@@ -700,7 +757,7 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                                 : 'No'),
                                           ),
                                           SizedBox(
-                                            height: 20,
+                                            height: 5,
                                           ),
                                           (provider.infoMap['heatValue'])
                                               ? SizedBox(
@@ -743,7 +800,7 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                                 : 'No'),
                                           ),
                                           SizedBox(
-                                            height: 20,
+                                            height: 5,
                                           ),
                                           (provider.infoMap['testBedValue'])
                                               ? SizedBox(
@@ -785,7 +842,7 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                                 : 'No'),
                                           ),
                                           SizedBox(
-                                            height: 20,
+                                            height: 5,
                                           ),
                                           (provider.infoMap['ibrValue'])
                                               ? SizedBox(
@@ -839,22 +896,28 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                             Text('Fatal(Nos):',
                                                 style: TextStyle(
                                                     color: Colors.grey)),
+                                            SizedBox(height: 10),
                                             Text('Reportable(Nos):',
                                                 style: TextStyle(
                                                     color: Colors.grey)),
+                                            SizedBox(height: 10),
                                             Text('Non-Reportable(Nos):',
                                                 style: TextStyle(
                                                     color: Colors.grey)),
+                                            SizedBox(height: 10),
                                             Text('First Aid Cases(Nos):',
                                                 style: TextStyle(
                                                     color: Colors.grey)),
+                                            SizedBox(height: 10),
                                             Text('Fire Incident(Nos):',
                                                 style: TextStyle(
                                                     color: Colors.grey)),
                                           ],
                                         ),
-                                        SizedBox(width: 10),
+                                        SizedBox(width: 20),
                                         Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               ((provider.infoMap['fatal'] == '')
@@ -862,6 +925,7 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                                   : provider.infoMap['fatal']
                                                       .toString()),
                                             ),
+                                            SizedBox(height: 10),
                                             Text(
                                               ((provider.infoMap[
                                                           'reportable'] ==
@@ -871,6 +935,7 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                                       .infoMap['reportable']
                                                       .toString()),
                                             ),
+                                            SizedBox(height: 10),
                                             Text(
                                               ((provider.infoMap[
                                                           'nonReportable'] ==
@@ -880,6 +945,7 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                                       .infoMap['nonReportable']
                                                       .toString()),
                                             ),
+                                            SizedBox(height: 10),
                                             Text(
                                               ((provider.infoMap['firstAid'] ==
                                                       '')
@@ -887,6 +953,7 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                                                   : provider.infoMap['firstAid']
                                                       .toString()),
                                             ),
+                                            SizedBox(height: 10),
                                             Text(
                                               ((provider.infoMap['fire'] == '')
                                                   ? ''
@@ -902,7 +969,14 @@ class _AssessorLocationInfoState extends State<AssessorLocationInfo> {
                               ),
                             ),
                           ),
-                          RaisedButton(child: Text('Next'), onPressed: () {})
+                          RaisedButton(
+                              child: Text('Next'),
+                              onPressed: () {
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) => SiteAssessment(
+                                            'site', provider.locationId)));
+                              })
                         ],
                       )),
                     ),

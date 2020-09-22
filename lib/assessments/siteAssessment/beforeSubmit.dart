@@ -34,7 +34,7 @@ class _BeforeSubmitState extends State<BeforeSubmit> {
                           ? Text('Assessment')
                           : Text('Assessment Total: ' +
                               assessmentProvider.assessmentTotal.toString() +
-                              '/400'),
+                              '/800'),
                       automaticallyImplyLeading: false,
                       backgroundColor: Colors.white,
                       textTheme: TextTheme(

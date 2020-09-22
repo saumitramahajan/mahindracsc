@@ -38,6 +38,10 @@ class _OfficeAssessmentState extends State<OfficeAssessment> {
                       width: MediaQuery.of(context).size.width * 0.7,
                       child: Column(
                         children: [
+                          Text(
+                            'Office Safety Assessment',
+                            style: TextStyle(fontSize: 25),
+                          ),
                           Expanded(
                             child: ListView.builder(
                               itemCount: 10,
