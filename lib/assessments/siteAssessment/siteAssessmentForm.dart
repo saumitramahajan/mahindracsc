@@ -17,8 +17,10 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
   TextEditingController _justificationController = TextEditingController();
   TextEditingController _marksController = TextEditingController(text: '0');
   TextEditingController _suggestionController = TextEditingController();
+  List<DropdownMenuItem<double>> ddlist = [];
   //File file;
   String level = '0';
+  double marks = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -110,6 +112,9 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                   onChanged: (String value) {
                                     setState(() {
                                       level = value;
+                                      marks = 0.0;
+                                      ddlist = assessmentProvider
+                                          .currentQuestion['levelMarks'][0];
                                     });
                                   }),
                               RadioListTile(
@@ -119,6 +124,13 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                   onChanged: (String value) {
                                     setState(() {
                                       level = value;
+                                      marks = assessmentProvider
+                                              .currentQuestion['levelMarksBase']
+                                                  [0]
+                                              .toDouble() +
+                                          0.5;
+                                      ddlist = assessmentProvider
+                                          .currentQuestion['levelMarks'][1];
                                     });
                                   }),
                               RadioListTile(
@@ -128,6 +140,14 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                   onChanged: (String value) {
                                     setState(() {
                                       level = value;
+                                      marks = assessmentProvider
+                                              .currentQuestion['levelMarksBase']
+                                                  [1]
+                                              .toDouble() +
+                                          0.5;
+                                      print(marks.toString() + '\n\n');
+                                      ddlist = assessmentProvider
+                                          .currentQuestion['levelMarks'][2];
                                     });
                                   }),
                               RadioListTile(
@@ -137,6 +157,13 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                   onChanged: (String value) {
                                     setState(() {
                                       level = value;
+                                      marks = assessmentProvider
+                                              .currentQuestion['levelMarksBase']
+                                                  [2]
+                                              .toDouble() +
+                                          0.5;
+                                      ddlist = assessmentProvider
+                                          .currentQuestion['levelMarks'][3];
                                     });
                                   }),
                               RadioListTile(
@@ -146,6 +173,15 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                   onChanged: (String value) {
                                     setState(() {
                                       level = value;
+                                      marks = assessmentProvider
+                                              .currentQuestion['levelMarksBase']
+                                                  [3]
+                                              .toDouble() +
+                                          0.5;
+                                    });
+                                    setState(() {
+                                      ddlist = assessmentProvider
+                                          .currentQuestion['levelMarks'][4];
                                     });
                                   }),
                               (assessmentProvider.assessmentType == 'site')
@@ -156,10 +192,21 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                     )
                                   : SizedBox(),
                               (assessmentProvider.assessmentType == 'site')
-                                  ? TextField(
-                                      controller: _marksController,
-                                      decoration: InputDecoration(
-                                          labelText: 'Enter Marks'),
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        DropdownButton<double>(
+                                          items: ddlist,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              marks = value;
+                                              print(marks);
+                                            });
+                                          },
+                                          value: marks,
+                                        ),
+                                      ],
                                     )
                                   : SizedBox(),
                               TextField(
@@ -197,9 +244,16 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                               Map<String, dynamic> map =
                                                   assessmentProvider
                                                       .previousPressed();
-                                              _marksController.text =
-                                                  map['value'].toString();
+
                                               level = map['level'];
+
+                                              ddlist = assessmentProvider
+                                                          .currentQuestion[
+                                                      'levelMarks']
+                                                  [(int.parse(level)) - 1];
+
+                                              marks = map['value'].toDouble();
+
                                               _justificationController.text =
                                                   map['comment'];
                                               _suggestionController.text =
@@ -218,10 +272,8 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                                       value: (assessmentProvider
                                                                   .assessmentType ==
                                                               'site')
-                                                          ? 0
-                                                          : double.parse(
-                                                              _marksController
-                                                                  .text),
+                                                          ? marks
+                                                          : 0,
                                                       comment:
                                                           _justificationController
                                                               .text,
@@ -229,9 +281,15 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                                       suggestion:
                                                           _suggestionController
                                                               .text);
-                                              _marksController.text =
-                                                  map['value'].toString();
+
                                               level = map['level'];
+
+                                              ddlist = assessmentProvider
+                                                          .currentQuestion[
+                                                      'levelMarks']
+                                                  [(int.parse(level)) - 1];
+
+                                              marks = map['value'].toDouble();
                                               _justificationController.text =
                                                   map['comment'];
                                               _suggestionController.text =
@@ -246,8 +304,7 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                                             .assessmentType ==
                                                         'site')
                                                     ? 0
-                                                    : double.parse(
-                                                        _marksController.text),
+                                                    : marks,
                                                 comment:
                                                     _justificationController
                                                         .text,

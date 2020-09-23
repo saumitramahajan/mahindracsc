@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../../utilities.dart';
 
 class SiteAssessmentSingleForm extends StatefulWidget {
-  final marks;
+  final double marks;
   final comment;
   final level;
   SiteAssessmentSingleForm({Key key, this.marks, this.comment, this.level})
@@ -18,12 +18,12 @@ class SiteAssessmentSingleForm extends StatefulWidget {
 
 class _SiteAssessmentSingleFormState extends State<SiteAssessmentSingleForm> {
   String level = '';
-  TextEditingController _marksController = TextEditingController();
   TextEditingController _justificationController = TextEditingController();
+  double marks;
 
   @override
   void initState() {
-    _marksController.text = widget.marks;
+    marks = widget.marks;
     _justificationController.text = widget.comment;
     level = widget.level;
     super.initState();
@@ -81,6 +81,7 @@ class _SiteAssessmentSingleFormState extends State<SiteAssessmentSingleForm> {
                             onChanged: (String value) {
                               setState(() {
                                 level = value;
+                                marks = 0.0;
                               });
                             }),
                         RadioListTile(
@@ -90,6 +91,10 @@ class _SiteAssessmentSingleFormState extends State<SiteAssessmentSingleForm> {
                             onChanged: (String value) {
                               setState(() {
                                 level = value;
+                                marks = assessmentProvider
+                                        .currentQuestion['levelMarksBase'][0]
+                                        .toDouble() +
+                                    0.5;
                               });
                             }),
                         RadioListTile(
@@ -99,6 +104,10 @@ class _SiteAssessmentSingleFormState extends State<SiteAssessmentSingleForm> {
                             onChanged: (String value) {
                               setState(() {
                                 level = value;
+                                marks = assessmentProvider
+                                        .currentQuestion['levelMarksBase'][1]
+                                        .toDouble() +
+                                    0.5;
                               });
                             }),
                         RadioListTile(
@@ -108,6 +117,10 @@ class _SiteAssessmentSingleFormState extends State<SiteAssessmentSingleForm> {
                             onChanged: (String value) {
                               setState(() {
                                 level = value;
+                                marks = assessmentProvider
+                                        .currentQuestion['levelMarksBase'][2]
+                                        .toDouble() +
+                                    0.5;
                               });
                             }),
                         RadioListTile(
@@ -117,6 +130,10 @@ class _SiteAssessmentSingleFormState extends State<SiteAssessmentSingleForm> {
                             onChanged: (String value) {
                               setState(() {
                                 level = value;
+                                marks = assessmentProvider
+                                        .currentQuestion['levelMarksBase'][3]
+                                        .toDouble() +
+                                    0.5;
                               });
                             }),
                         (assessmentProvider.assessmentType == 'site')
@@ -126,10 +143,22 @@ class _SiteAssessmentSingleFormState extends State<SiteAssessmentSingleForm> {
                               )
                             : SizedBox(),
                         (assessmentProvider.assessmentType == 'site')
-                            ? TextField(
-                                controller: _marksController,
-                                decoration:
-                                    InputDecoration(labelText: 'Enter Marks'),
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  DropdownButton<double>(
+                                    items: assessmentProvider
+                                            .currentQuestion['levelMarks']
+                                        [(int.parse(level)) - 1],
+                                    onChanged: (value) {
+                                      setState(() {
+                                        marks = value;
+                                        print(marks);
+                                      });
+                                    },
+                                    value: marks,
+                                  ),
+                                ],
                               )
                             : SizedBox(),
                         TextField(
@@ -149,8 +178,8 @@ class _SiteAssessmentSingleFormState extends State<SiteAssessmentSingleForm> {
                             assessmentProvider.submited(
                                 value: (assessmentProvider.assessmentType ==
                                         'site')
-                                    ? 0
-                                    : double.parse(_marksController.text),
+                                    ? marks
+                                    : 0,
                                 comment: _justificationController.text,
                                 level: level);
                             Navigator.of(context).pop();

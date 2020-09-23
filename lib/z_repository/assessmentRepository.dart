@@ -1,11 +1,12 @@
 //import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 class AssessentRepository {
   Future<List<Map<String, dynamic>>> getAssessmentQuestions() async {
     List<Map<String, dynamic>> questionList = [];
-    print('Start');
+    print('Start get questions');
     await Firestore.instance
         .collection('siteAssessment')
         .orderBy('number')
@@ -13,11 +14,32 @@ class AssessentRepository {
         .then((value) {
       value.documents.forEach((question) {
         Map<String, dynamic> questionMap = {};
+        List<List<DropdownMenuItem<double>>> levelMarks = [];
         questionMap['category'] = question.data['category'];
         questionMap['imageLink'] = question.data['imageLink'];
         questionMap['marks'] = question.data['marks'];
         questionMap['number'] = question.data['number'];
         questionMap['statement'] = question.data['statement'];
+        List<dynamic> levels = question.data['levelMarks'];
+        questionMap['levelMarksBase'] = levels;
+        for (int i = 0; i < 5; i++) {
+          List<DropdownMenuItem<double>> dropDown = [];
+          double start = 0;
+          if (i != 0) {
+            start = levels[i - 1].toDouble() + 0.5;
+          }
+          double end = levels[i].toDouble();
+          print(start.toString() + end.toString() + '\n\n');
+          for (double j = start; j <= end; j = j + .5) {
+            DropdownMenuItem<double> drop = DropdownMenuItem(
+              child: Text(j.toString()),
+              value: j,
+            );
+            dropDown.add(drop);
+          }
+          levelMarks.add(dropDown);
+        }
+        questionMap['levelMarks'] = levelMarks;
         questionList.add(questionMap);
         print('Done ${question.documentID}');
       });

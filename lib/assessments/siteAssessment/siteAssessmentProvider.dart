@@ -89,6 +89,7 @@ class SiteAssessmentProvider extends ChangeNotifier {
       @required String level}) {
     print(i);
     //String downloadUrl =
+
     Map<String, dynamic> map = {
       'answer': value,
       'comment': comment,
@@ -102,20 +103,24 @@ class SiteAssessmentProvider extends ChangeNotifier {
       assessmentAnswers.removeAt(i - 1);
       assessmentAnswers.insert(i - 1, map);
     }
+    print(assessmentType);
     print(assessmentAnswers.toString());
     i++;
     setMap(type);
     notifyListeners();
 
     Map<String, dynamic> returnMap = {};
-    if (assessmentAnswers.length > i) {
+    if (assessmentAnswers.length > i - 1) {
       returnMap['value'] = assessmentAnswers[i - 1]['answer'];
       returnMap['level'] = assessmentAnswers[i - 1]['level'];
       returnMap['comment'] = assessmentAnswers[i - 1]['comment'];
       returnMap['suggestion'] = assessmentAnswers[i - 1]['suggestion'];
     } else {
+      print('return null map' +
+          assessmentAnswers.length.toString() +
+          i.toString());
       returnMap['value'] = 0.0;
-      returnMap['level'] = '0';
+      returnMap['level'] = '1';
       returnMap['comment'] = '';
       returnMap['suggestion'] = '';
     }
@@ -152,6 +157,10 @@ class SiteAssessmentProvider extends ChangeNotifier {
     } else {
       assessmentAnswers.removeAt(i - 1);
       assessmentAnswers.insert(i - 1, map);
+    }
+    assessmentTotal = 0;
+    for (int x = 0; x < assessmentAnswers.length; x++) {
+      assessmentTotal = assessmentTotal + assessmentAnswers[x]['answer'];
     }
     print(assessmentAnswers.toString());
   }

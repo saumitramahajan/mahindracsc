@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:mahindraCSC/roles/admin/enrollLocation/enrollLocationProvider.dart';
 import 'package:mahindraCSC/roles/admin/enrollLocation/enrollMahindraLocation.dart';
