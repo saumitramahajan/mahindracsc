@@ -25,6 +25,7 @@ class _BeforeSubmitState extends State<BeforeSubmit> {
           body: Container(
               child: Column(
             children: [
+              SizedBox(height: 25),
               Expanded(
                 child: CustomScrollView(
                   slivers: [

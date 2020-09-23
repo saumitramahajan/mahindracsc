@@ -2,6 +2,7 @@ import '../../../utilities.dart';
 import 'assessmentProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:readmore/readmore.dart';
 
 class SelfAssessment extends StatefulWidget {
   String documentId;
@@ -158,40 +159,43 @@ class _SelfAssessmentState extends State<SelfAssessment> {
 
   Widget selfProcessContainer(AssessmentProvider provider) {
     return Container(
-        width: MediaQuery.of(context).size.width * 0.7,
+        width: MediaQuery.of(context).size.width * 0.95,
         child: Column(
           children: [
             Text(
               'Process Parameters',
               style: TextStyle(fontSize: 20),
             ),
-            Row(
-              children: [
-                Container(
-                    padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
-                    child: Text(
-                      'Statement',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(150, 10, 10, 10),
-                    child: Text(
-                      'Level',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(100, 10, 10, 10),
-                    child: Text(
-                      'Justification',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(150, 10, 10, 10),
-                    child: Text(
-                      'View File',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Container(
+                      padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
+                      child: Text(
+                        'Statement',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(170, 10, 10, 10),
+                      child: Text(
+                        'Level',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(100, 10, 10, 10),
+                      child: Text(
+                        'Justification',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(140, 10, 10, 10),
+                      child: Text(
+                        'View File',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                ],
+              ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .65,
@@ -202,76 +206,87 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                       ? Card(
                           elevation: 5.0,
                           margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-                          child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                  child: SizedBox(
-                                    width: 150,
-                                    child: Text(
-                                      provider.listOfStatement[index]
-                                          ['statement'],
-                                      style: TextStyle(
-                                        color: Colors.red[700],
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    padding:
+                                        EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                    child: SizedBox(
+                                      width: 180,
+                                      child: Text(
+                                        provider.listOfStatement[index]
+                                            ['statement'],
+                                        style: TextStyle(
+                                          color: Colors.red[700],
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(children: [
-                                      SizedBox(width: 70),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: Text(
-                                          provider.listOfAssessment[index]
-                                              ['level'],
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: 105),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.15,
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(children: [
+                                        SizedBox(width: 70),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
                                           child: Text(
                                             provider.listOfAssessment[index]
-                                                ['comment'],
+                                                ['level'],
                                             style: TextStyle(
                                               fontSize: 14,
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      SizedBox(width: 70),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.15,
-                                          child: Text(
-                                            'NIL',
-                                            style: TextStyle(
-                                              fontSize: 14,
+                                        SizedBox(width: 105),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.25,
+                                            child: ReadMoreText(
+                                              provider.listOfAssessment[index]
+                                                      ['comment'] +
+                                                  'hjhsghfgdseadsghhtgytuhgtdscbvhjjkyuyttredsgfhjguyijhhftrdresfxfghgytryhhgfgcdsdxfgfhgjghgfgffggfggfgftfhfg',
+                                              trimLines: 3,
+                                              colorClickableText: Colors.red,
+                                              trimMode: TrimMode.Line,
+                                              trimCollapsedText: '...Show more',
+                                              trimExpandedText: ' show less',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ]),
-                                  ],
-                                )
-                              ]))
+                                        SizedBox(width: 70),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.15,
+                                            child: Text(
+                                              'NIL',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                    ],
+                                  )
+                                ]),
+                          ))
                       : SizedBox();
                 },
               ),
@@ -282,40 +297,43 @@ class _SelfAssessmentState extends State<SelfAssessment> {
 
   Widget selfResultContainer(AssessmentProvider provider) {
     return Container(
-        width: MediaQuery.of(context).size.width * 0.7,
+        width: MediaQuery.of(context).size.width * 0.95,
         child: Column(
           children: [
             Text(
               'Result Parameters',
               style: TextStyle(fontSize: 20),
             ),
-            Row(
-              children: [
-                Container(
-                    padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
-                    child: Text(
-                      'Statement',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(150, 10, 10, 10),
-                    child: Text(
-                      'Level',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(100, 10, 10, 10),
-                    child: Text(
-                      'Justification',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(150, 10, 10, 10),
-                    child: Text(
-                      'View File',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Container(
+                      padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
+                      child: Text(
+                        'Statement',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(190, 10, 10, 10),
+                      child: Text(
+                        'Level',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(100, 10, 10, 10),
+                      child: Text(
+                        'Justification',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(140, 10, 10, 10),
+                      child: Text(
+                        'View File',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                ],
+              ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .65,
@@ -326,76 +344,87 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                       ? Card(
                           elevation: 5.0,
                           margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-                          child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                  child: SizedBox(
-                                    width: 150,
-                                    child: Text(
-                                      provider.listOfStatement[index]
-                                          ['statement'],
-                                      style: TextStyle(
-                                        color: Colors.red[700],
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    padding:
+                                        EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                    child: SizedBox(
+                                      width: 200,
+                                      child: Text(
+                                        provider.listOfStatement[index]
+                                            ['statement'],
+                                        style: TextStyle(
+                                          color: Colors.red[700],
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(children: [
-                                      SizedBox(width: 70),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: Text(
-                                          provider.listOfAssessment[index]
-                                              ['level'],
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: 105),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.15,
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(children: [
+                                        SizedBox(width: 70),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
                                           child: Text(
                                             provider.listOfAssessment[index]
-                                                ['comment'],
+                                                ['level'],
                                             style: TextStyle(
                                               fontSize: 14,
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      SizedBox(width: 70),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.15,
-                                          child: Text(
-                                            'NIL',
-                                            style: TextStyle(
-                                              fontSize: 14,
+                                        SizedBox(width: 105),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.25,
+                                            child: ReadMoreText(
+                                              provider.listOfAssessment[index]
+                                                      ['comment'] +
+                                                  'hjhsghfgdseadsghhtgytuhgtdscbvhjjkyuyttredsgfhjguyijhhftrdresfxfghgytryhhgfgcdsdxfgfhgjghgfgffggfggfgftfhfg',
+                                              trimLines: 3,
+                                              colorClickableText: Colors.red,
+                                              trimMode: TrimMode.Line,
+                                              trimCollapsedText: '...Show more',
+                                              trimExpandedText: ' show less',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ]),
-                                  ],
-                                )
-                              ]))
+                                        SizedBox(width: 70),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.15,
+                                            child: Text(
+                                              'NIL',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                    ],
+                                  )
+                                ]),
+                          ))
                       : SizedBox();
                 },
               ),
@@ -406,34 +435,37 @@ class _SelfAssessmentState extends State<SelfAssessment> {
 
   Widget selfFireContainer(AssessmentProvider provider) {
     return Container(
-        width: MediaQuery.of(context).size.width * 0.7,
+        width: MediaQuery.of(context).size.width * 0.95,
         child: Column(
           children: [
             Text(
               'Fire Safety Assessment',
               style: TextStyle(fontSize: 20),
             ),
-            Row(
-              children: [
-                Container(
-                    padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
-                    child: Text(
-                      'Statement',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(150, 10, 10, 10),
-                    child: Text(
-                      'Response',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(100, 10, 10, 10),
-                    child: Text(
-                      'Justification',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Container(
+                      padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
+                      child: Text(
+                        'Statement',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(280, 10, 10, 10),
+                      child: Text(
+                        'Response',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(100, 10, 10, 10),
+                      child: Text(
+                        'Justification',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                ],
+              ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .65,
@@ -444,63 +476,74 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                       ? Card(
                           elevation: 5.0,
                           margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-                          child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                  child: SizedBox(
-                                    width: 150,
-                                    child: Text(
-                                      provider.listOfStatementFire[index]
-                                          ['statement'],
-                                      style: TextStyle(
-                                        color: Colors.red[700],
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    padding:
+                                        EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                    child: SizedBox(
+                                      width: 300,
+                                      child: Text(
+                                        provider.listOfStatementFire[index]
+                                            ['statement'],
+                                        style: TextStyle(
+                                          color: Colors.red[700],
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(children: [
-                                      SizedBox(width: 70),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: Text(
-                                          (provider.listOfFireAssessment[index]
-                                                      ['answer'] ==
-                                                  'no')
-                                              ? 'No'
-                                              : 'Yes',
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: 105),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.15,
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(children: [
+                                        SizedBox(width: 70),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
                                           child: Text(
-                                            provider.listOfAssessment[index]
-                                                ['comment'],
+                                            (provider.listOfFireAssessment[
+                                                        index]['answer'] ==
+                                                    'no')
+                                                ? 'No'
+                                                : 'Yes',
                                             style: TextStyle(
                                               fontSize: 14,
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ]),
-                                  ],
-                                )
-                              ]))
+                                        SizedBox(width: 105),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.25,
+                                            child: ReadMoreText(
+                                              provider.listOfAssessment[index]
+                                                      ['comment'] +
+                                                  'hjhsghfgdseadsghhtgytuhgtdscbvhjjkyuyttredsgfhjguyijhhftrdresfxfghgytryhhgfgcdsdxfgfhgjghgfgffggfggfgftfhfg',
+                                              trimLines: 3,
+                                              colorClickableText: Colors.red,
+                                              trimMode: TrimMode.Line,
+                                              trimCollapsedText: '...Show more',
+                                              trimExpandedText: ' show less',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                    ],
+                                  )
+                                ]),
+                          ))
                       : SizedBox();
                 },
               ),
@@ -511,28 +554,31 @@ class _SelfAssessmentState extends State<SelfAssessment> {
 
   Widget selfOfficeContainer(AssessmentProvider provider) {
     return Container(
-        width: MediaQuery.of(context).size.width * 0.7,
+        width: MediaQuery.of(context).size.width * 0.95,
         child: Column(
           children: [
             Text(
               'Office Safety Assessment',
               style: TextStyle(fontSize: 20),
             ),
-            Row(
-              children: [
-                Container(
-                    padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
-                    child: Text(
-                      'Statement',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(250, 10, 10, 10),
-                    child: Text(
-                      'Response',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Container(
+                      padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
+                      child: Text(
+                        'Statement',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(520, 10, 10, 10),
+                      child: Text(
+                        'Response',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                ],
+              ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .65,
@@ -543,46 +589,51 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                       ? Card(
                           elevation: 5.0,
                           margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-                          child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                  child: SizedBox(
-                                    width: 150,
-                                    child: Text(
-                                      provider.listOfStatementOffice[index]
-                                          ['statement'],
-                                      style: TextStyle(
-                                        color: Colors.red[700],
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    padding:
+                                        EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                    child: SizedBox(
+                                      width: 540,
+                                      child: Text(
+                                        provider.listOfStatementOffice[index]
+                                            ['statement'],
+                                        style: TextStyle(
+                                          color: Colors.red[700],
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(children: [
-                                      SizedBox(width: 170),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: Text(
-                                          (provider.listOfOfficeAssessment[
-                                                      index]['answer'] ==
-                                                  'no')
-                                              ? 'No'
-                                              : 'Yes',
-                                          style: TextStyle(
-                                            fontSize: 14,
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(children: [
+                                        SizedBox(width: 120),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: Text(
+                                            (provider.listOfOfficeAssessment[
+                                                        index]['answer'] ==
+                                                    'no')
+                                                ? 'No'
+                                                : 'Yes',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ]),
-                                  ],
-                                )
-                              ]))
+                                      ]),
+                                    ],
+                                  )
+                                ]),
+                          ))
                       : SizedBox();
                 },
               ),
@@ -593,52 +644,55 @@ class _SelfAssessmentState extends State<SelfAssessment> {
 
   Widget siteProcessContainer(AssessmentProvider provider) {
     return Container(
-        width: MediaQuery.of(context).size.width * 0.9,
+        width: MediaQuery.of(context).size.width * 0.95,
         child: Column(
           children: [
             Text(
               'Process Parameters',
               style: TextStyle(fontSize: 20),
             ),
-            Row(
-              children: [
-                Container(
-                    padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
-                    child: Text(
-                      'Statement',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(150, 10, 10, 10),
-                    child: Text(
-                      'Marks',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(50, 10, 10, 10),
-                    child: Text(
-                      'Level',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(100, 10, 10, 10),
-                    child: Text(
-                      'Observations',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(160, 10, 10, 10),
-                    child: Text(
-                      'Suggestions',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(150, 10, 10, 10),
-                    child: Text(
-                      'View File',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Container(
+                      padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
+                      child: Text(
+                        'Statement',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(170, 10, 10, 10),
+                      child: Text(
+                        'Marks',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(50, 10, 10, 10),
+                      child: Text(
+                        'Level',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(80, 10, 10, 10),
+                      child: Text(
+                        'Observations',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(120, 10, 10, 10),
+                      child: Text(
+                        'Suggestions',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(130, 10, 10, 10),
+                      child: Text(
+                        'View File',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                ],
+              ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .65,
@@ -649,105 +703,122 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                       ? Card(
                           elevation: 5.0,
                           margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-                          child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                  child: SizedBox(
-                                    width: 150,
-                                    child: Text(
-                                      provider.listOfStatement[index]
-                                          ['statement'],
-                                      style: TextStyle(
-                                        color: Colors.red[700],
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    padding:
+                                        EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                    child: SizedBox(
+                                      width: 200,
+                                      child: Text(
+                                        provider.listOfStatement[index]
+                                            ['statement'],
+                                        style: TextStyle(
+                                          color: Colors.red[700],
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(children: [
-                                      SizedBox(width: 70),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: Text(
-                                          provider.listOfAssessment[index]
-                                              ['level'],
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: 75),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: Text(
-                                          provider.listOfAssessment[index]
-                                                  ['answer']
-                                              .toString(),
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: 75),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.15,
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(children: [
+                                        SizedBox(width: 50),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
                                           child: Text(
                                             provider.listOfAssessment[index]
-                                                ['comment'],
+                                                ['level'],
                                             style: TextStyle(
                                               fontSize: 14,
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      SizedBox(width: 50),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.15,
+                                        SizedBox(width: 75),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
                                           child: Text(
                                             provider.listOfAssessment[index]
-                                                ['suggestion'],
+                                                    ['answer']
+                                                .toString(),
                                             style: TextStyle(
                                               fontSize: 14,
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      SizedBox(width: 70),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.15,
-                                          child: Text(
-                                            'NIL',
-                                            style: TextStyle(
-                                              fontSize: 14,
+                                        SizedBox(width: 80),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.25,
+                                            child: ReadMoreText(
+                                              provider.listOfAssessment[index]
+                                                      ['comment'] +
+                                                  'hjhsghfgdseadsghhtgytuhgtdscbvhjjkyuyttredsgfhjguyijhhftrdresfxfghgytryhhgfgcdsdxfgfhgjghgfgffggfggfgftfhfg',
+                                              trimLines: 3,
+                                              colorClickableText: Colors.red,
+                                              trimMode: TrimMode.Line,
+                                              trimCollapsedText: '...Show more',
+                                              trimExpandedText: ' show less',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ]),
-                                  ],
-                                )
-                              ]))
+                                        SizedBox(width: 50),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.25,
+                                            child: ReadMoreText(
+                                              provider.listOfAssessment[index]
+                                                      ['suggestion'] +
+                                                  'hjhsghfgdseadsghhtgytuhgtdscbvhjjkyuyttredsgfhjguyijhhftrdresfxfghgytryhhgfgcdsdxfgfhgjghgfgffggfggfgftfhfg',
+                                              trimLines: 3,
+                                              colorClickableText: Colors.red,
+                                              trimMode: TrimMode.Line,
+                                              trimCollapsedText: '...Show more',
+                                              trimExpandedText: ' show less',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: 70),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.15,
+                                            child: Text(
+                                              'NIL',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                    ],
+                                  )
+                                ]),
+                          ))
                       : SizedBox();
                 },
               ),
@@ -758,52 +829,55 @@ class _SelfAssessmentState extends State<SelfAssessment> {
 
   Widget siteResultContainer(AssessmentProvider provider) {
     return Container(
-        width: MediaQuery.of(context).size.width * 0.9,
+        width: MediaQuery.of(context).size.width * 0.95,
         child: Column(
           children: [
             Text(
               'Result Parameters',
               style: TextStyle(fontSize: 20),
             ),
-            Row(
-              children: [
-                Container(
-                    padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
-                    child: Text(
-                      'Statement',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(150, 10, 10, 10),
-                    child: Text(
-                      'Marks',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(50, 10, 10, 10),
-                    child: Text(
-                      'Level',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(100, 10, 10, 10),
-                    child: Text(
-                      'Observations',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(160, 10, 10, 10),
-                    child: Text(
-                      'Suggestions',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(150, 10, 10, 10),
-                    child: Text(
-                      'View File',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Container(
+                      padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
+                      child: Text(
+                        'Statement',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(190, 10, 10, 10),
+                      child: Text(
+                        'Marks',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(50, 10, 10, 10),
+                      child: Text(
+                        'Level',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(70, 10, 10, 10),
+                      child: Text(
+                        'Observations',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(130, 10, 10, 10),
+                      child: Text(
+                        'Suggestions',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(130, 10, 10, 10),
+                      child: Text(
+                        'View File',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                ],
+              ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .65,
@@ -814,105 +888,122 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                       ? Card(
                           elevation: 5.0,
                           margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-                          child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                  child: SizedBox(
-                                    width: 150,
-                                    child: Text(
-                                      provider.listOfStatement[index]
-                                          ['statement'],
-                                      style: TextStyle(
-                                        color: Colors.red[700],
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    padding:
+                                        EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                    child: SizedBox(
+                                      width: 200,
+                                      child: Text(
+                                        provider.listOfStatement[index]
+                                            ['statement'],
+                                        style: TextStyle(
+                                          color: Colors.red[700],
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(children: [
-                                      SizedBox(width: 70),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: Text(
-                                          provider.listOfAssessment[index]
-                                              ['level'],
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: 75),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: Text(
-                                          provider.listOfAssessment[index]
-                                                  ['answer']
-                                              .toString(),
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: 75),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.15,
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(children: [
+                                        SizedBox(width: 70),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
                                           child: Text(
                                             provider.listOfAssessment[index]
-                                                ['comment'],
+                                                ['level'],
                                             style: TextStyle(
                                               fontSize: 14,
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      SizedBox(width: 50),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.15,
+                                        SizedBox(width: 75),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
                                           child: Text(
                                             provider.listOfAssessment[index]
-                                                ['suggestion'],
+                                                    ['answer']
+                                                .toString(),
                                             style: TextStyle(
                                               fontSize: 14,
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      SizedBox(width: 70),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.15,
-                                          child: Text(
-                                            'NIL',
-                                            style: TextStyle(
-                                              fontSize: 14,
+                                        SizedBox(width: 75),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.25,
+                                            child: ReadMoreText(
+                                              provider.listOfAssessment[index]
+                                                      ['comment'] +
+                                                  'hjhsghfgdseadsghhtgytuhgtdscbvhjjkyuyttredsgfhjguyijhhftrdresfxfghgytryhhgfgcdsdxfgfhgjghgfgffggfggfgftfhfg',
+                                              trimLines: 3,
+                                              colorClickableText: Colors.red,
+                                              trimMode: TrimMode.Line,
+                                              trimCollapsedText: '...Show more',
+                                              trimExpandedText: ' show less',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ]),
-                                  ],
-                                )
-                              ]))
+                                        SizedBox(width: 50),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.25,
+                                            child: ReadMoreText(
+                                              provider.listOfAssessment[index]
+                                                      ['suggestion'] +
+                                                  'hjhsghfgdseadsghhtgytuhgtdscbvhjjkyuyttredsgfhjguyijhhftrdresfxfghgytryhhgfgcdsdxfgfhgjghgfgffggfggfgftfhfg',
+                                              trimLines: 3,
+                                              colorClickableText: Colors.red,
+                                              trimMode: TrimMode.Line,
+                                              trimCollapsedText: '...Show more',
+                                              trimExpandedText: ' show less',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: 70),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.15,
+                                            child: Text(
+                                              'NIL',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                    ],
+                                  )
+                                ]),
+                          ))
                       : SizedBox();
                 },
               ),
@@ -923,40 +1014,43 @@ class _SelfAssessmentState extends State<SelfAssessment> {
 
   Widget siteFireContainer(AssessmentProvider provider) {
     return Container(
-        width: MediaQuery.of(context).size.width * 0.9,
+        width: MediaQuery.of(context).size.width * 0.95,
         child: Column(
           children: [
             Text(
               'Fire Safety Assessment',
               style: TextStyle(fontSize: 20),
             ),
-            Row(
-              children: [
-                Container(
-                    padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
-                    child: Text(
-                      'Statement',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(150, 10, 10, 10),
-                    child: Text(
-                      'Marks',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(150, 10, 10, 10),
-                    child: Text(
-                      'Response',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(100, 10, 10, 10),
-                    child: Text(
-                      'Observations',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Container(
+                      padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
+                      child: Text(
+                        'Statement',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(280, 10, 10, 10),
+                      child: Text(
+                        'Marks',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(90, 10, 10, 10),
+                      child: Text(
+                        'Response',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(70, 10, 10, 10),
+                      child: Text(
+                        'Observations',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                ],
+              ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .65,
@@ -967,76 +1061,86 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                       ? Card(
                           elevation: 5.0,
                           margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-                          child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                  child: SizedBox(
-                                    width: 150,
-                                    child: Text(
-                                      provider.listOfStatementFire[index]
-                                          ['statement'],
-                                      style: TextStyle(
-                                        color: Colors.red[700],
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    padding:
+                                        EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                    child: SizedBox(
+                                      width: 300,
+                                      child: Text(
+                                        provider.listOfStatementFire[index]
+                                            ['statement'],
+                                        style: TextStyle(
+                                          color: Colors.red[700],
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(children: [
-                                      SizedBox(width: 70),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: Text(
-                                          provider.listOfFireAssessment[index]
-                                                  ['marks']
-                                              .toString(),
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: 180),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: Text(
-                                          (provider.listOfFireAssessment[index]
-                                                      ['answer'] ==
-                                                  'no')
-                                              ? 'No'
-                                              : 'Yes',
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: 105),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.15,
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(children: [
+                                        SizedBox(width: 60),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
                                           child: Text(
-                                            provider.listOfAssessment[index]
-                                                    ['comment'] +
-                                                'hvayucsfydsgcy8ergvyu8ergfcvy8uerfgerqqyeyfgery',
+                                            provider.listOfFireAssessment[index]
+                                                    ['marks']
+                                                .toString(),
                                             style: TextStyle(
                                               fontSize: 14,
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ]),
-                                  ],
-                                )
-                              ]))
+                                        SizedBox(width: 120),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: Text(
+                                            (provider.listOfFireAssessment[
+                                                        index]['answer'] ==
+                                                    'no')
+                                                ? 'No'
+                                                : 'Yes',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: 90),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.25,
+                                            child: ReadMoreText(
+                                              provider.listOfAssessment[index]
+                                                      ['comment'] +
+                                                  'hjhsghfgdseadsghhtgytuhgtdscbvhjjkyuyttredsgfhjguyijhhftrdresfxfghgytryhhgfgcdsdxfgfhgjghgfgffggfggfgftfhfg',
+                                              trimLines: 3,
+                                              colorClickableText: Colors.red,
+                                              trimMode: TrimMode.Line,
+                                              trimCollapsedText: '...Show more',
+                                              trimExpandedText: ' show less',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                    ],
+                                  )
+                                ]),
+                          ))
                       : SizedBox();
                 },
               ),
@@ -1047,34 +1151,37 @@ class _SelfAssessmentState extends State<SelfAssessment> {
 
   Widget siteOfficeContainer(AssessmentProvider provider) {
     return Container(
-        width: MediaQuery.of(context).size.width * 0.9,
+        width: MediaQuery.of(context).size.width * 0.95,
         child: Column(
           children: [
             Text(
               'Office Safety Assessment',
               style: TextStyle(fontSize: 20),
             ),
-            Row(
-              children: [
-                Container(
-                    padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
-                    child: Text(
-                      'Statement',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(250, 10, 10, 10),
-                    child: Text(
-                      'Marks',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-                Container(
-                    padding: EdgeInsets.fromLTRB(150, 10, 10, 10),
-                    child: Text(
-                      'Response',
-                      style: TextStyle(color: Colors.grey[600]),
-                    )),
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Container(
+                      padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
+                      child: Text(
+                        'Statement',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(700, 10, 10, 10),
+                      child: Text(
+                        'Marks',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                  Container(
+                      padding: EdgeInsets.fromLTRB(160, 10, 10, 10),
+                      child: Text(
+                        'Response',
+                        style: TextStyle(color: Colors.grey[600]),
+                      )),
+                ],
+              ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .65,
@@ -1085,58 +1192,64 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                       ? Card(
                           elevation: 5.0,
                           margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-                          child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                  child: SizedBox(
-                                    width: 150,
-                                    child: Text(
-                                      provider.listOfStatementOffice[index]
-                                          ['statement'],
-                                      style: TextStyle(
-                                        color: Colors.red[700],
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    padding:
+                                        EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                    child: SizedBox(
+                                      width: 550,
+                                      child: Text(
+                                        provider.listOfStatementOffice[index]
+                                            ['statement'],
+                                        style: TextStyle(
+                                          color: Colors.red[700],
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(children: [
-                                      SizedBox(width: 170),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: Text(
-                                          provider.listOfOfficeAssessment[index]
-                                                  ['marks']
-                                              .toString(),
-                                          style: TextStyle(
-                                            fontSize: 14,
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(children: [
+                                        SizedBox(width: 100),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: Text(
+                                            provider
+                                                .listOfOfficeAssessment[index]
+                                                    ['marks']
+                                                .toString(),
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      SizedBox(width: 170),
-                                      Container(
-                                        padding: EdgeInsets.all(10),
-                                        child: Text(
-                                          (provider.listOfOfficeAssessment[
-                                                      index]['answer'] ==
-                                                  'no')
-                                              ? 'No'
-                                              : 'Yes',
-                                          style: TextStyle(
-                                            fontSize: 14,
+                                        SizedBox(width: 100),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: Text(
+                                            (provider.listOfOfficeAssessment[
+                                                        index]['answer'] ==
+                                                    'no')
+                                                ? 'No'
+                                                : 'Yes',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ]),
-                                  ],
-                                )
-                              ]))
+                                      ]),
+                                    ],
+                                  )
+                                ]),
+                          ))
                       : SizedBox();
                 },
               ),
@@ -1145,7 +1258,6 @@ class _SelfAssessmentState extends State<SelfAssessment> {
         ));
   }
 }
-
 /* child: Column(
                 children: [
                   Expanded(

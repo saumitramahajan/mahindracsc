@@ -54,12 +54,12 @@ class ScheduleAssessmentProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> scheduleAssessment(
-      String documentID, String assessorUid, DateTime scheduledDate) async {
+  Future<void> scheduleAssessment(String documentID, String assessorUid,
+      String coAssessorUid, DateTime scheduledDate) async {
     requesting = true;
     notifyListeners();
     await adminRepository.scheduleAssessment(
-        documentID, assessorUid, scheduledDate);
+        documentID, assessorUid, coAssessorUid, scheduledDate);
     requesting = false;
     notifyListeners();
   }

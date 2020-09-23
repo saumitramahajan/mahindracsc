@@ -13,6 +13,7 @@ class ScheduleAssessmentForm extends StatefulWidget {
 class _ScheduleAssessmentFormState extends State<ScheduleAssessmentForm> {
   String dropdownValue = 'select';
   String assessorUid = 'select';
+  String coAssessorUid = 'select';
   bool datePicked = false;
   DateTime selectedDate;
 
@@ -94,12 +95,28 @@ class _ScheduleAssessmentFormState extends State<ScheduleAssessmentForm> {
                                   },
                                   items: requestAD.dropDownList,
                                 ),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
                                 DropdownButton(
                                   isExpanded: true,
                                   value: assessorUid,
                                   onChanged: (value) {
                                     setState(() {
                                       assessorUid = value;
+                                    });
+                                  },
+                                  items: requestAD.assessorList,
+                                ),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                                DropdownButton(
+                                  isExpanded: true,
+                                  value: coAssessorUid,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      coAssessorUid = value;
                                     });
                                   },
                                   items: requestAD.assessorList,
@@ -154,10 +171,12 @@ class _ScheduleAssessmentFormState extends State<ScheduleAssessmentForm> {
                                       onPressed: () async {
                                         if (assessorUid != 'select' &&
                                             dropdownValue != 'select' &&
+                                            coAssessorUid != 'select' &&
                                             datePicked) {
                                           await requestAD.scheduleAssessment(
                                               dropdownValue,
                                               assessorUid,
+                                              coAssessorUid,
                                               selectedDate);
                                           Navigator.of(context).pop();
                                         } else {

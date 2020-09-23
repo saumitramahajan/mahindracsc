@@ -230,18 +230,21 @@ class AdminRepository {
     return locationMap;
   }
 
-  Future<void> scheduleAssessment(
-      String documentID, String assessorUid, DateTime scheduledDate) async {
+  Future<void> scheduleAssessment(String documentID, String assessorUid,
+      String coAssessorUid, DateTime scheduledDate) async {
     print(documentID);
     DocumentSnapshot location = await Firestore.instance
         .collection('locations')
         .document(documentID)
         .get();
     String locat = location['location'];
+    String name = location['nameOfSector'];
     String assessee = location['assessee'];
     await Firestore.instance.collection('cycles').document().setData({
       'location': locat,
+      'name': name,
       'assesseeUid': assessee,
+      'coAssessorUid': coAssessorUid,
       'startDate': Timestamp.now(),
       'currentStatus':
           'Annual Data Uploaded', //Change to annual Data Requested when annual data required.

@@ -9,11 +9,13 @@ class AssessmentRepository {
 
   Future<List<Map<String, String>>> getLocation() async {
     List<Map<String, String>> locationList = [];
-
+    String uid;
+    await FirebaseAuth.instance.currentUser().then((value) => uid = value.uid);
     QuerySnapshot cycles =
         await Firestore.instance.collection('cycles').getDocuments();
     for (int i = 0; i < cycles.documents.length; i++) {
-      if (cycles.documents[i].data.containsKey('selfAssessment')) {
+      if (cycles.documents[i].data.containsKey('siteAssessment') &&
+          cycles.documents[i].data['coAssessorUid'] == uid) {
         Map<String, String> locationMap = {
           'location': cycles.documents[i].data['location'],
           'name': cycles.documents[i].data['name'],

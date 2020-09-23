@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:mahindraCSC/login/login.dart';
 import 'package:mahindraCSC/roles/assessor/changePassword/changePassword.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:mahindraCSC/roles/assessor/review/assessmentProvider.dart';
+import 'package:mahindraCSC/roles/assessor/review/locations.dart';
+import 'package:provider/provider.dart';
 import '../../utilities.dart';
 import 'assessment/assessorlocationListBase.dart';
 
@@ -30,6 +33,22 @@ class _AssessorDashboardState extends State<AssessorDashboard> {
                   },
                   child: Text(
                     'Site Assessment',
+                    style: TextStyle(color: Colors.white),
+                  )),
+              FlatButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return ChangeNotifierProvider<AssessmentProvider>(
+                          create: (_) => AssessmentProvider('site'),
+                          child: Locations(),
+                        );
+                      }),
+                    );
+                  },
+                  child: Text(
+                    'Review Assessment',
                     style: TextStyle(color: Colors.white),
                   )),
               FlatButton(
