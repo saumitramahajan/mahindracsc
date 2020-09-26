@@ -124,25 +124,25 @@ class _ViewLocationsState extends State<ViewLocations> {
                                     style: TextStyle(color: Colors.grey[600]),
                                   )),
                               Container(
-                                  padding: EdgeInsets.fromLTRB(70, 10, 10, 10),
+                                  padding: EdgeInsets.fromLTRB(60, 10, 10, 10),
                                   child: Text(
                                     'Assessee',
                                     style: TextStyle(color: Colors.grey[600]),
                                   )),
                               Container(
-                                  padding: EdgeInsets.fromLTRB(100, 10, 10, 10),
+                                  padding: EdgeInsets.fromLTRB(130, 10, 10, 10),
                                   child: Text(
                                     'Category',
                                     style: TextStyle(color: Colors.grey[600]),
                                   )),
                               Container(
-                                  padding: EdgeInsets.fromLTRB(220, 10, 10, 10),
+                                  padding: EdgeInsets.fromLTRB(200, 10, 10, 10),
                                   child: Text(
                                     'Last Assessment Stage',
                                     style: TextStyle(color: Colors.grey[600]),
                                   )),
                               Container(
-                                  padding: EdgeInsets.fromLTRB(30, 10, 10, 10),
+                                  padding: EdgeInsets.fromLTRB(55, 10, 10, 10),
                                   child: Text(
                                     'Result level',
                                     style: TextStyle(color: Colors.grey[600]),
@@ -190,13 +190,18 @@ class _ViewLocationsState extends State<ViewLocations> {
                                             height: 20.0,
                                           ),
                                           Row(children: [
-                                            SizedBox(width: 10),
-                                            Text(
-                                              viewProvider.list[index]
-                                                  ['assessee'],
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14,
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.12,
+                                              child: Text(
+                                                viewProvider.list[index]
+                                                    ['assessee'],
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14,
+                                                ),
                                               ),
                                             ),
                                             SizedBox(width: 50),
@@ -218,6 +223,7 @@ class _ViewLocationsState extends State<ViewLocations> {
                                               width: 70,
                                             ),
                                             SizedBox(
+                                              width: 25,
                                               child: Text(
                                                 viewProvider.list[index]
                                                     ['lastAssessmentStage'],
@@ -227,7 +233,7 @@ class _ViewLocationsState extends State<ViewLocations> {
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(width: 170),
+                                            SizedBox(width: 150),
                                             SizedBox(
                                               child: Text(
                                                 viewProvider.list[index]
@@ -238,7 +244,7 @@ class _ViewLocationsState extends State<ViewLocations> {
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(width: 90),
+                                            SizedBox(width: 110),
                                             SizedBox(
                                               child: Text(
                                                 viewProvider.list[index]
@@ -265,14 +271,12 @@ class _ViewLocationsState extends State<ViewLocations> {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Container(
-                                                        padding:
-                                                            EdgeInsets.all(2),
                                                         child: Text(
-                                                          'Plant Head:',
-                                                          style: TextStyle(
-                                                              color: Colors
-                                                                  .grey[600]),
-                                                        )),
+                                                      'Plant Head:',
+                                                      style: TextStyle(
+                                                          color:
+                                                              Colors.grey[600]),
+                                                    )),
                                                     Container(
                                                         padding:
                                                             EdgeInsets.all(2),

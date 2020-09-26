@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/officeSafetyProfile.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/summaryOfRiskProfile.dart';
@@ -123,6 +124,10 @@ class _OfficeAssessmentState extends State<OfficeAssessment> {
                                                             .assessmentType ==
                                                         'site')
                                                 ? TextField(
+                                                    inputFormatters: [
+                                                      FilteringTextInputFormatter
+                                                          .digitsOnly
+                                                    ],
                                                     decoration: InputDecoration(
                                                         labelText:
                                                             'Enter marks out of 10'),

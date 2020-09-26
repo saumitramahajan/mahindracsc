@@ -40,13 +40,12 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                 )
               : SingleChildScrollView(
                   child: Container(
-                    decoration: (assessmentProvider.i == 3 ||
+                    color: (assessmentProvider.i == 3 ||
                             assessmentProvider.i == 11 ||
                             assessmentProvider.i == 14 ||
                             assessmentProvider.i == 17)
-                        ? BoxDecoration(
-                            border: Border.all(color: Colors.red, width: 5))
-                        : BoxDecoration(),
+                        ? Colors.red[100]
+                        : Colors.white,
                     child: Row(
                       children: [
                         SizedBox(

@@ -183,4 +183,11 @@ class AssessmentRepository {
 
     return statementListOffice;
   }
+
+  Future<void> approve(String cycleId) async {
+    await Firestore.instance
+        .collection('cycles')
+        .document(cycleId)
+        .updateData({'currentStatus': 'Closed'});
+  }
 }

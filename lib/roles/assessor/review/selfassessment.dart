@@ -1,4 +1,4 @@
-import 'package:mahindraCSC/roles/admin/dashboard/adminDashboard.dart';
+import 'package:mahindraCSC/roles/assessor/assessorDashboard.dart';
 
 import '../../../utilities.dart';
 import 'assessmentProvider.dart';
@@ -126,8 +126,7 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                                         case '4':
                                           {
                                             displayContainer =
-                                                siteOfficeContainer(provider,
-                                                    widget.documentId);
+                                                siteOfficeContainer(provider);
                                           }
                                           break;
                                       }
@@ -1146,7 +1145,7 @@ class _SelfAssessmentState extends State<SelfAssessment> {
         ));
   }
 
-  Widget siteOfficeContainer(AssessmentProvider provider, String cycleId) {
+  Widget siteOfficeContainer(AssessmentProvider provider) {
     return Container(
         width: MediaQuery.of(context).size.width * 0.95,
         child: Column(
@@ -1251,13 +1250,12 @@ class _SelfAssessmentState extends State<SelfAssessment> {
               ),
             ),
             RaisedButton(
+              child: Text('Approve Assessment'),
               onPressed: () {
-                provider.approve(cycleId);
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => AdminDashboard(),
+                  builder: (context) => AssessorDashboard(),
                 ));
               },
-              child: Text('Approve'),
             )
           ],
         ));

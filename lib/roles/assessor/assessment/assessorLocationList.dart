@@ -30,7 +30,7 @@ class _AssessorLocationListInfo extends State<AssessorLocationListInfo> {
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: Column(children: [
                           Text(
-                            ' Choose Location:',
+                            ' Select Site:',
                             style: TextStyle(fontSize: 25),
                           ),
                           Expanded(
@@ -54,6 +54,9 @@ class _AssessorLocationListInfo extends State<AssessorLocationListInfo> {
                                               children: [
                                                 Text(
                                                   'Assessment For Location: ' +
+                                                      provider.listOfAssessorLocation[
+                                                          index]['name'] +
+                                                      ', ' +
                                                       provider.listOfAssessorLocation[
                                                           index]['location'],
                                                   style:

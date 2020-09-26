@@ -157,7 +157,11 @@ class _ScheduleAssessmentFormState extends State<ScheduleAssessmentForm> {
                                       ),
                                       color: utilities.mainColor,
                                       child: requestAD.requesting
-                                          ? CircularProgressIndicator()
+                                          ? CircularProgressIndicator(
+                                              valueColor:
+                                                  new AlwaysStoppedAnimation<
+                                                      Color>(Colors.white),
+                                            )
                                           : Padding(
                                               padding:
                                                   const EdgeInsets.all(10.0),

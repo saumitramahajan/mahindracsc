@@ -73,4 +73,8 @@ class AssessmentProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void approve(String cycleId) async {
+    assessmentRepository.approve(cycleId);
+  }
 }

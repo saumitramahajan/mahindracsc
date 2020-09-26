@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/fireSafetyManagementProfile.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/officeAssessment.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
@@ -149,6 +150,10 @@ class _FireAssessmentState extends State<FireAssessment> {
                                                         'site' &&
                                                     index > 0)
                                                 ? TextField(
+                                                    inputFormatters: [
+                                                      FilteringTextInputFormatter
+                                                          .digitsOnly
+                                                    ],
                                                     decoration: InputDecoration(
                                                         labelText:
                                                             'Enter marks out of ${marks[index].toString()}'),

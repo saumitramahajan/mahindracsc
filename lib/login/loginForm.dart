@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mahindraCSC/login/choice.dart';
 import 'package:mahindraCSC/login/loginProvider.dart';
 import 'package:mahindraCSC/login/resetPassword.dart';
@@ -11,6 +12,8 @@ import 'package:mahindraCSC/roles/assessor/assessorProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../utilities.dart';
+
 class LoginForm extends StatefulWidget {
   @override
   _LoginFormState createState() => _LoginFormState();
@@ -19,6 +22,7 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   String _email = '', _password = '';
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  Utilities utilities = Utilities();
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +98,21 @@ class _LoginFormState extends State<LoginForm> {
                             obscureText: true,
                           ),
                           RaisedButton(
-                              child: Text('Login'),
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15)),
+                              ),
+                              color: utilities.mainColor,
+                              child: loginProvider.loading
+                                  ? CircularProgressIndicator(
+                                      valueColor:
+                                          new AlwaysStoppedAnimation<Color>(
+                                              Colors.white),
+                                    )
+                                  : Text('Login',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      )),
                               onPressed: () async {
                                 /* if (_email == '' && _password == '') {
                                   _email = 'themahindrasafetyway@mahindra.com';

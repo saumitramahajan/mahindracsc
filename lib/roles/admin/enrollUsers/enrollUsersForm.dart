@@ -196,7 +196,11 @@ class _EnrollUsersFormState extends State<EnrollUsersForm> {
                                 ),
                                 color: utilities.mainColor,
                                 child: provider.loading
-                                    ? CircularProgressIndicator()
+                                    ? CircularProgressIndicator(
+                                        valueColor:
+                                            new AlwaysStoppedAnimation<Color>(
+                                                Colors.white),
+                                      )
                                     : Padding(
                                         padding: const EdgeInsets.all(10.0),
                                         child: Text(

@@ -35,7 +35,7 @@ class _LocationInfoBaseState extends State<LocationInfoBase> {
                   officeSafetyInchargeName:
                       provider.locationInfo['officeSafetyInchargeName'],
                   officeSafetyInchargeEmail:
-                      provider.locationInfo['officeSafetInchargeEmail'],
+                      provider.locationInfo['officeSafetyInchargeEmail'],
                   utilitiesName: provider.locationInfo['utilitiesName'],
                   utilitiesEmail: provider.locationInfo['utilitiesEmail'],
                   rule: provider.locationInfo['rule'],

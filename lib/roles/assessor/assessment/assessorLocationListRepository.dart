@@ -19,6 +19,7 @@ class AssessorLocationListInfoRepository {
     for (int i = 0; i < cycles.documents.length; i++) {
       Map<String, String> locationMap = {
         'location': cycles.documents[i].data['location'],
+        'name': cycles.documents[i].data['name'],
         'locationId': cycles.documents[i].documentID
       };
       locationList.add(locationMap);
