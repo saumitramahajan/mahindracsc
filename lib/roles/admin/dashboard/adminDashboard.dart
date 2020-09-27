@@ -224,94 +224,100 @@ class _AdminDashboardState extends State<AdminDashboard> {
             ),
             body: loading
                 ? Center(child: CircularProgressIndicator())
-                : CustomScrollView(
-                    slivers: [
-                      SliverToBoxAdapter(
-                          child: SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.8,
-                        child: Carousel(
-                            boxFit: BoxFit.fitWidth,
-                            images: [
-                              AssetImage('assets/Picture1.png'),
-                              AssetImage('assets/Picture2.png'),
-                              AssetImage('assets/Picture3.png'),
-                            ],
-                            autoplay: true,
-                            indicatorBgPadding: 0,
-                            dotBgColor: Colors.transparent),
-                      )),
-                      SliverGrid.count(
-                          crossAxisCount: 4,
-                          mainAxisSpacing: 10.0,
-                          crossAxisSpacing: 10.0,
-                          childAspectRatio: 2,
-                          children: [
-                            Container(
-                              color: Colors.green[50],
-                              padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
-                              child: Column(
-                                children: [
-                                  Text('Scheduled Assessment: ',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15)),
-                                  Text(total.toString(),
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 70))
-                                ],
+                : Container(
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/background.jpg"),
+                            fit: BoxFit.fitWidth)),
+                    child: CustomScrollView(
+                      slivers: [
+                        SliverToBoxAdapter(
+                            child: SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.7,
+                          child: Carousel(
+                              boxFit: BoxFit.fitHeight,
+                              images: [
+                                AssetImage('assets/Picture1.png'),
+                                AssetImage('assets/Picture2.png'),
+                                AssetImage('assets/Picture3.png'),
+                              ],
+                              autoplay: true,
+                              indicatorBgPadding: 0,
+                              dotBgColor: Colors.transparent),
+                        )),
+                        SliverGrid.count(
+                            crossAxisCount: 4,
+                            mainAxisSpacing: 10.0,
+                            crossAxisSpacing: 10.0,
+                            childAspectRatio: 2.5,
+                            children: [
+                              Container(
+                                color: Colors.green[50],
+                                padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
+                                child: Column(
+                                  children: [
+                                    Text('Scheduled Assessment: ',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15)),
+                                    Text(total.toString(),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 70))
+                                  ],
+                                ),
                               ),
-                            ),
-                            Container(
-                              color: Colors.green[100],
-                              padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
-                              child: Column(
-                                children: [
-                                  Text('Self Assessment Uploaded: ',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15)),
-                                  Text(self.toString(),
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 70))
-                                ],
+                              Container(
+                                color: Colors.green[100],
+                                padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
+                                child: Column(
+                                  children: [
+                                    Text('Self Assessment Uploaded: ',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15)),
+                                    Text(self.toString(),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 70))
+                                  ],
+                                ),
                               ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
-                              color: Colors.green[200],
-                              child: Column(
-                                children: [
-                                  Text('Site Assessment Uploaded: ',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15)),
-                                  Text(site.toString(),
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 70))
-                                ],
+                              Container(
+                                padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
+                                color: Colors.green[200],
+                                child: Column(
+                                  children: [
+                                    Text('Site Assessment Uploaded: ',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15)),
+                                    Text(site.toString(),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 70))
+                                  ],
+                                ),
                               ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
-                              color: Colors.green[300],
-                              child: Column(
-                                children: [
-                                  Text('Closed: ',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15)),
-                                  Text(closed.toString(),
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 70))
-                                ],
-                              ),
-                            )
-                          ])
-                    ],
+                              Container(
+                                padding: EdgeInsets.fromLTRB(10, 10, 10, 5),
+                                color: Colors.green[300],
+                                child: Column(
+                                  children: [
+                                    Text('Closed: ',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15)),
+                                    Text(closed.toString(),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 70))
+                                  ],
+                                ),
+                              )
+                            ])
+                      ],
+                    ),
                   ),
           ),
         ),

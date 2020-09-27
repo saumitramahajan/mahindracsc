@@ -7,19 +7,32 @@ class AssessmentRepository {
     return user.uid;
   }
 
-  Future<List<Map<String, String>>> getLocation() async {
+  Future<List<Map<String, String>>> getLocation(String type) async {
     List<Map<String, String>> locationList = [];
 
     QuerySnapshot cycles =
         await Firestore.instance.collection('cycles').getDocuments();
     for (int i = 0; i < cycles.documents.length; i++) {
-      if (cycles.documents[i].data.containsKey('selfAssessment')) {
-        Map<String, String> locationMap = {
-          'location': cycles.documents[i].data['location'],
-          'name': cycles.documents[i].data['name'],
-          'documentId': cycles.documents[i].documentID
-        };
-        locationList.add(locationMap);
+      if (type == 'self') {
+        if (cycles.documents[i].data['currentStatus'] ==
+            'Self Assessment Uploaded') {
+          Map<String, String> locationMap = {
+            'location': cycles.documents[i].data['location'],
+            'name': cycles.documents[i].data['name'],
+            'documentId': cycles.documents[i].documentID
+          };
+          locationList.add(locationMap);
+        }
+      } else {
+        if (cycles.documents[i].data['currentStatus'] ==
+            'Approved by CoAssessor') {
+          Map<String, String> locationMap = {
+            'location': cycles.documents[i].data['location'],
+            'name': cycles.documents[i].data['name'],
+            'documentId': cycles.documents[i].documentID
+          };
+          locationList.add(locationMap);
+        }
       }
     }
     print(locationList.toString());
