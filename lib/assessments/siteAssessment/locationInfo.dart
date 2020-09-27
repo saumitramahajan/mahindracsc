@@ -1,3 +1,7 @@
+import 'dart:html';
+
+import 'package:file_picker/file_picker.dart';
+import 'package:file_picker_web/file_picker_web.dart' as webPicker;
 import 'package:flutter/material.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentForm.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
@@ -655,7 +659,7 @@ class _LocationInfoState extends State<LocationInfo> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             Text(
-                              'Is your site has LPG / Propane',
+                              'Does your site has LPG / Propane',
                               style: TextStyle(fontSize: 22),
                               textAlign: TextAlign.left,
                             ),
@@ -861,7 +865,7 @@ class _LocationInfoState extends State<LocationInfo> {
                             (_foundryValue)
                                 ? RaisedButton(
                                     child: Text('Upload Supporting Documents'),
-                                    onPressed: () {},
+                                    onPressed: () async {},
                                   )
                                 : SizedBox()
                           ],

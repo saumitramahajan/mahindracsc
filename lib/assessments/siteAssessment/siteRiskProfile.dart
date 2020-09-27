@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentForm.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
 import 'package:provider/provider.dart';
-import 'package:responsive_text_field/responsive_text_field.dart';
 
 import '../../utilities.dart';
 
@@ -68,24 +67,26 @@ class _SiteRiskProfileState extends State<SiteRiskProfile> {
                                       SizedBox(height: 20),
                                       Text(
                                           'Positive Observation Specific to Site Risk - Based on Hazardous Processes and Chemicals'),
-                                      ResponsiveTextField(
-                                        availableWidth:
-                                            (MediaQuery.of(context).size.width *
-                                                    0.7) -
-                                                20,
+                                      TextField(
                                         controller: _positiveP1,
                                         minLines: 1,
-                                        maxLines: 5,
-                                        style: TextStyle(fontSize: 16),
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         decoration:
                                             InputDecoration(labelText: '1.'),
                                       ),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _positiveP2,
                                         decoration:
                                             InputDecoration(labelText: '2.'),
                                       ),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _positiveP3,
                                         decoration:
                                             InputDecoration(labelText: '3.'),
@@ -107,16 +108,25 @@ class _SiteRiskProfileState extends State<SiteRiskProfile> {
                                       Text(
                                           'Serious Non-Conformity specific to Site Risk - Based on Hazardous Processes and Chemicals'),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _seriousP1,
                                         decoration:
                                             InputDecoration(labelText: '1.'),
                                       ),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _seriousP2,
                                         decoration:
                                             InputDecoration(labelText: '2.'),
                                       ),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _seriousP3,
                                         decoration:
                                             InputDecoration(labelText: '3.'),
@@ -138,16 +148,25 @@ class _SiteRiskProfileState extends State<SiteRiskProfile> {
                                       Text(
                                           'Suggestion For Improvement Specific to Site Risk - Based on Hazardous Processes and Chemicals'),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _suggestionP1,
                                         decoration:
                                             InputDecoration(labelText: '1.'),
                                       ),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _suggestionP2,
                                         decoration:
                                             InputDecoration(labelText: '2.'),
                                       ),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _suggestionP3,
                                         decoration:
                                             InputDecoration(labelText: '3.'),

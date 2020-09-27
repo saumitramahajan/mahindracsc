@@ -19,6 +19,7 @@ class SiteAssessmentSingleForm extends StatefulWidget {
 class _SiteAssessmentSingleFormState extends State<SiteAssessmentSingleForm> {
   String level = '';
   TextEditingController _justificationController = TextEditingController();
+  TextEditingController _suggestionController = TextEditingController();
   double marks;
 
   @override
@@ -162,10 +163,27 @@ class _SiteAssessmentSingleFormState extends State<SiteAssessmentSingleForm> {
                               )
                             : SizedBox(),
                         TextField(
+                          minLines: 1,
+                          maxLines: null,
+                          keyboardType: TextInputType.multiline,
                           controller: _justificationController,
-                          decoration:
-                              InputDecoration(labelText: 'Justification'),
+                          decoration: InputDecoration(
+                              labelText:
+                                  (assessmentProvider.assessmentType == 'site')
+                                      ? 'Observations'
+                                      : 'Justification'),
                         ),
+                        (assessmentProvider.assessmentType == 'site')
+                            ? TextField(
+                                minLines: 1,
+                                maxLines: null,
+                                keyboardType: TextInputType.multiline,
+                                controller: _suggestionController,
+                                decoration: InputDecoration(
+                                    labelText:
+                                        'Suggestions for Moving to Next Level'),
+                              )
+                            : SizedBox(),
                         RaisedButton(
                           child: Text('Upload Supporting document'),
                           onPressed: () async {
@@ -181,6 +199,7 @@ class _SiteAssessmentSingleFormState extends State<SiteAssessmentSingleForm> {
                                     ? marks
                                     : 0,
                                 comment: _justificationController.text,
+                                suggestion: _suggestionController.text,
                                 level: level);
                             Navigator.of(context).pop();
                           },

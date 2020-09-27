@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:mahindraCSC/login/choice.dart';
 import 'package:mahindraCSC/login/loginProvider.dart';
 import 'package:mahindraCSC/login/resetPassword.dart';
@@ -60,7 +59,7 @@ class _LoginFormState extends State<LoginForm> {
                 Container(
                   padding: EdgeInsets.all(20.0),
                   width: MediaQuery.of(context).size.width * .35,
-                  height: MediaQuery.of(context).size.height * .6,
+                  height: MediaQuery.of(context).size.height * .55,
                   child: SingleChildScrollView(
                     child: Form(
                       key: _formkey,

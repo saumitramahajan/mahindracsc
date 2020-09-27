@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mahindraCSC/login/login.dart';
-import 'package:mahindraCSC/roles/admin/annualData/annualData.dart';
 import 'package:mahindraCSC/roles/admin/changePassword/changePassword.dart';
 import 'package:mahindraCSC/roles/admin/enrollLocation/enrollLoacation.dart';
 import 'package:mahindraCSC/roles/admin/enrollUsers/enrollUsers.dart';

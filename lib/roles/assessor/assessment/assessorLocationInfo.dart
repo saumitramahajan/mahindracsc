@@ -1,5 +1,4 @@
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessment.dart';
-import 'package:mahindraCSC/roles/admin/review/assessmentProvider.dart';
 import 'package:mahindraCSC/utilities.dart';
 
 import 'assessorLocationInfoprovider.dart';

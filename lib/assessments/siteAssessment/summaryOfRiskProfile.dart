@@ -64,16 +64,25 @@ class _SummaryOfRiskProfileState extends State<SummaryOfRiskProfile> {
                                       SizedBox(height: 20),
                                       Text('Positive Observation'),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _positiveP1,
                                         decoration:
                                             InputDecoration(labelText: '1.'),
                                       ),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _positiveP2,
                                         decoration:
                                             InputDecoration(labelText: '2.'),
                                       ),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _positiveP3,
                                         decoration:
                                             InputDecoration(labelText: '3.'),
@@ -94,16 +103,25 @@ class _SummaryOfRiskProfileState extends State<SummaryOfRiskProfile> {
                                     children: [
                                       Text('Serious Non-Conformity'),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _seriousP1,
                                         decoration:
                                             InputDecoration(labelText: '1.'),
                                       ),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _seriousP2,
                                         decoration:
                                             InputDecoration(labelText: '2.'),
                                       ),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _seriousP3,
                                         decoration:
                                             InputDecoration(labelText: '3.'),
@@ -124,16 +142,25 @@ class _SummaryOfRiskProfileState extends State<SummaryOfRiskProfile> {
                                     children: [
                                       Text('Suggestion For Improvement'),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _suggestionP1,
                                         decoration:
                                             InputDecoration(labelText: '1.'),
                                       ),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _suggestionP2,
                                         decoration:
                                             InputDecoration(labelText: '2.'),
                                       ),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _suggestionP3,
                                         decoration:
                                             InputDecoration(labelText: '3.'),

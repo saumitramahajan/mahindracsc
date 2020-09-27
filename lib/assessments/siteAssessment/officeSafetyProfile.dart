@@ -79,16 +79,25 @@ class _OfficeSafetyRiskProfile extends State<OfficeSafetyRiskProfile> {
                                       Text(
                                           'Positive Observation Specific to office Safety Risk Profile '),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _positiveP1,
                                         decoration:
                                             InputDecoration(labelText: '1.'),
                                       ),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _positiveP2,
                                         decoration:
                                             InputDecoration(labelText: '2.'),
                                       ),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _positiveP3,
                                         decoration:
                                             InputDecoration(labelText: '3.'),
@@ -110,16 +119,25 @@ class _OfficeSafetyRiskProfile extends State<OfficeSafetyRiskProfile> {
                                       Text(
                                           'Serious Non-Conformity Specific to office Safety Risk Profile'),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _seriousP1,
                                         decoration:
                                             InputDecoration(labelText: '1.'),
                                       ),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _seriousP2,
                                         decoration:
                                             InputDecoration(labelText: '2.'),
                                       ),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _seriousP3,
                                         decoration:
                                             InputDecoration(labelText: '3.'),
@@ -141,16 +159,25 @@ class _OfficeSafetyRiskProfile extends State<OfficeSafetyRiskProfile> {
                                       Text(
                                           'Suggestion For Improvement Specific to Office Safety Risk Profile'),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _suggestionP1,
                                         decoration:
                                             InputDecoration(labelText: '1.'),
                                       ),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _suggestionP2,
                                         decoration:
                                             InputDecoration(labelText: '2.'),
                                       ),
                                       TextField(
+                                        minLines: 1,
+                                        maxLines: null,
+                                        keyboardType: TextInputType.multiline,
                                         controller: _suggestionP3,
                                         decoration:
                                             InputDecoration(labelText: '3.'),

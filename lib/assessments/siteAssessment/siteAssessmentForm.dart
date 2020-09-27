@@ -15,7 +15,6 @@ class SiteAssessmentForm extends StatefulWidget {
 
 class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
   TextEditingController _justificationController = TextEditingController();
-  TextEditingController _marksController = TextEditingController(text: '0');
   TextEditingController _suggestionController = TextEditingController();
   List<DropdownMenuItem<double>> ddlist = [];
   //File file;
@@ -213,6 +212,9 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                     )
                                   : SizedBox(),
                               TextField(
+                                minLines: 1,
+                                maxLines: null,
+                                keyboardType: TextInputType.multiline,
                                 controller: _justificationController,
                                 decoration: InputDecoration(
                                     labelText:
@@ -223,6 +225,9 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                               ),
                               (assessmentProvider.assessmentType == 'site')
                                   ? TextField(
+                                      minLines: 1,
+                                      maxLines: null,
+                                      keyboardType: TextInputType.multiline,
                                       controller: _suggestionController,
                                       decoration: InputDecoration(
                                           labelText:

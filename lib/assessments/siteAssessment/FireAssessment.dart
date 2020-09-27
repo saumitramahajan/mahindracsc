@@ -137,6 +137,10 @@ class _FireAssessmentState extends State<FireAssessment> {
                                                             index]['condition'] !=
                                                         'null')
                                                 ? TextField(
+                                                    minLines: 1,
+                                                    maxLines: null,
+                                                    keyboardType:
+                                                        TextInputType.multiline,
                                                     onChanged: (v) {
                                                       answers[index]
                                                           ['comment'] = v;
