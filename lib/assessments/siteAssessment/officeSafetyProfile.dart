@@ -5,7 +5,10 @@ import '../../utilities.dart';
 
 class OfficeSafetyRiskProfile extends StatefulWidget {
   final String cycleId;
-  OfficeSafetyRiskProfile({Key key, @required this.cycleId}) : super(key: key);
+  final double officeTotal;
+  OfficeSafetyRiskProfile(
+      {Key key, @required this.cycleId, @required this.officeTotal})
+      : super(key: key);
   @override
   _OfficeSafetyRiskProfile createState() => _OfficeSafetyRiskProfile();
 }
@@ -68,6 +71,11 @@ class _OfficeSafetyRiskProfile extends State<OfficeSafetyRiskProfile> {
                                           ),
                                         ],
                                       ),
+                                      SizedBox(height: 10),
+                                      Text('Total Score: ' +
+                                          widget.officeTotal.toString() +
+                                          '/100'),
+                                      SizedBox(height: 20),
                                       Text(
                                           'Positive Observation Specific to office Safety Risk Profile '),
                                       TextField(

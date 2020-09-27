@@ -5,7 +5,10 @@ import '../../utilities.dart';
 
 class FireSafetyRiskProfile extends StatefulWidget {
   final String cycleId;
-  FireSafetyRiskProfile({Key key, @required this.cycleId}) : super(key: key);
+  final double fireTotal;
+  FireSafetyRiskProfile(
+      {Key key, @required this.cycleId, @required this.fireTotal})
+      : super(key: key);
   @override
   _FireSafetyRiskProfile createState() => _FireSafetyRiskProfile();
 }
@@ -61,6 +64,13 @@ class _FireSafetyRiskProfile extends State<FireSafetyRiskProfile> {
                                           ),
                                         ],
                                       ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text('Total Marks: ' +
+                                          widget.fireTotal.toString() +
+                                          '/100'),
+                                      SizedBox(height: 20),
                                       Text(
                                           'Positive Observation Specific to Fire Safety Risk Profile '),
                                       TextField(

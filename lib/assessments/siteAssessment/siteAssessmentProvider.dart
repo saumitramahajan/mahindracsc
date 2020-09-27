@@ -11,6 +11,8 @@ class SiteAssessmentProvider extends ChangeNotifier {
   List<Map<String, dynamic>> officeQuestions = [];
   Map<String, dynamic> currentQuestion = {};
   int i = 1;
+  double fireTotal = 0;
+  double officeTotal = 0;
   bool locationData = false;
   bool locationDataLoading = true;
   bool locationDataUploading = false;
@@ -207,6 +209,9 @@ class SiteAssessmentProvider extends ChangeNotifier {
     buttonLoading = true;
     notifyListeners();
     fireanswers = answer;
+    fireanswers.forEach((question) {
+      fireTotal = fireTotal + question['marks'].toDouble();
+    });
     if (assessmentType == 'site') {
       await assessentRepository.uploadSiteAssessmentFire(fireanswers, cycleId);
     } else {
@@ -238,6 +243,9 @@ class SiteAssessmentProvider extends ChangeNotifier {
     buttonLoading = true;
     notifyListeners();
     officeAnswers = answer;
+    officeAnswers.forEach((question) {
+      officeTotal = officeTotal + question['marks'].toDouble();
+    });
     if (assessmentType == 'site') {
       await assessentRepository.uploadSiteAssessmentOffice(
           officeAnswers, cycleId);

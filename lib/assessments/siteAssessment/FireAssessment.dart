@@ -149,11 +149,19 @@ class _FireAssessmentState extends State<FireAssessment> {
                                                             .assessmentType ==
                                                         'site' &&
                                                     index > 0)
-                                                ? TextField(
+                                                ? TextFormField(
                                                     inputFormatters: [
                                                       FilteringTextInputFormatter
                                                           .digitsOnly
                                                     ],
+                                                    validator: (value) {
+                                                      if (int.parse(value) >
+                                                          marks[index]) {
+                                                        return 'Marks more than maximum marks';
+                                                      } else {
+                                                        return null;
+                                                      }
+                                                    },
                                                     decoration: InputDecoration(
                                                         labelText:
                                                             'Enter marks out of ${marks[index].toString()}'),
@@ -189,7 +197,9 @@ class _FireAssessmentState extends State<FireAssessment> {
                                     .push(MaterialPageRoute(
                                   builder: (context) {
                                     return FireSafetyRiskProfile(
-                                        cycleId: assessmentProvider.cycleId);
+                                      cycleId: assessmentProvider.cycleId,
+                                      fireTotal: assessmentProvider.fireTotal,
+                                    );
                                   },
                                 ));
                               }

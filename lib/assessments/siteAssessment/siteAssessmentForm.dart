@@ -195,6 +195,10 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
+                                        Text(
+                                          'Select Score- ',
+                                          style: TextStyle(fontSize: 20),
+                                        ),
                                         DropdownButton<double>(
                                           items: ddlist,
                                           onChanged: (value) {

@@ -60,7 +60,7 @@ class _LoginFormState extends State<LoginForm> {
                 Container(
                   padding: EdgeInsets.all(20.0),
                   width: MediaQuery.of(context).size.width * .35,
-                  height: MediaQuery.of(context).size.height * .5,
+                  height: MediaQuery.of(context).size.height * .6,
                   child: SingleChildScrollView(
                     child: Form(
                       key: _formkey,

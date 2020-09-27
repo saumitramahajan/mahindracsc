@@ -123,7 +123,7 @@ class _OfficeAssessmentState extends State<OfficeAssessment> {
                                                     assessmentProvider
                                                             .assessmentType ==
                                                         'site')
-                                                ? TextField(
+                                                ? TextFormField(
                                                     inputFormatters: [
                                                       FilteringTextInputFormatter
                                                           .digitsOnly
@@ -134,6 +134,14 @@ class _OfficeAssessmentState extends State<OfficeAssessment> {
                                                     onChanged: (value) {
                                                       answers[index]['marks'] =
                                                           value;
+                                                    },
+                                                    validator: (value) {
+                                                      if (int.parse(value) >
+                                                          10) {
+                                                        return 'Marks more than 10';
+                                                      } else {
+                                                        return null;
+                                                      }
                                                     },
                                                     keyboardType: TextInputType
                                                         .numberWithOptions(
@@ -159,7 +167,10 @@ class _OfficeAssessmentState extends State<OfficeAssessment> {
                                     .push(MaterialPageRoute(
                                   builder: (context) {
                                     return OfficeSafetyRiskProfile(
-                                        cycleId: assessmentProvider.cycleId);
+                                      cycleId: assessmentProvider.cycleId,
+                                      officeTotal:
+                                          assessmentProvider.officeTotal,
+                                    );
                                   },
                                 ));
                                 await Navigator.of(context)

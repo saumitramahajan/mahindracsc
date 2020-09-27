@@ -61,6 +61,7 @@ class _SummaryOfRiskProfileState extends State<SummaryOfRiskProfile> {
                                                   fontSize: 25)),
                                         ],
                                       ),
+                                      SizedBox(height: 20),
                                       Text('Positive Observation'),
                                       TextField(
                                         controller: _positiveP1,

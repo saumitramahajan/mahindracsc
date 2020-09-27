@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentForm.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_text_field/responsive_text_field.dart';
 
 import '../../utilities.dart';
 
@@ -64,10 +65,18 @@ class _SiteRiskProfileState extends State<SiteRiskProfile> {
                                                   fontSize: 25)),
                                         ],
                                       ),
+                                      SizedBox(height: 20),
                                       Text(
                                           'Positive Observation Specific to Site Risk - Based on Hazardous Processes and Chemicals'),
-                                      TextField(
+                                      ResponsiveTextField(
+                                        availableWidth:
+                                            (MediaQuery.of(context).size.width *
+                                                    0.7) -
+                                                20,
                                         controller: _positiveP1,
+                                        minLines: 1,
+                                        maxLines: 5,
+                                        style: TextStyle(fontSize: 16),
                                         decoration:
                                             InputDecoration(labelText: '1.'),
                                       ),
