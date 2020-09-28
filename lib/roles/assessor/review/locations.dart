@@ -1,4 +1,4 @@
-import 'package:mahindraCSC/roles/admin/review/selfassessment.dart';
+import 'selfassessment.dart';
 
 import '../../../utilities.dart';
 import 'assessmentProvider.dart';

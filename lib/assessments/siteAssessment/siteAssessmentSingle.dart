@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
 import 'package:provider/provider.dart';
@@ -187,7 +188,8 @@ class _SiteAssessmentSingleFormState extends State<SiteAssessmentSingleForm> {
                         RaisedButton(
                           child: Text('Upload Supporting document'),
                           onPressed: () async {
-                            //file = await FilePicker.getFile();
+                            FilePickerResult file =
+                                await FilePicker.platform.pickFiles();
                           },
                         ),
                         RaisedButton(

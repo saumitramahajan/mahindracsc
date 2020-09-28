@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/fireSafetyManagementProfile.dart';
@@ -189,7 +190,10 @@ class _FireAssessmentState extends State<FireAssessment> {
                           ),
                           RaisedButton(
                             child: Text('Upload Supporting Documents'),
-                            onPressed: () {},
+                            onPressed: () async {
+                              FilePickerResult file =
+                                  await FilePicker.platform.pickFiles();
+                            },
                           ),
                           RaisedButton(
                             child: Text('Next'),

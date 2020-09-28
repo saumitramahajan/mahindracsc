@@ -1,6 +1,7 @@
 //import 'dart:html';
 
 //import 'package:file_picker_web/file_picker_web.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/beforeSubmit.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
@@ -237,7 +238,8 @@ class _SiteAssessmentFormState extends State<SiteAssessmentForm> {
                               RaisedButton(
                                 child: Text('Upload Supporting document'),
                                 onPressed: () async {
-                                  //file = await FilePicker.getFile();
+                                  FilePickerResult file =
+                                      await FilePicker.platform.pickFiles();
                                 },
                               ),
                               Row(

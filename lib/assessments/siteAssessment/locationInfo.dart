@@ -1,7 +1,4 @@
-import 'dart:html';
-
 import 'package:file_picker/file_picker.dart';
-import 'package:file_picker_web/file_picker_web.dart' as webPicker;
 import 'package:flutter/material.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentForm.dart';
 import 'package:mahindraCSC/assessments/siteAssessment/siteAssessmentProvider.dart';
@@ -865,7 +862,10 @@ class _LocationInfoState extends State<LocationInfo> {
                             (_foundryValue)
                                 ? RaisedButton(
                                     child: Text('Upload Supporting Documents'),
-                                    onPressed: () async {},
+                                    onPressed: () async {
+                                      FilePickerResult file =
+                                          await FilePicker.platform.pickFiles();
+                                    },
                                   )
                                 : SizedBox()
                           ],
@@ -918,7 +918,10 @@ class _LocationInfoState extends State<LocationInfo> {
                             (_pressValue)
                                 ? RaisedButton(
                                     child: Text('Upload Supporting Documents'),
-                                    onPressed: () {},
+                                    onPressed: () async {
+                                      FilePickerResult file =
+                                          await FilePicker.platform.pickFiles();
+                                    },
                                   )
                                 : SizedBox()
                           ],
@@ -1011,7 +1014,10 @@ class _LocationInfoState extends State<LocationInfo> {
                             (_thinnerValue)
                                 ? RaisedButton(
                                     child: Text('Upload Supporting Documents'),
-                                    onPressed: () {},
+                                    onPressed: () async {
+                                      FilePickerResult file =
+                                          await FilePicker.platform.pickFiles();
+                                    },
                                   )
                                 : SizedBox()
                           ],
@@ -1058,7 +1064,10 @@ class _LocationInfoState extends State<LocationInfo> {
                             (_toxicValue)
                                 ? RaisedButton(
                                     child: Text('Upload Supporting Documents'),
-                                    onPressed: () {},
+                                    onPressed: () async {
+                                      FilePickerResult file =
+                                          await FilePicker.platform.pickFiles();
+                                    },
                                   )
                                 : SizedBox()
                           ],
@@ -1110,7 +1119,10 @@ class _LocationInfoState extends State<LocationInfo> {
                             (_heatValue)
                                 ? RaisedButton(
                                     child: Text('Upload Supporting Documents'),
-                                    onPressed: () {},
+                                    onPressed: () async {
+                                      FilePickerResult file =
+                                          await FilePicker.platform.pickFiles();
+                                    },
                                   )
                                 : SizedBox()
                           ],
@@ -1203,7 +1215,10 @@ class _LocationInfoState extends State<LocationInfo> {
                             (_ibrValue)
                                 ? RaisedButton(
                                     child: Text('Upload Supporting Documents'),
-                                    onPressed: () {},
+                                    onPressed: () async {
+                                      FilePickerResult file =
+                                          await FilePicker.platform.pickFiles();
+                                    },
                                   )
                                 : SizedBox()
                           ],

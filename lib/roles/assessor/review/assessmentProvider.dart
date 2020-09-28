@@ -26,7 +26,7 @@ class AssessmentProvider extends ChangeNotifier {
 
   Future<void> check() async {
     try {
-      listOfLocations = await assessmentRepository.getLocation();
+      listOfLocations = await assessmentRepository.getLocation(assessmentType);
 
       loading = false;
       success = true;
@@ -72,5 +72,9 @@ class AssessmentProvider extends ChangeNotifier {
       success = false;
       notifyListeners();
     }
+  }
+
+  Future<void> approveAssessment(String documentId) async {
+    await assessmentRepository.approveAssessment(documentId);
   }
 }

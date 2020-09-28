@@ -7,21 +7,35 @@ class AssessmentRepository {
     return user.uid;
   }
 
-  Future<List<Map<String, String>>> getLocation() async {
+  Future<List<Map<String, String>>> getLocation(String type) async {
     List<Map<String, String>> locationList = [];
     String uid;
     await FirebaseAuth.instance.currentUser().then((value) => uid = value.uid);
     QuerySnapshot cycles =
         await Firestore.instance.collection('cycles').getDocuments();
     for (int i = 0; i < cycles.documents.length; i++) {
-      if (cycles.documents[i].data.containsKey('siteAssessment') &&
-          cycles.documents[i].data['coAssessorUid'] == uid) {
-        Map<String, String> locationMap = {
-          'location': cycles.documents[i].data['location'],
-          'name': cycles.documents[i].data['name'],
-          'documentId': cycles.documents[i].documentID
-        };
-        locationList.add(locationMap);
+      if (type == 'site') {
+        if (cycles.documents[i].data['currentStatus'] ==
+                'Site Assessment Uploaded' &&
+            cycles.documents[i].data['coAssessorUid'] == uid) {
+          Map<String, String> locationMap = {
+            'location': cycles.documents[i].data['location'],
+            'name': cycles.documents[i].data['name'],
+            'documentId': cycles.documents[i].documentID
+          };
+          locationList.add(locationMap);
+        }
+      } else {
+        if (cycles.documents[i].data['currentStatus'] ==
+                'self Assessment Uploaded' &&
+            cycles.documents[i].data['assessorUid'] == uid) {
+          Map<String, String> locationMap = {
+            'location': cycles.documents[i].data['location'],
+            'name': cycles.documents[i].data['name'],
+            'documentId': cycles.documents[i].documentID
+          };
+          locationList.add(locationMap);
+        }
       }
     }
     print(locationList.toString());
@@ -184,5 +198,12 @@ class AssessmentRepository {
     }
 
     return statementListOffice;
+  }
+
+  Future<void> approveAssessment(String documentId) async {
+    await Firestore.instance
+        .collection('cycles')
+        .document(documentId)
+        .updateData({'currentStatus': 'Approved by CoAssessor'});
   }
 }

@@ -255,8 +255,7 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                                                 0.25,
                                             child: ReadMoreText(
                                               provider.listOfAssessment[index]
-                                                      ['comment'] +
-                                                  'hjhsghfgdseadsghhtgytuhgtdscbvhjjkyuyttredsgfhjguyijhhftrdresfxfghgytryhhgfgcdsdxfgfhgjghgfgffggfggfgftfhfg',
+                                                  ['comment'],
                                               trimLines: 3,
                                               colorClickableText: Colors.red,
                                               trimMode: TrimMode.Line,
@@ -392,8 +391,7 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                                                 0.25,
                                             child: ReadMoreText(
                                               provider.listOfAssessment[index]
-                                                      ['comment'] +
-                                                  'hjhsghfgdseadsghhtgytuhgtdscbvhjjkyuyttredsgfhjguyijhhftrdresfxfghgytryhhgfgcdsdxfgfhgjghgfgffggfggfgftfhfg',
+                                                  ['comment'],
                                               trimLines: 3,
                                               colorClickableText: Colors.red,
                                               trimMode: TrimMode.Line,
@@ -526,8 +524,7 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                                                 0.25,
                                             child: ReadMoreText(
                                               provider.listOfAssessment[index]
-                                                      ['comment'] +
-                                                  'hjhsghfgdseadsghhtgytuhgtdscbvhjjkyuyttredsgfhjguyijhhftrdresfxfghgytryhhgfgcdsdxfgfhgjghgfgffggfggfgftfhfg',
+                                                  ['comment'],
                                               trimLines: 3,
                                               colorClickableText: Colors.red,
                                               trimMode: TrimMode.Line,
@@ -760,8 +757,7 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                                                 0.15,
                                             child: ReadMoreText(
                                               provider.listOfAssessment[index]
-                                                      ['comment'] +
-                                                  'hjhsghfgdseadsghhtgytuhgtdscbvhjjkyuyttredsgfhjguyijhhftrdresfxfghgytryhhgfgcdsdxfgfhgjghgfgffggfggfgftfhfg',
+                                                  ['comment'],
                                               trimLines: 3,
                                               colorClickableText: Colors.red,
                                               trimMode: TrimMode.Line,
@@ -783,8 +779,7 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                                                 0.15,
                                             child: ReadMoreText(
                                               provider.listOfAssessment[index]
-                                                      ['suggestion'] +
-                                                  'hjhsghfgdseadsghhtgytuhgtdscbvhjjkyuyttredsgfhjguyijhhftrdresfxfghgytryhhgfgcdsdxfgfhgjghgfgffggfggfgftfhfg',
+                                                  ['suggestion'],
                                               trimLines: 3,
                                               colorClickableText: Colors.red,
                                               trimMode: TrimMode.Line,
@@ -944,8 +939,7 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                                                 0.15,
                                             child: ReadMoreText(
                                               provider.listOfAssessment[index]
-                                                      ['comment'] +
-                                                  'hjhsghfgdseadsghhtgytuhgtdscbvhjjkyuyttredsgfhjguyijhhftrdresfxfghgytryhhgfgcdsdxfgfhgjghgfgffggfggfgftfhfg',
+                                                  ['comment'],
                                               trimLines: 3,
                                               colorClickableText: Colors.red,
                                               trimMode: TrimMode.Line,
@@ -967,8 +961,7 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                                                 0.15,
                                             child: ReadMoreText(
                                               provider.listOfAssessment[index]
-                                                      ['suggestion'] +
-                                                  'hjhsghfgdseadsghhtgytuhgtdscbvhjjkyuyttredsgfhjguyijhhftrdresfxfghgytryhhgfgcdsdxfgfhgjghgfgffggfggfgftfhfg',
+                                                  ['suggestion'],
                                               trimLines: 3,
                                               colorClickableText: Colors.red,
                                               trimMode: TrimMode.Line,
@@ -1119,8 +1112,7 @@ class _SelfAssessmentState extends State<SelfAssessment> {
                                                 0.25,
                                             child: ReadMoreText(
                                               provider.listOfAssessment[index]
-                                                      ['comment'] +
-                                                  'hjhsghfgdseadsghhtgytuhgtdscbvhjjkyuyttredsgfhjguyijhhftrdresfxfghgytryhhgfgcdsdxfgfhgjghgfgffggfggfgftfhfg',
+                                                  ['comment'],
                                               trimLines: 3,
                                               colorClickableText: Colors.red,
                                               trimMode: TrimMode.Line,
@@ -1251,7 +1243,8 @@ class _SelfAssessmentState extends State<SelfAssessment> {
             ),
             RaisedButton(
               child: Text('Approve Assessment'),
-              onPressed: () {
+              onPressed: () async {
+                await provider.approveAssessment(widget.documentId);
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => AssessorDashboard(),
                 ));

@@ -48,7 +48,23 @@ class _AssessorDashboardState extends State<AssessorDashboard> {
                     );
                   },
                   child: Text(
-                    'Review Assessment',
+                    'Review Site Assessment',
+                    style: TextStyle(color: Colors.white),
+                  )),
+              FlatButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return ChangeNotifierProvider<AssessmentProvider>(
+                          create: (_) => AssessmentProvider('self'),
+                          child: Locations(),
+                        );
+                      }),
+                    );
+                  },
+                  child: Text(
+                    'Review Self Assessment',
                     style: TextStyle(color: Colors.white),
                   )),
               FlatButton(
