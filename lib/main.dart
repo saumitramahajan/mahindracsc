@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:mahindraCSC/login/login.dart';
 import 'package:mahindraCSC/roles/assessor/assessorDashboard.dart';
 import 'package:mahindraCSC/utilities.dart';
+import 'package:mahindraCSC/y_check/checkBase.dart';
 
 Future<void> main() async {
   runApp(MyApp());
@@ -39,6 +40,6 @@ class MyApp extends StatelessWidget {
         routes: <String, WidgetBuilder>{
           '/assessorDashboard': (_) => new AssessorDashboard(),
         },
-        home: Login());
+        home: CheckBase());
   }
 }

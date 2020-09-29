@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:mahindraCSC/z_repository/userRepository.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginProvider extends ChangeNotifier {
   final UserRepository userRepository = UserRepository();
@@ -18,7 +19,10 @@ class LoginProvider extends ChangeNotifier {
     if (userExists) {
       role = await userRepository.getRoles();
       if (role.length == 1) {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setBool('singleRole', true);
         singleRole = true;
+        prefs.setString('role', role[0]);
         roleString = role[0];
       } else {
         singleRole = false;
