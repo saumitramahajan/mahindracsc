@@ -19,7 +19,7 @@ class CheckProvider extends ChangeNotifier {
       if (userExistsBool) {
         SharedPreferences prefs = await SharedPreferences.getInstance();
 
-        singleRole = prefs.getBool('singleRole');
+        singleRole = prefs.getBool('singleRole') ?? false;
         if (singleRole) {
           role = prefs.getString('role');
         }

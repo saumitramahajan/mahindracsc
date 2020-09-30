@@ -15,16 +15,17 @@ class LoginProvider extends ChangeNotifier {
   Future<void> loginProvider(String email, String password) async {
     loading = true;
     notifyListeners();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     userExists = await userRepository.login(email, password);
     if (userExists) {
       role = await userRepository.getRoles();
       if (role.length == 1) {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setBool('singleRole', true);
         singleRole = true;
-        prefs.setString('role', role[0]);
         roleString = role[0];
+        prefs.setString('role', role[0]);
       } else {
+        prefs.setBool('singleRole', false);
         singleRole = false;
       }
     }

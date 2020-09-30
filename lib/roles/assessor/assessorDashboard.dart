@@ -6,6 +6,7 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:mahindraCSC/roles/assessor/review/assessmentProvider.dart';
 import 'package:mahindraCSC/roles/assessor/review/locations.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../utilities.dart';
 import 'assessment/assessorlocationListBase.dart';
 
@@ -79,6 +80,10 @@ class _AssessorDashboardState extends State<AssessorDashboard> {
                   )),
               FlatButton(
                   onPressed: () async {
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    prefs.clear();
+
                     await FirebaseAuth.instance.signOut();
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) => Login(),

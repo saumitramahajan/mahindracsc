@@ -1,3 +1,5 @@
+import 'package:draggable_scrollbar/draggable_scrollbar.dart';
+
 import 'selfassessment.dart';
 
 import '../../../utilities.dart';
@@ -12,6 +14,7 @@ class Locations extends StatefulWidget {
 
 class _LocationsState extends State<Locations> {
   Utilities utilities = Utilities();
+  ScrollController _controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,54 +43,58 @@ class _LocationsState extends State<Locations> {
                             height: 20,
                           ),
                           Expanded(
-                            child: ListView.builder(
-                                itemCount: provider.listOfLocations.length,
-                                itemBuilder: (context, index) {
-                                  return GestureDetector(
-                                    child: Card(
-                                      elevation: 5.0,
-                                      margin: EdgeInsets.fromLTRB(
-                                          8.0, 8.0, 8.0, 8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  10, 10, 10, 10),
-                                              child: Column(children: [
-                                                Text(provider
-                                                        .listOfLocations[index]
-                                                            ['name']
-                                                        .toString() +
-                                                    ', ' +
-                                                    provider.listOfLocations[
-                                                        index]['location']),
-                                              ])),
-                                        ],
+                            child: DraggableScrollbar.rrect(
+                              alwaysVisibleScrollThumb: true,
+                              controller: _controller,
+                              child: ListView.builder(
+                                  controller: _controller,
+                                  itemCount: provider.listOfLocations.length,
+                                  itemBuilder: (context, index) {
+                                    return GestureDetector(
+                                      child: Card(
+                                        elevation: 5.0,
+                                        margin: EdgeInsets.fromLTRB(
+                                            8.0, 8.0, 8.0, 8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                                padding: EdgeInsets.fromLTRB(
+                                                    10, 10, 10, 10),
+                                                child: Column(children: [
+                                                  Text(provider.listOfLocations[
+                                                              index]['name']
+                                                          .toString() +
+                                                      ', ' +
+                                                      provider.listOfLocations[
+                                                          index]['location']),
+                                                ])),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    onTap: () {
-                                      provider.locations(
-                                          provider.listOfLocations[index]
-                                              ['documentId']);
+                                      onTap: () {
+                                        provider.locations(
+                                            provider.listOfLocations[index]
+                                                ['documentId']);
 
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) {
-                                          return ChangeNotifierProvider.value(
-                                            value: provider,
-                                            child: SelfAssessment(
-                                              documentId: provider
-                                                      .listOfLocations[index]
-                                                  ['documentId'],
-                                            ),
-                                          );
-                                        }),
-                                      );
-                                    },
-                                  );
-                                }),
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) {
+                                            return ChangeNotifierProvider.value(
+                                              value: provider,
+                                              child: SelfAssessment(
+                                                documentId: provider
+                                                        .listOfLocations[index]
+                                                    ['documentId'],
+                                              ),
+                                            );
+                                          }),
+                                        );
+                                      },
+                                    );
+                                  }),
+                            ),
                           ),
                         ]),
                       ))),

@@ -8,6 +8,7 @@ import 'package:mahindraCSC/roles/admin/enrollUsers/enrollUsers.dart';
 import 'package:mahindraCSC/roles/admin/review/assessmentProvider.dart';
 import 'package:mahindraCSC/roles/admin/review/locations.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../utilities.dart';
 import '../scheduleAssessment/scheduleAssessment.dart';
 import 'package:carousel_pro/carousel_pro.dart';
@@ -207,6 +208,9 @@ class _AdminDashboardState extends State<AdminDashboard> {
                       ),
                       dense: false,
                       onTap: () async {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        prefs.clear();
                         await FirebaseAuth.instance.signOut();
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => Login(),

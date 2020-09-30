@@ -7,6 +7,7 @@ import 'package:mahindraCSC/roles/assessee/assesseeProvider.dart';
 import 'package:mahindraCSC/roles/assessee/changePassword/changePassword.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../utilities.dart';
 import 'annualData/AnnualSafetyReportIT.dart';
 import 'annualData/annual_safety_report.dart';
@@ -129,6 +130,10 @@ class _AssesseeDashboardState extends State<AssesseeDashboard> {
                   )),
               FlatButton(
                   onPressed: () async {
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    prefs.clear();
+
                     await FirebaseAuth.instance.signOut();
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) => Login(),

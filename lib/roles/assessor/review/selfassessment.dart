@@ -1,3 +1,4 @@
+import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:mahindraCSC/roles/assessor/assessorDashboard.dart';
 
 import '../../../utilities.dart';
@@ -17,6 +18,7 @@ class _SelfAssessmentState extends State<SelfAssessment> {
   String groupValue = '1';
   Widget displayContainer = Container();
   Utilities utilities = Utilities();
+  ScrollController _controller = ScrollController();
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<AssessmentProvider>(context);
@@ -201,95 +203,101 @@ class _SelfAssessmentState extends State<SelfAssessment> {
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .65,
-              child: ListView.builder(
-                itemCount: provider.listOfStatement.length,
-                itemBuilder: (context, index) {
-                  return (index < 25)
-                      ? Card(
-                          elevation: 5.0,
-                          margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    padding:
-                                        EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                    child: SizedBox(
-                                      width: 180,
-                                      child: Text(
-                                        provider.listOfStatement[index]
-                                            ['statement'],
-                                        style: TextStyle(
-                                          color: Colors.red[700],
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
+              child: DraggableScrollbar.rrect(
+                alwaysVisibleScrollThumb: true,
+                controller: _controller,
+                child: ListView.builder(
+                  controller: _controller,
+                  itemCount: provider.listOfStatement.length,
+                  itemBuilder: (context, index) {
+                    return (index < 25)
+                        ? Card(
+                            elevation: 5.0,
+                            margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                      child: SizedBox(
+                                        width: 180,
+                                        child: Text(
+                                          provider.listOfStatement[index]
+                                              ['statement'],
+                                          style: TextStyle(
+                                            color: Colors.red[700],
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(children: [
-                                        SizedBox(width: 70),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: Text(
-                                            provider.listOfAssessment[index]
-                                                ['level'],
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 105),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.25,
-                                            child: ReadMoreText(
-                                              provider.listOfAssessment[index]
-                                                  ['comment'],
-                                              trimLines: 3,
-                                              colorClickableText: Colors.red,
-                                              trimMode: TrimMode.Line,
-                                              trimCollapsedText: '...Show more',
-                                              trimExpandedText: ' show less',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 70),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.15,
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(children: [
+                                          SizedBox(width: 70),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
                                             child: Text(
-                                              'NIL',
+                                              provider.listOfAssessment[index]
+                                                  ['level'],
                                               style: TextStyle(
                                                 fontSize: 14,
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ]),
-                                    ],
-                                  )
-                                ]),
-                          ))
-                      : SizedBox();
-                },
+                                          SizedBox(width: 105),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.25,
+                                              child: ReadMoreText(
+                                                provider.listOfAssessment[index]
+                                                    ['comment'],
+                                                trimLines: 3,
+                                                colorClickableText: Colors.red,
+                                                trimMode: TrimMode.Line,
+                                                trimCollapsedText:
+                                                    '...Show more',
+                                                trimExpandedText: ' show less',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 70),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.15,
+                                              child: Text(
+                                                'NIL',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ]),
+                                      ],
+                                    )
+                                  ]),
+                            ))
+                        : SizedBox();
+                  },
+                ),
               ),
             )
           ],
@@ -337,95 +345,101 @@ class _SelfAssessmentState extends State<SelfAssessment> {
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .65,
-              child: ListView.builder(
-                itemCount: provider.listOfStatement.length,
-                itemBuilder: (context, index) {
-                  return (index > 24)
-                      ? Card(
-                          elevation: 5.0,
-                          margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    padding:
-                                        EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                    child: SizedBox(
-                                      width: 200,
-                                      child: Text(
-                                        provider.listOfStatement[index]
-                                            ['statement'],
-                                        style: TextStyle(
-                                          color: Colors.red[700],
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
+              child: DraggableScrollbar.rrect(
+                alwaysVisibleScrollThumb: true,
+                controller: _controller,
+                child: ListView.builder(
+                  controller: _controller,
+                  itemCount: provider.listOfStatement.length,
+                  itemBuilder: (context, index) {
+                    return (index > 24)
+                        ? Card(
+                            elevation: 5.0,
+                            margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                      child: SizedBox(
+                                        width: 200,
+                                        child: Text(
+                                          provider.listOfStatement[index]
+                                              ['statement'],
+                                          style: TextStyle(
+                                            color: Colors.red[700],
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(children: [
-                                        SizedBox(width: 70),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: Text(
-                                            provider.listOfAssessment[index]
-                                                ['level'],
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 105),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.25,
-                                            child: ReadMoreText(
-                                              provider.listOfAssessment[index]
-                                                  ['comment'],
-                                              trimLines: 3,
-                                              colorClickableText: Colors.red,
-                                              trimMode: TrimMode.Line,
-                                              trimCollapsedText: '...Show more',
-                                              trimExpandedText: ' show less',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 70),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.15,
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(children: [
+                                          SizedBox(width: 70),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
                                             child: Text(
-                                              'NIL',
+                                              provider.listOfAssessment[index]
+                                                  ['level'],
                                               style: TextStyle(
                                                 fontSize: 14,
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ]),
-                                    ],
-                                  )
-                                ]),
-                          ))
-                      : SizedBox();
-                },
+                                          SizedBox(width: 105),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.25,
+                                              child: ReadMoreText(
+                                                provider.listOfAssessment[index]
+                                                    ['comment'],
+                                                trimLines: 3,
+                                                colorClickableText: Colors.red,
+                                                trimMode: TrimMode.Line,
+                                                trimCollapsedText:
+                                                    '...Show more',
+                                                trimExpandedText: ' show less',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 70),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.15,
+                                              child: Text(
+                                                'NIL',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ]),
+                                      ],
+                                    )
+                                  ]),
+                            ))
+                        : SizedBox();
+                  },
+                ),
               ),
             )
           ],
@@ -467,82 +481,88 @@ class _SelfAssessmentState extends State<SelfAssessment> {
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .65,
-              child: ListView.builder(
-                itemCount: provider.listOfStatementFire.length,
-                itemBuilder: (context, index) {
-                  return (index < 25)
-                      ? Card(
-                          elevation: 5.0,
-                          margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    padding:
-                                        EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                    child: SizedBox(
-                                      width: 300,
-                                      child: Text(
-                                        provider.listOfStatementFire[index]
-                                            ['statement'],
-                                        style: TextStyle(
-                                          color: Colors.red[700],
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
+              child: DraggableScrollbar.rrect(
+                alwaysVisibleScrollThumb: true,
+                controller: _controller,
+                child: ListView.builder(
+                  controller: _controller,
+                  itemCount: provider.listOfStatementFire.length,
+                  itemBuilder: (context, index) {
+                    return (index < 25)
+                        ? Card(
+                            elevation: 5.0,
+                            margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                      child: SizedBox(
+                                        width: 300,
+                                        child: Text(
+                                          provider.listOfStatementFire[index]
+                                              ['statement'],
+                                          style: TextStyle(
+                                            color: Colors.red[700],
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(children: [
-                                        SizedBox(width: 70),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: Text(
-                                            (provider.listOfFireAssessment[
-                                                        index]['answer'] ==
-                                                    'no')
-                                                ? 'No'
-                                                : 'Yes',
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 105),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.25,
-                                            child: ReadMoreText(
-                                              provider.listOfAssessment[index]
-                                                  ['comment'],
-                                              trimLines: 3,
-                                              colorClickableText: Colors.red,
-                                              trimMode: TrimMode.Line,
-                                              trimCollapsedText: '...Show more',
-                                              trimExpandedText: ' show less',
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(children: [
+                                          SizedBox(width: 70),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: Text(
+                                              (provider.listOfFireAssessment[
+                                                          index]['answer'] ==
+                                                      'no')
+                                                  ? 'No'
+                                                  : 'Yes',
                                               style: TextStyle(
                                                 fontSize: 14,
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ]),
-                                    ],
-                                  )
-                                ]),
-                          ))
-                      : SizedBox();
-                },
+                                          SizedBox(width: 105),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.25,
+                                              child: ReadMoreText(
+                                                provider.listOfAssessment[index]
+                                                    ['comment'],
+                                                trimLines: 3,
+                                                colorClickableText: Colors.red,
+                                                trimMode: TrimMode.Line,
+                                                trimCollapsedText:
+                                                    '...Show more',
+                                                trimExpandedText: ' show less',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ]),
+                                      ],
+                                    )
+                                  ]),
+                            ))
+                        : SizedBox();
+                  },
+                ),
               ),
             )
           ],
@@ -578,60 +598,65 @@ class _SelfAssessmentState extends State<SelfAssessment> {
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .65,
-              child: ListView.builder(
-                itemCount: provider.listOfStatementOffice.length,
-                itemBuilder: (context, index) {
-                  return (true)
-                      ? Card(
-                          elevation: 5.0,
-                          margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    padding:
-                                        EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                    child: SizedBox(
-                                      width: 540,
-                                      child: Text(
-                                        provider.listOfStatementOffice[index]
-                                            ['statement'],
-                                        style: TextStyle(
-                                          color: Colors.red[700],
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
+              child: DraggableScrollbar.rrect(
+                alwaysVisibleScrollThumb: true,
+                controller: _controller,
+                child: ListView.builder(
+                  controller: _controller,
+                  itemCount: provider.listOfStatementOffice.length,
+                  itemBuilder: (context, index) {
+                    return (true)
+                        ? Card(
+                            elevation: 5.0,
+                            margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                      child: SizedBox(
+                                        width: 540,
+                                        child: Text(
+                                          provider.listOfStatementOffice[index]
+                                              ['statement'],
+                                          style: TextStyle(
+                                            color: Colors.red[700],
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(children: [
-                                        SizedBox(width: 120),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: Text(
-                                            (provider.listOfOfficeAssessment[
-                                                        index]['answer'] ==
-                                                    'no')
-                                                ? 'No'
-                                                : 'Yes',
-                                            style: TextStyle(
-                                              fontSize: 14,
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(children: [
+                                          SizedBox(width: 120),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: Text(
+                                              (provider.listOfOfficeAssessment[
+                                                          index]['answer'] ==
+                                                      'no')
+                                                  ? 'No'
+                                                  : 'Yes',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ]),
-                                    ],
-                                  )
-                                ]),
-                          ))
-                      : SizedBox();
-                },
+                                        ]),
+                                      ],
+                                    )
+                                  ]),
+                            ))
+                        : SizedBox();
+                  },
+                ),
               ),
             )
           ],
@@ -691,129 +716,136 @@ class _SelfAssessmentState extends State<SelfAssessment> {
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .65,
-              child: ListView.builder(
-                itemCount: provider.listOfStatement.length,
-                itemBuilder: (context, index) {
-                  return (index < 25)
-                      ? Card(
-                          elevation: 5.0,
-                          margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    padding:
-                                        EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                    child: SizedBox(
-                                      width: 200,
-                                      child: Text(
-                                        provider.listOfStatement[index]
-                                            ['statement'],
-                                        style: TextStyle(
-                                          color: Colors.red[700],
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
+              child: DraggableScrollbar.rrect(
+                alwaysVisibleScrollThumb: true,
+                controller: _controller,
+                child: ListView.builder(
+                  controller: _controller,
+                  itemCount: provider.listOfStatement.length,
+                  itemBuilder: (context, index) {
+                    return (index < 25)
+                        ? Card(
+                            elevation: 5.0,
+                            margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                      child: SizedBox(
+                                        width: 200,
+                                        child: Text(
+                                          provider.listOfStatement[index]
+                                              ['statement'],
+                                          style: TextStyle(
+                                            color: Colors.red[700],
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(children: [
-                                        SizedBox(width: 50),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: Text(
-                                            provider.listOfAssessment[index]
-                                                ['level'],
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 75),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: Text(
-                                            provider.listOfAssessment[index]
-                                                    ['answer']
-                                                .toString(),
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 80),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.15,
-                                            child: ReadMoreText(
-                                              provider.listOfAssessment[index]
-                                                  ['comment'],
-                                              trimLines: 3,
-                                              colorClickableText: Colors.red,
-                                              trimMode: TrimMode.Line,
-                                              trimCollapsedText: '...Show more',
-                                              trimExpandedText: ' show less',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 50),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.15,
-                                            child: ReadMoreText(
-                                              provider.listOfAssessment[index]
-                                                  ['suggestion'],
-                                              trimLines: 3,
-                                              colorClickableText: Colors.red,
-                                              trimMode: TrimMode.Line,
-                                              trimCollapsedText: '...Show more',
-                                              trimExpandedText: ' show less',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 70),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.15,
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(children: [
+                                          SizedBox(width: 50),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
                                             child: Text(
-                                              'NIL',
+                                              provider.listOfAssessment[index]
+                                                  ['level'],
                                               style: TextStyle(
                                                 fontSize: 14,
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ]),
-                                    ],
-                                  )
-                                ]),
-                          ))
-                      : SizedBox();
-                },
+                                          SizedBox(width: 75),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: Text(
+                                              provider.listOfAssessment[index]
+                                                      ['answer']
+                                                  .toString(),
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 80),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.15,
+                                              child: ReadMoreText(
+                                                provider.listOfAssessment[index]
+                                                    ['comment'],
+                                                trimLines: 3,
+                                                colorClickableText: Colors.red,
+                                                trimMode: TrimMode.Line,
+                                                trimCollapsedText:
+                                                    '...Show more',
+                                                trimExpandedText: ' show less',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 50),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.15,
+                                              child: ReadMoreText(
+                                                provider.listOfAssessment[index]
+                                                    ['suggestion'],
+                                                trimLines: 3,
+                                                colorClickableText: Colors.red,
+                                                trimMode: TrimMode.Line,
+                                                trimCollapsedText:
+                                                    '...Show more',
+                                                trimExpandedText: ' show less',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 70),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.15,
+                                              child: Text(
+                                                'NIL',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ]),
+                                      ],
+                                    )
+                                  ]),
+                            ))
+                        : SizedBox();
+                  },
+                ),
               ),
             )
           ],
@@ -873,129 +905,136 @@ class _SelfAssessmentState extends State<SelfAssessment> {
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .65,
-              child: ListView.builder(
-                itemCount: provider.listOfStatement.length,
-                itemBuilder: (context, index) {
-                  return (index > 24)
-                      ? Card(
-                          elevation: 5.0,
-                          margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    padding:
-                                        EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                    child: SizedBox(
-                                      width: 200,
-                                      child: Text(
-                                        provider.listOfStatement[index]
-                                            ['statement'],
-                                        style: TextStyle(
-                                          color: Colors.red[700],
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
+              child: DraggableScrollbar.rrect(
+                alwaysVisibleScrollThumb: true,
+                controller: _controller,
+                child: ListView.builder(
+                  controller: _controller,
+                  itemCount: provider.listOfStatement.length,
+                  itemBuilder: (context, index) {
+                    return (index > 24)
+                        ? Card(
+                            elevation: 5.0,
+                            margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                      child: SizedBox(
+                                        width: 200,
+                                        child: Text(
+                                          provider.listOfStatement[index]
+                                              ['statement'],
+                                          style: TextStyle(
+                                            color: Colors.red[700],
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(children: [
-                                        SizedBox(width: 70),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: Text(
-                                            provider.listOfAssessment[index]
-                                                ['level'],
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 75),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: Text(
-                                            provider.listOfAssessment[index]
-                                                    ['answer']
-                                                .toString(),
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 75),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.15,
-                                            child: ReadMoreText(
-                                              provider.listOfAssessment[index]
-                                                  ['comment'],
-                                              trimLines: 3,
-                                              colorClickableText: Colors.red,
-                                              trimMode: TrimMode.Line,
-                                              trimCollapsedText: '...Show more',
-                                              trimExpandedText: ' show less',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 50),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.15,
-                                            child: ReadMoreText(
-                                              provider.listOfAssessment[index]
-                                                  ['suggestion'],
-                                              trimLines: 3,
-                                              colorClickableText: Colors.red,
-                                              trimMode: TrimMode.Line,
-                                              trimCollapsedText: '...Show more',
-                                              trimExpandedText: ' show less',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 70),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.15,
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(children: [
+                                          SizedBox(width: 70),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
                                             child: Text(
-                                              'NIL',
+                                              provider.listOfAssessment[index]
+                                                  ['level'],
                                               style: TextStyle(
                                                 fontSize: 14,
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ]),
-                                    ],
-                                  )
-                                ]),
-                          ))
-                      : SizedBox();
-                },
+                                          SizedBox(width: 75),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: Text(
+                                              provider.listOfAssessment[index]
+                                                      ['answer']
+                                                  .toString(),
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 75),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.15,
+                                              child: ReadMoreText(
+                                                provider.listOfAssessment[index]
+                                                    ['comment'],
+                                                trimLines: 3,
+                                                colorClickableText: Colors.red,
+                                                trimMode: TrimMode.Line,
+                                                trimCollapsedText:
+                                                    '...Show more',
+                                                trimExpandedText: ' show less',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 50),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.15,
+                                              child: ReadMoreText(
+                                                provider.listOfAssessment[index]
+                                                    ['suggestion'],
+                                                trimLines: 3,
+                                                colorClickableText: Colors.red,
+                                                trimMode: TrimMode.Line,
+                                                trimCollapsedText:
+                                                    '...Show more',
+                                                trimExpandedText: ' show less',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 70),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.15,
+                                              child: Text(
+                                                'NIL',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ]),
+                                      ],
+                                    )
+                                  ]),
+                            ))
+                        : SizedBox();
+                  },
+                ),
               ),
             )
           ],
@@ -1043,94 +1082,101 @@ class _SelfAssessmentState extends State<SelfAssessment> {
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .65,
-              child: ListView.builder(
-                itemCount: provider.listOfStatementFire.length,
-                itemBuilder: (context, index) {
-                  return (true)
-                      ? Card(
-                          elevation: 5.0,
-                          margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    padding:
-                                        EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                    child: SizedBox(
-                                      width: 300,
-                                      child: Text(
-                                        provider.listOfStatementFire[index]
-                                            ['statement'],
-                                        style: TextStyle(
-                                          color: Colors.red[700],
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
+              child: DraggableScrollbar.rrect(
+                alwaysVisibleScrollThumb: true,
+                controller: _controller,
+                child: ListView.builder(
+                  controller: _controller,
+                  itemCount: provider.listOfStatementFire.length,
+                  itemBuilder: (context, index) {
+                    return (true)
+                        ? Card(
+                            elevation: 5.0,
+                            margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                      child: SizedBox(
+                                        width: 300,
+                                        child: Text(
+                                          provider.listOfStatementFire[index]
+                                              ['statement'],
+                                          style: TextStyle(
+                                            color: Colors.red[700],
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(children: [
-                                        SizedBox(width: 60),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: Text(
-                                            provider.listOfFireAssessment[index]
-                                                    ['marks']
-                                                .toString(),
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 120),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: Text(
-                                            (provider.listOfFireAssessment[
-                                                        index]['answer'] ==
-                                                    'no')
-                                                ? 'No'
-                                                : 'Yes',
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 90),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.25,
-                                            child: ReadMoreText(
-                                              provider.listOfAssessment[index]
-                                                  ['comment'],
-                                              trimLines: 3,
-                                              colorClickableText: Colors.red,
-                                              trimMode: TrimMode.Line,
-                                              trimCollapsedText: '...Show more',
-                                              trimExpandedText: ' show less',
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(children: [
+                                          SizedBox(width: 60),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: Text(
+                                              provider
+                                                  .listOfFireAssessment[index]
+                                                      ['marks']
+                                                  .toString(),
                                               style: TextStyle(
                                                 fontSize: 14,
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ]),
-                                    ],
-                                  )
-                                ]),
-                          ))
-                      : SizedBox();
-                },
+                                          SizedBox(width: 120),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: Text(
+                                              (provider.listOfFireAssessment[
+                                                          index]['answer'] ==
+                                                      'no')
+                                                  ? 'No'
+                                                  : 'Yes',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 90),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.25,
+                                              child: ReadMoreText(
+                                                provider.listOfAssessment[index]
+                                                    ['comment'],
+                                                trimLines: 3,
+                                                colorClickableText: Colors.red,
+                                                trimMode: TrimMode.Line,
+                                                trimCollapsedText:
+                                                    '...Show more',
+                                                trimExpandedText: ' show less',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ]),
+                                      ],
+                                    )
+                                  ]),
+                            ))
+                        : SizedBox();
+                  },
+                ),
               ),
             )
           ],
@@ -1172,73 +1218,78 @@ class _SelfAssessmentState extends State<SelfAssessment> {
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .65,
-              child: ListView.builder(
-                itemCount: provider.listOfStatementOffice.length,
-                itemBuilder: (context, index) {
-                  return (true)
-                      ? Card(
-                          elevation: 5.0,
-                          margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    padding:
-                                        EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                    child: SizedBox(
-                                      width: 550,
-                                      child: Text(
-                                        provider.listOfStatementOffice[index]
-                                            ['statement'],
-                                        style: TextStyle(
-                                          color: Colors.red[700],
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
+              child: DraggableScrollbar.rrect(
+                alwaysVisibleScrollThumb: true,
+                controller: _controller,
+                child: ListView.builder(
+                  controller: _controller,
+                  itemCount: provider.listOfStatementOffice.length,
+                  itemBuilder: (context, index) {
+                    return (true)
+                        ? Card(
+                            elevation: 5.0,
+                            margin: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                      child: SizedBox(
+                                        width: 550,
+                                        child: Text(
+                                          provider.listOfStatementOffice[index]
+                                              ['statement'],
+                                          style: TextStyle(
+                                            color: Colors.red[700],
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(children: [
-                                        SizedBox(width: 100),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: Text(
-                                            provider
-                                                .listOfOfficeAssessment[index]
-                                                    ['marks']
-                                                .toString(),
-                                            style: TextStyle(
-                                              fontSize: 14,
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(children: [
+                                          SizedBox(width: 100),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: Text(
+                                              provider
+                                                  .listOfOfficeAssessment[index]
+                                                      ['marks']
+                                                  .toString(),
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        SizedBox(width: 100),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: Text(
-                                            (provider.listOfOfficeAssessment[
-                                                        index]['answer'] ==
-                                                    'no')
-                                                ? 'No'
-                                                : 'Yes',
-                                            style: TextStyle(
-                                              fontSize: 14,
+                                          SizedBox(width: 100),
+                                          Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: Text(
+                                              (provider.listOfOfficeAssessment[
+                                                          index]['answer'] ==
+                                                      'no')
+                                                  ? 'No'
+                                                  : 'Yes',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ]),
-                                    ],
-                                  )
-                                ]),
-                          ))
-                      : SizedBox();
-                },
+                                        ]),
+                                      ],
+                                    )
+                                  ]),
+                            ))
+                        : SizedBox();
+                  },
+                ),
               ),
             ),
             RaisedButton(

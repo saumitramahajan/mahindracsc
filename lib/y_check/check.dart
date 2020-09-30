@@ -29,56 +29,43 @@ class _CheckState extends State<Check> {
       return CircularProgressIndicator();
     } else {
       if (checkProvider.error) {
-        return Login();
+        return Text('Error');
       } else {
         if (checkProvider.userExistsBool) {
           if (checkProvider.singleRole) {
             switch (checkProvider.role) {
               case 'admin':
                 {
-                  Navigator.of(context)
-                      .pushReplacement(MaterialPageRoute(builder: (context) {
-                    return ChangeNotifierProvider<AdminProvider>(
-                      create: (_) => AdminProvider(),
-                      child: AdminDashboard(),
-                    );
-                  }));
+                  return ChangeNotifierProvider<AdminProvider>(
+                    create: (_) => AdminProvider(),
+                    child: AdminDashboard(),
+                  );
                 }
                 break;
               case 'assessee':
                 {
-                  Navigator.of(context)
-                      .pushReplacement(MaterialPageRoute(builder: (context) {
-                    return ChangeNotifierProvider<AssesseeProvider>(
-                      create: (_) => AssesseeProvider(),
-                      child: AssesseeDashboard(),
-                    );
-                  }));
+                  return ChangeNotifierProvider<AssesseeProvider>(
+                    create: (_) => AssesseeProvider(),
+                    child: AssesseeDashboard(),
+                  );
                 }
                 break;
               case 'assessor':
                 {
-                  Navigator.of(context)
-                      .pushReplacement(MaterialPageRoute(builder: (context) {
-                    return ChangeNotifierProvider<AssessorProvider>(
-                      create: (_) => AssessorProvider(),
-                      child: AssessorDashboard(),
-                    );
-                  }));
+                  return ChangeNotifierProvider<AssessorProvider>(
+                    create: (_) => AssessorProvider(),
+                    child: AssessorDashboard(),
+                  );
                 }
                 break;
             }
           } else {
-            Navigator.of(context)
-                .pushReplacement(MaterialPageRoute(builder: (context) {
-              return Choice();
-            }));
+            return Choice();
           }
         } else {
           return Login();
         }
       }
     }
-    return null;
   }
 }

@@ -5,7 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class CheckRepository {
   Future<bool> userExists() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool user = prefs.getBool('loggedIn');
+
+    bool user = prefs.getBool('loggedIn') ?? false;
     if (user) {
       return true;
     } else {
